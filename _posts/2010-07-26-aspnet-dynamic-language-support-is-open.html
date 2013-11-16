@@ -18,56 +18,6 @@ author:
     image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
 ---
 
-<div class="css-full-post-content js-full-post-content">
+<div class="post-content">
 <p>I'm happy to <i>finally </i>announce that the <b><a href="http://ironpython.net/download/aspnet-20100716" target="_blank">ASP.NET dynamic language support</a></b> is now <b><a href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank">open source</a></b>: </p>  <p><a href="http://ironpython.net/download/aspnet-20100716" target="_blank"><strong>Download IronPython and ASP.NET integration</strong></a></p>  <p><em>For a full <a href="http://ironpython.net" target="_blank">IronPython</a> release with the Python standard library, download </em><a href="http://ironpython.codeplex.com/releases/view/42434" target="_blank"><em>IronPython 2.7 Alpha 1</em></a><em>.</em></p>  <p>This release contains the source code to <code>Microsoft.Scripting.AspNet.dll</code>, located in the <code>src</code> directory, licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank">Apache License (Version 2)</a>. It will be available in the source repository for IronPython in the very near future, but don't hesitate to start <a href="http://ironpython.codeplex.com/SourceControl/UploadPatch.aspx" target="_blank">sending in patches</a>. This release is compatible with <a href="http://ironpython.codeplex.com/releases/view/42434" target="_blank">IronPython 2.7 Alpha 1</a>.</p>  <h4>Background</h4>  <p>This download enables <a href="http://www.asp.net/dynamiclanguages" target="_blank">IronPython as an ASP.NET programming language</a>. To create a new IronPython ASP.NET WebForms project, simply copy <code>examples\web.config</code> and <code>examples\bin</code>, and use <code>examples\hello-webforms.aspx</code> as a reference. A redistributed copy of the IronPython 2.7 Alpha 1 binaries can be found in the <code>examples\bin</code> directory; all files except <code>Microsoft.Scripting.AspNet.dll</code>, the IronPython ASP.NET integration, are from the IronPython 2.7 Alpha 1 release.</p>  <p>For more detail on getting started, <a href="http://blog.jimmy.schementi.com/2008/09/aspnet-dynamic-language-support.html" target="_blank">here’s a simple walk-through of making the “hello-webforms” app</a>.</p>  <h4>Package</h4>  <p>Here's what's in the zip file:</p>  <ul>   <li><code>/License.html</code> - The Apache License, Version 2. </li>    <li><code>/dlr-aspnet.sln</code> - VS2010 solution for examples </li>    <li><code>/examples</code> - Examples of using IronPython in ASP.NET. </li>    <li><code>/examples/Web*.config</code> - configures ASP.NET to use IronPython </li>    <li><code>/examples/bin</code> - Microsoft.Scripting.AspNet.dll, the ASP.NET integration, and a redistribution of IronPython 2.7A1. </li>    <li><code>/src</code> - C# source code that builds Microsoft.Scripting.AspNet.dll </li> </ul>  <h4>Upgrading</h4>  <p>This release renames the main DLL from <code>Microsoft.Web.Scripting.dll</code> to <code>Microsoft.Scripting.AspNet.dll</code>. If upgrading, you'll have to replace all occurrences of <code>Microsoft.Web.Scripting</code> with <code>Microsoft.Scripting.AspNet</code>. This will primarily be at the top of all aspx pages, as well as in your application's web.config. Also note the version number is now 1.1.0.1, which matches all the other <code>Microsoft.Scripting</code> assemblies.</p>  <h4>Feedback</h4>  <p>As always, please report issues on the <a href="http://ironpython.codeplex.com/WorkItem/Create" target="_blank">IronPython issue tracker</a>. You can also try to fix any issues yourself and <a href="http://ironpython.codeplex.com/SourceControl/UploadPatch.aspx" target="_blank">submit a patch</a>. Lastly, you can actually talk to humans on the <a href="http://lists.ironpython.com/listinfo.cgi/users-ironpython.com" target="_blank">IronPython mailing list</a>.</p>  <h4>Enjoy!</h4>  
-</div>
-<div class="css-full-comments-content js-full-comments-content">
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/09727564294762127967">
-  <div class="css-comment-name js-comment-name">
-    Pete Austin
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2010-07-26T09:05:35.600Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    Please could you confirm what this applies to. I assume only the programming languages and nothing else?<br /><br />For example from http://www.codeplex.com/Legal/Terms.aspx<br /><br />&quot;Permission to use Documents (such as white papers, press releases, datasheets and FAQs) from the Services is granted, provided that: (1) the below copyright notice appears in all copies and that both the copyright notice and this permission notice appear, (2) use of such Documents from the Services is for informational and non-commercial or personal use only&quot;<br /><br />This seems incompatible with an Open Source license, so what is the legal position of Open Source programmers who read Microsoft Documentation? - Pete Austin
-  </div>
-  <br/>
-</div>
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/09727564294762127967">
-  <div class="css-comment-name js-comment-name">
-    Pete Austin
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2010-07-26T09:24:38.077Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    A specific case is your IronPython example program at the following URL. Can Open Source programmers, seeking to learn about IronPython for commercial reasons, download and use this?<br /><br />http://www.codeplex.com/aspnet/Release/ProjectReleases.aspx?ReleaseId=17613
-  </div>
-  <br/>
-</div>
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/05370777584064015818">
-  <div class="css-comment-name js-comment-name">
-    Jimmy Schementi
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2010-08-08T18:44:15.182Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    @pete I agree with your concern about that verbage on CodePlex.com. However, all source-code on IronPython.net or IronPython.CodePlex.com is licensed under the Apache license (version 2). If you are uncomfortable with the CodePlex terms, you should download the ASP.NET integration directly from the IronPython website, as my blog post links to: <a href="http://ironpython.net/download/aspnet-20100716" rel="nofollow">http://ironpython.net/download/aspnet-20100716</a>. The downloads on aspnet.codeplex.com are older, but I&#39;m trying to get the ASP.NET team to update them.
-  </div>
-  <br/>
-</div>
 </div>

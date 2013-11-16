@@ -18,7 +18,7 @@ author:
     image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
 ---
 
-<div class="css-full-post-content js-full-post-content">
+<div class="post-content">
 <p><a href="http://bp2.blogger.com/_OqCZhp9yI0Q/SE74VwxHC3I/AAAAAAAAACo/Z7Q--6yQISM/s1600-h/slpyrb-small.png" style="border: 0px"><img border="0" alt="" align="left" src="http://bp2.blogger.com/_OqCZhp9yI0Q/SE74VwxHC3I/AAAAAAAAACo/Z7Q--6yQISM/s400/slpyrb-small.png" style="border: 0px" /></a>I've finally updated the Silverlight Dynamic Languages SDK with the newest DLR, IronRuby, IronPython, and JScript binaries and sources!</p><p><a href="http://www.codeplex.com/sdlsdk/Release/ProjectReleases.aspx?ReleaseId=16845">Download the SDK!</a>    <br />
 <font size="1">This release works with </font><a href="http://www.microsoft.com/silverlight/resources/install.aspx?v=2.0.30523.8"><font size="1">Silverlight 2 Beta 2</font></a><font size="1">.</font></p><p>For more information on what is in the SDK, check out the <a href="http://blog.jimmy.schementi.com/2008/06/dynamic-languages-in-silverlight-2-beta.html">previous release's post</a> or the <a href="http://blog.jimmy.schementi.com/2008/03/dynamic-silverlight.html">initial MIX'08 release's post</a>.</p><p>As usual, report any issues on the <a target="_blank" href="http://www.codeplex.com/sdlsdk/WorkItem/List.aspx">Issue Tracker</a>, and feel free to ask any questions on the <a target="_blank" href="http://www.codeplex.com/sdlsdk/Thread/List.aspx">Discussions tab</a>.</p><h4><font color="#ff8000">Version 0.3.0</font></h4><p>One noticeable change is the &quot;0.3.0&quot;; where the hell did that come from!? It's going to be more necessary to have a proper version number after this release, since there will be a couple more releases between now and the next major Silverlight release. So, this release is 0.3, and the previous 2 releases are 0.1 and 0.2. </p><h4><font color="#ff8000">Packaging</font></h4><p><font color="#ff8000"><font color="#cccccc">Another noticeable change is the packaging; you've now got a 1-stop-shop for binaries, scripts, samples, and source code in the download labeled &quot;Everything.&quot; The individual packages still exist as well.</font></font></p><h4><font color="#ff8000">Future</font></h4><p>The releases after this will be as much about the Silverlight-specific experience, along with packaging up the new language bits to work together in Silverlight. Some future features being worked on are:</p><ul><li>Better support for download-on-demand dynamic language code and assemblies</li>
 <li>Tooling support in Visual Studio</li>
@@ -26,102 +26,4 @@ author:
 <li>Better ruby stack traces</li>
 <li>Startup improvements (running code in interpreted mode to start).</li>
 </ul><h4><font color="#ff8000">Name?</font></h4><p>&quot;Silverlight Dynamic Languages SDK&quot; is a horrible name, and &quot;sdlsdk&quot; is an even more horrible acronym. We need a good/origional/non-suck name for it. If you have any ideas, hit me up on <a href="http://twitter.com/jschementi">http://twitter.com/jschementi</a>, or leave me a comment.</p><p>&#160;</p><p><font size="1"><strong>About the Silverlight Dynamic Languages SDK:</strong></font></p><p><a href="http://silverlight.net/dlr"><font size="1">This project</font></a><font size="1"> represents the integration between Silverlight and Dynamic Languages running on the Dynamic Language Runtime (DLR). The languages included in this package are IronRuby, IronPython, and Managed JScript. The DLR, Silverlight Integration, IronRuby, and IronPython are released under the </font><a href="http://www.opensource.org/licenses/ms-pl.html"><font size="1">Microsoft Public License</font></a></p>
-</div>
-<div class="css-full-comments-content js-full-comments-content">
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/14783143626906780756">
-  <div class="css-comment-name js-comment-name">
-    apl
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2008-08-31T10:57:00.000Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    Great news. Just a quick question, do you know anything about similar package (latest binaries of the DLR, IronRuby, IronPython and Managed JScript), but for the desktop CLR?
-  </div>
-  <br/>
-</div>
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="undefined">
-  <div class="css-comment-name js-comment-name">
-    Anonymous
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2008-08-31T17:50:00.000Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    In France we say <BR/><BR/>"""<BR/>la parole est d'argent<BR/>le silence est d'or<BR/>"""<BR/><BR/>so i propose<BR/><BR/>SilverWhisper Kit<BR/><BR/>then you can start the google battle for SWK ranking :)
-  </div>
-  <br/>
-</div>
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/05370777584064015818">
-  <div class="css-comment-name js-comment-name">
-    Jimmy Schementi
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2008-09-01T23:44:00.000Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    @apl: Unfortunately there's no similar package for the desktop. The root problem is all our source-control, continuous integration, and daily build machines are part of either VS or CLR's internal systems, so giving people access to that is next to impossible. Also, we don't have someone who can test the builds work together (like a test-pass, which consists of manual tests as well). In the future the languages will all depend on a single version of the DLR, so this won't be a problem anymore, but until then it does suck. Expect that in the fall.<BR/><BR/>However, it should be just a matter of changing the project file references to point to desktop assemblies. I know Ivan (http://flanders.co.nz/) has done this before.
-  </div>
-  <br/>
-</div>
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/06570093931665451972">
-  <div class="css-comment-name js-comment-name">
-    paul
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2008-09-03T00:10:00.000Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    I uploaded a patch to CodePlex that builds for the client framework in VS 2008. Haven't tested it, but everything (except chiron) builds correctly.<BR/><A HREF="http://www.codeplex.com/Project/Download/FileDownload.aspx?ProjectName=sdlsdk&DownloadId=42891" REL="nofollow">Download Patch</A>
-  </div>
-  <br/>
-</div>
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/05370777584064015818">
-  <div class="css-comment-name js-comment-name">
-    Jimmy Schementi
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2008-09-03T00:12:00.000Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    @paul Awesome! Actually, Chiron is a exe that runs on the desktop CLR, so no work is needed to get that working =) If everything else builds, then your patch should be good to go. I'll check it out and let you know.
-  </div>
-  <br/>
-</div>
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/05485737252432475634">
-  <div class="css-comment-name js-comment-name">
-    Kaveh Shahbazian
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2008-09-12T22:24:00.000Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    Some name suggestions: <BR/>SDLK; (Using just K for SDK)<BR/>DynaK; (Read dyna - K (K-e-y))<BR/>SilK; (Not bad!)<BR/>SilverDK;<BR/>DynamicLight; (Mmm...)<BR/>DylaK;<BR/>Sidyla; (Mm..)<BR/>...<BR/>Just some came to my mind! :)
-  </div>
-  <br/>
-</div>
 </div>

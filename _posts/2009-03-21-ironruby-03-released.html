@@ -18,7 +18,7 @@ author:
     image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
 ---
 
-<div class="css-full-post-content js-full-post-content">
+<div class="post-content">
 <p><a href="http://ironruby.net" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="ironruby-400" border="0" alt="ironruby-400" src="http://lh5.ggpht.com/_OqCZhp9yI0Q/ScQ6pnmmz3I/AAAAAAAAAHg/9QguNH9nuTY/ironruby4005.png?imgmax=800" width="400" height="113" /></a> </p>  <p>I’m pleased to announce a new release of <a href="http://ironruby.net" target="_blank">IronRuby</a>: <strong><a href="http://ironruby.net/Download" target="_blank">IronRuby 0.3</a>!</strong> </p> <style type="text/css">.download_ironruby {
 color: white; 
 padding: 10px; 
@@ -35,59 +35,4 @@ margin: 30px 30px
 background-color: #555;
 cursor: pointer;
 }</style>  <p><a class="download_ironruby" href="http://rubyforge.org/frs/download.php/53552/ironruby-0.3.0.zip" target="_blank">Download IronRuby 0.3</a> </p>  <p align="center"><a href="http://github.com/ironruby/ironruby/tree/v0.3.0" target="_blank">You can also check out the source code for this release</a></p>  <p>Staying true to our “Conference-driven development schedule,” this release is in conjunction with <a href="http://live.visitmix.com/" target="_blank">MIX ‘09</a>, where <a href="http://silverlight.net" target="_blank">Silverlight</a> 3 Beta and <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=53289097-73ce-43bf-b6a6-35e00103cb4b&amp;displaylang=en" target="_blank">ASP.NET MVC 1.0</a> were announced, to name a few. <a href="http://www.iunknown.com" target="_blank">John Lam</a> <a href="http://videos.visitmix.com/MIX09/T22F">spoke at MIX today at 12:30pm in Las Vegas about using dynamic languages in Silverlight for testing, scripting, and application building. And some ASP.NET MVC with IronRuby is thrown in there too.</a></p>  <p>The demos are also available for <a href="http://github.com/jschementi/mix09/zipball/master" target="_blank">download here</a>. Check out <a href="http://github.com/jschementi/mix09">http://github.com/jschementi/mix09</a> for information on what the demos are, and how to use them. Also, throughout the day I will be posting walk-through-style posts about each major usage of dynamic languages in Silverlight.</p>  <ul>   <li><a href="http://blog.jimmy.schementi.com/2009/03/silverlight-dynamic-languages-sdk-05.html" target="_blank">AgDLR 0.5 Released</a></li>    <li><a href="http://blog.jimmy.schementi.com/2009/03/testing-c-silverlight-apps-with.html" target="_blank">Testing in Silverlight</a></li>    <li><a href="http://blog.jimmy.schementi.com/2009/03/scripting-c-silverlight-apps-with.html" target="_blank">Scripting in Silverlight</a></li>    <li>Application building in Silverlight 3 (coming soon) </li>    <li>IronRuby and IronPython with ASP.NET (coming soon) </li> </ul>  <p>Now that that’s out of the way, what did we do in this release?</p>  <h4><a href="http://rubyspec.org/" target="_blank"><font color="#ff8000">RubySpec</font></a></h4>  <p>IronRuby passes approximately 80% of <a href="http://rubyspec.org/" target="_blank">RubySpec</a>, the best test suite Ruby has today. IronRuby is best at language compatibility, passing 95% of those tests, but worse on the standard libraries with a pass-rate of 77%. Overall the pass-rate as gone up approximately 10% since the last release, and there hasn’t been a major library push since getting Rails running. For IronRuby 1.0, that number is going to be as high as possible, and we’ll ensure that by continuing to work with the RubySpec project to improve the test suite.</p>  <p><a href="http://ironruby.info" target="_blank">IronRuby.info</a> shows up-to-date RubySpec statistics about IronRuby.</p>  <h4><font color="#ff8000">.NET inter-operation</font></h4>  <p>Since this release is around MIX, and John’s talk is going to be focused around Silverlight and ASP.NET MVC, it seems like a great time to polish IronRuby’s .NET interop. For example, the release enables calling generic methods, implementing interfaces with IronRuby, and better conversions between .NET and Ruby types. We’ve also started to build a .NET interop test suite, using the same infrastructure RubySpec uses (MSpec), to provide a executable specification of how IronRuby and .NET play together. There will also be a written specification showing what these .NET interop features are good for, but not for this release.</p>  <p><em>For more specifics of what this release contains, checkout out the CHANGELOG.txt in the binary download.</em></p>  <h4><font color="#ff8000">What’s with the version number?</font></h4>  <p>IronRuby is going to be a bit unconventional-Microsoft (as if that’s something new) and simply release 0.x releases (and maybe 0.x.x if needed) until it gets to 1.0, rather than release something with “Alpha”, “Beta”, or “RTW” attached to the name. That being said, 0.3 is a complete underestimation of where IronRuby is; it’s definitely more than 30% completed. We’ll move through the point releases rather fast, compared to the 7 months it took to get 0.1 (Alpha 1) releases, and another 3-4 months for (Alpha 2). Any maybe even skip some numbers along the way.</p>  <h4><font color="#ff8000">What’s next?</font></h4>  <p>While the .NET interop testing/specing work will continue, the next releases will be much more focused on getting real Ruby applications running well; whether they be already existing apps/frameworks like Rails, RubyGems, Rake, etc, or new applications that people are building with IronRuby. We’re starting to run the gems, rake, and rails tests with IronRuby, and this type of discovery with more Ruby libraries will drive what we work on next. </p>  <p>In short, expect to see more binary releases, more often. Until then, <a href="http://ironruby.net/download" target="_blank">Download IronRuby 0.3</a>!</p>  
-</div>
-<div class="css-full-comments-content js-full-comments-content">
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/13555716613127948038">
-  <div class="css-comment-name js-comment-name">
-    C.J.
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2009-03-21T20:23:00.000Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    and still building on linux:<BR/><BR/>http://ironruby.colliertech.org/integrity/
-  </div>
-  <br/>
-</div>
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/00082890578046480571">
-  <div class="css-comment-name js-comment-name">
-    Darren Torpey
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2009-04-23T03:43:00.000Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    So how long until IronRuby could be used with XNA?<br /><br />Jeff Ward and I are working on porting the <A HREF="http://code.google.com/p/angel-engine/" REL="nofollow">Angel prototyping engine</A> to XNA (we're calling it <A HREF="http://bitbucket.org/fuzzybinary/angelxna/" REL="nofollow">AngelXNA</A> -- clever, I know)<br /><br />Angel proper has been integrating Python scripting support. That's a smart choice for them: Python is very popular among C++ game programmers and the language works well with C++.<br /><br />But as you know, I'm <EM>much</EM> more keen on Ruby.<br /><br />If it's nothing but a pipe dream, no problem -- we'll probably end up using Lua or some other nice option, but I figured I'd ask THE MAN HIMSELF in case the news is better than I fear.  =)
-  </div>
-  <br/>
-</div>
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/05370777584064015818">
-  <div class="css-comment-name js-comment-name">
-    Jimmy Schementi
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2009-04-23T17:11:00.000Z
-  </div>
-  </div>
-  <div class="css-comment-title js-comment-title">
-    @darren
-
-XNA is a interesting situation: short ans...
-  </div>
-  <div class="css-comment-content js-comment-content">
-    @darren<br /><br />XNA is a interesting situation: short answer is IronRuby "probably" works with XNA today, but only on Windows, not on the XBox or Zune. That won't always be true though.<br /><br />The reason it doesn't work on the XBox/Zune/etc is because the XBox uses a compacted version of the CLR and .NET framework, the same one that is on mobile phones, and they don't have the compiler APIs needed to emit source code at runtime (the System.Reflection.Emit namespace), so any language using the DLR's code generation will not run.<br /><br />However, if the language had an interpreter, non-dependent on emitting instructions at runtime, then it could run anywhere. Such an interpreter (for all DLR languages, and a Ruby-specific interpreter) are being worked on.<br /><br />Hosting either IronRuby and IronPython in the same application is trivial; they use the same hosting API. Send me mail (jimmysch@microsoft.com) if you still want to explore using Ruby or Python on .NET, and I can help you out.
-  </div>
-  <br/>
-</div>
 </div>

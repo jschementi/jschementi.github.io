@@ -18,7 +18,7 @@ author:
     image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
 ---
 
-<div class="css-full-post-content js-full-post-content">
+<div class="post-content">
 <p>I’ve heard plenty of times on the <a href="http://lists.ironpython.com/pipermail/users-ironpython.com/2009-November/011606.html" target="_blank">IronPython Mailing List</a> that embedding IronPython in Silverlight is easy at first, but then you fall off a cliff when trying to import, be it from a .NET namespace, the Python built-ins, or even other Python files. Let me clear some things up, and fix some code in the process.</p>  <h4><font color="#ff8000">Slight detour – Embedding in Silverlight 101</font></h4>  <p>First off, Michael Foord has an article on his website about <a href="http://www.voidspace.org.uk/ironpython/silverlight/embedding_ironpython.shtml" target="_blank">Embedding IronPython in Silverlight</a>, which still works. However, that’s a ton of complicated code, all having to do with creating a <code>ScriptRuntime</code> instance correctly configured for Silverlight. To make this much less verbose, <code>DynamicEngine.CreateRuntime</code> (in the <code>Microsoft.Scripting.Silverlight </code>namespace) will create a <code>ScriptRuntime</code> all prepped for use in Silverlight; this significantly reduces the boilerplate hosting code:</p> <script src="http://gist.github.com/231540.js"></script>  <p>In case you need to customize your <code>ScriptRuntime</code>, the <code>DynamicEngine.CreateRuntimeSetup</code> method is there to create a <code>ScriptRuntimeSetup</code> object configured for Silverlight, which then you can tweak things as necessary and create your own <code>ScriptRuntime</code>.</p> <script src="http://gist.github.com/231772.js"></script>  <p><em>Note: The IronPython sources currently are <strong>broken</strong> for embedding, but in the next few days the sources should reflect what this post shows.</em></p>  <h4><font color="#ff8000">Testing that "import" works</font></h4>  <p>Ok, great, the boilerplate hosting code doesn’t need to look hideous, but let’s get back on track.</p>  <p><a href="http://jimmy.schementi.com/silverlight/embedding-ipy" target="_blank"><img style="display: block; float: none; margin-left: auto; margin-right: auto" title="Embedding IronPython in Silverlight - Importing test" alt="Embedding IronPython in Silverlight - Importing test" src="http://lh6.ggpht.com/_OqCZhp9yI0Q/Svp-TQ-aWJI/AAAAAAAAANM/t4O3o71LlG4/ipy-sl-embed-import-test%5B7%5D.png?imgmax=800" width="400" height="260" /></a></p>  <p align="center"><a href="http://jimmy.schementi.com/silverlight/embedding-ipy" target="_blank">Embedding IronPython in Silverlight – importing test</a> (<a href="http://github.com/jschementi/orphanage/tree/master/embedding-ipy/" target="_blank">sources</a>)</p>  <p>Here’s a quick test of IronPython’s ability to import various modules in Silverlight, testing this exact code works while being embedded:</p> <script src="http://gist.github.com/231783.js"></script>  <p>None of these worked when I first wrote the tests, since there was an exception being thrown in the XAP-virtual-filesystem, <a href="http://lists.ironpython.com/pipermail/users-ironpython.com/2009-November/011606.html" target="_blank">reported yesterday on the IronPython mailing list</a>. But with that fixed, the <code>import bar.baz</code> case still failed:</p>  <pre style="background-color: #333; color: white; padding: 5px;">[FAIL]
 Traceback (most recent call last):
   at test_import in foo.py, line 5
@@ -38,86 +38,4 @@ bar/baz.py</pre>
 <p>Anyway, I hope that clears up some of the issues most people initially face with embedding IronPython in Silverlight. Let me know if there are any more issues.</p>
 
 <p><em>Note: As I said before, the current IronPython sources are broken for embedding, but in the next few days the sources should reflect what this post shows. <a href="http://github.com/jschementi/orphanage/tree/master/embedding-ipy/Dependencies/" target="_blank">If you’re impatient, grab these binaries</a>.</em></p>  
-</div>
-<div class="css-full-comments-content js-full-comments-content">
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/18193908805797245856">
-  <div class="css-comment-name js-comment-name">
-    kayschluehr
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2009-11-15T08:13:15.713Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    This quite naturally raises the question of modules/scripts not living in the xap file containing also the DLR? <br /><br />It might be possible ( I haven&#39;t checked this ) to write import hooks used to load scripts from remote URLs but this would be out of touch with the DLR and its API which standardizes access beyond individual languages. Moreover each application developer had to create their own import infrastructure supplement - something I&#39;d like to avoid if I can.
-  </div>
-  <br/>
-</div>
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/05370777584064015818">
-  <div class="css-comment-name js-comment-name">
-    Jimmy Schementi
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2009-12-05T02:18:34.249Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    @kayschluehr we already support this with the new script-tags feature. The decision to use script-tags was because you need a list of files to download when the page starts --- you cannot pause the execution of the script to asynchronously download something, and then resume execution (the CLR does not support continuations). Async downloading is required because all downloading in the browser is done on the UI thread.<br /><br />For more documentation about this, read: http://ironruby.com/browser/sl-back-to-just-text.pdf
-  </div>
-  <br/>
-</div>
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/18193908805797245856">
-  <div class="css-comment-name js-comment-name">
-    kayschluehr
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2009-12-20T10:09:56.014Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    Isn&#39;t this an interpreter problem? I don&#39;t see why the interpreter can&#39;t pause on import. The UI might be frozen or creates a wait indicator - something I do consider for my own app. This should be easier than doing general interrupts of the interpreter which doesn&#39;t work either right now.<br /><br />Not sure what to make with script tags? I suppose neither interactive nor Prism style applications are feasible right now using the DLR. So what is precisely the selling point? Wasn&#39;t interactivity one of yours on your own blog?
-  </div>
-  <br/>
-</div>
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/05370777584064015818">
-  <div class="css-comment-name js-comment-name">
-    Jimmy Schementi
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2010-01-12T22:37:45.779Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    &gt;&gt;&gt; Isn&#39;t this an interpreter problem?<br /><br />Well, it&#39;s not something IronPython can address; it&#39;s a VM problem. The CLR does not support &quot;continuations&quot;, which are what you&#39;re explaining ... pause the execution of a thread (lifting the current state), change that thread&#39;s instruction pointer (bring in it&#39;s state), and then at some point resuming execution at the original fork.<br /><br />Without this there is no way to write a procedular (synchronous) import hook in Silverlight which runs on the UI thread (just like JavaScript), without hanging the UI thread. Not hanging the UI thread is importnant, since Silverlight runs in the same process as Firefox and IE, so the entire browser, including all tabs running in the browser, will hang. In Chrome all plugins run in a different process, but Chrome is extremely sensitive to processes not responding, and it will tear down a blocked plugin process very agressively.<br /><br />However, you could write this asynchronously, but it doesn&#39;t look very Pythonic.<br /><br />downloading_import &#39;foo&#39;, on_complete<br />def on_complete(module)<br />  module.bar() # equivalent to foo.bar()<br />  # rest of your program<br /><br />You can also imagine running the Python code on a background thread to start, and when the import begins immediately dispatching the download to the UI thread, stopping the user-code background thread, and when the download is completed restarting the background thread. However, changing the thread user-code runs on would make writing Python code more painful, since it would require an explicit dispatch to the UI thread for all UI manipulations.<br /><br />&gt;&gt;&gt; Not sure what to make <br />&gt;&gt;&gt; with script tags?<br />It&#39;s just a simpler application model for Python browser apps.<br /><br />&gt;&gt;&gt; I suppose neither interactive nor Prism style applications<br />&gt;&gt;&gt; are feasible right now using the DLR. So what is precisely<br />&gt;&gt;&gt; the selling point? Wasn&#39;t interactivity one of yours on your<br />&gt;&gt;&gt; own blog?<br /><br />What made you come to that conclusion? The DLR lets you treat everything as a string, and you can download things as much as you want, but no asynchronous activities can happen while running user-code; user-code blocks until it finishes, as there is no way to interrupt (unless you run on another thread like I suggested above).<br /><br />What exactly do you want to do that you don&#39;t think is possible with the DLR?
-  </div>
-  <br/>
-</div>
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/18322891116482163965">
-  <div class="css-comment-name js-comment-name">
-    버거킹스
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2011-10-21T07:47:00.866Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    from System.Net import WebClient<br />url=&quot;http://example.com/xxx.mp3&quot;<br />filename=&quot;billy111.mp3&quot;<br />WebClient().DownloadFile(url, filename)<br />=========================================<br />AttributeError: &#39;WebClient&#39; object has no attribute &#39;DownloadFile&#39;<br /><br />i have a question. what is attributeError?<br /><br />what should i do?  please tell me.<br /><br />from south.korea <br /><br />email : logostri123@naver.com
-  </div>
-  <br/>
-</div>
 </div>

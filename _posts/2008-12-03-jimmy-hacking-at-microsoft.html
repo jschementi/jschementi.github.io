@@ -18,7 +18,7 @@ author:
     image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
 ---
 
-<div class="css-full-post-content js-full-post-content">
+<div class="post-content">
 <p><em>Here's the &quot;script&quot; I wrote up for my talk this evening at WPI, entitled <strong>&quot;jimmy hacking (at) Microsoft -- open source programming languages.&quot;</strong></em></p><p><a target="_blank" href="http://www.slideshare.net/jschementi/jimmy-hacking-at-microsoft-presentation">Here are the slides</a></p><p><a target="_blank" href="http://www.flickr.com/photos/jschementi/3078944819/"><img src="http://farm4.static.flickr.com/3281/3078944819_2ddac2f3ef.jpg" width="400" height="294" /></a> </p><p>I'm back! For those who are fortunate enough to not know me, I'm Jimmy Schementi, and graduated from <a href="http://wpi.edu">WPI</a> in 2007 with a Bachelors and Masters in <a href="http://www.cs.wpi.edu">Computer Science</a> from this amazing group of people who had the privilege to go either bald or crazy because of me. I ran the <a href="http://gdc.wpi.edu">Game Development Club</a>, and dedicated a year of my life to Neil Heffernan&#8217;s <a href="http://assistment.org">Assistment</a> project. Now I work at Microsoft on implementations of Python and Ruby for the .NET platform. I got them to <a href="http://flickr.com/photos/jschementi/2898698253/">buy me a Mac</a>. That&#8217;s me.</p><p>I&#8217;m going to waste an hour or so of your time talking about implementing two dynamic languages at Microsoft, <a href="http://ironruby.net">IronRuby</a> and <a href="http://codeplex.com/ironpython">IronPython</a>. I&#8217;ll also touch on what it&#8217;s like working at Microsoft, including the challenges of integrating these languages with <a href="http://silverlight.net/">Silverlight</a>, a platform for the browser.</p><p>But first ...</p><h4><font color="#ff8000">How I started with programming</font></h4><p><a href="http://lh4.ggpht.com/_OqCZhp9yI0Q/STZY4T40ubI/AAAAAAAAAE0/eXO9GhXAWak/image51%5B1%5D.png?imgmax=800"><img alt="image" src="http://lh6.ggpht.com/_OqCZhp9yI0Q/STZY4yRsqoI/AAAAAAAAAE4/VvNLa3Ea4UQ/image_thumb3.png?imgmax=800" width="400" height="250" /></a> </p><p>LOGO. 6<sup>th</sup> grade. But the version I used was in English. Of course, I really didn&#8217;t know I was &quot;programming&quot;, since I was making pretty pictures, but it was still fun. Years later, when I first saw <a href="http://www.smalltalk.org">Smalltalk</a>, I could have sword it was LOGO. Anyway, I found <a href="http://logo.twentygototen.org/">a nifty logo environment on the web</a>, and if you want to take a trip down memory lane with me here are some things to try out:</p><div style="padding-bottom: 0px; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; float: none; padding-top: 0px" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:b4f84a4f-b3c6-4476-92a6-fb1431d5755f" class="wlWriterSmartContent"><pre name="code" class="xml">to spiral :size
   if :size &gt; 30 [stop] ; an exit condition
   fd :size rt 15 ; many lines of action
@@ -83,54 +83,4 @@ end</pre></div><p>However, with the silverline plugin, if you add &quot;client :
 <li>how Silverlight and dynamic languages can blow your freakin' mind </li>
 <li>and why in the world Microsoft is relevant to the open source community </li>
 </ul><p>Enjoy!</p>
-</div>
-<div class="css-full-comments-content js-full-comments-content">
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/03774473741924565959">
-  <div class="css-comment-name js-comment-name">
-    Robert
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2008-12-13T01:12:00.000Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    I am getting this error, for http://silverlight.net/samples/sl2/dlrconsole/index.html page:<BR/>FileNotFoundException: Error 0x1A88.  Debugging resource strings are unavailable. See http://go.microsoft.com/fwlink/?linkid=106663&amp;Version=2.0.31005.0&amp;File=mscorrc.dll&amp;Key=0x1A88 <BR/>I am using Vista SP1.
-  </div>
-  <br/>
-</div>
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/03774473741924565959">
-  <div class="css-comment-name js-comment-name">
-    Robert
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2008-12-13T02:09:00.000Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    It works OK in IE7. That error appears in Firefox 3.
-  </div>
-  <br/>
-</div>
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/05370777584064015818">
-  <div class="css-comment-name js-comment-name">
-    Jimmy Schementi
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2008-12-13T02:47:00.000Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    It's working for me on IE7 and FF3. I'd just restart your browser. Maybe it was a network-ish issue. Let me know if you're still having the problem. Also, try downloading the SDK from http://codeplex.com/sdlsdk and running it locally.
-  </div>
-  <br/>
-</div>
 </div>

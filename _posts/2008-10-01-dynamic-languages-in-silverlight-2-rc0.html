@@ -18,7 +18,7 @@ author:
     image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
 ---
 
-<div class="css-full-post-content js-full-post-content">
+<div class="post-content">
 <p><a style="border-right-width: 0px; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" href="http://bp2.blogger.com/_OqCZhp9yI0Q/SE74VwxHC3I/AAAAAAAAACo/Z7Q--6yQISM/s1600-h/slpyrb-small.png"><img style="border-right-width: 0px; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" border="0" alt="" align="left" src="http://bp2.blogger.com/_OqCZhp9yI0Q/SE74VwxHC3I/AAAAAAAAACo/Z7Q--6yQISM/s400/slpyrb-small.png" /></a>I've just released the Silverlight Dynamic Languages SDK with the newest DLR, IronRuby, IronPython, and JScript binaries and sources to work against Silverlight 2 RC0!</p><p>&#160;</p><p align="center"><a href="http://www.codeplex.com/sdlsdk/Release/ProjectReleases.aspx?ReleaseId=17839"><font size="5">Download the SDK!</font></a> </p><p align="center">&#160;</p><p><em><font color="#808080" size="1">This release works with </font></em><a target="_blank" href="http://silverlight.net/GetStarted/sl2rc0.aspx"><em><font color="#808080" size="1">Silverlight 2 RC0</font></em></a><font color="#808080" size="1"><em>. Keep in mind this is a developer release, so no &quot;end-user&quot; runtime exists. This is why the &quot;not-installed&quot; experience doesn't take you directly to the download, but to a page where you can install the tools.</em></font></p><p>As usual, report any issues on the <a target="_blank" href="http://www.codeplex.com/sdlsdk/WorkItem/List.aspx">Issue Tracker</a>, and feel free to ask any questions on the <a target="_blank" href="http://www.codeplex.com/sdlsdk/Thread/List.aspx">Discussions tab</a>.</p><p>This release has slightly refactored Microsoft.Scripting.Silverlight, adding two new types: &quot;Package&quot; and &quot;Configuration&quot;. You can use &quot;Package&quot; to access files inside the XAP, and &quot;Configuration&quot; can be used to detect languages available in Silverlight. </p><h4><font color="#ff8000">Hosting</font></h4><p><font color="#ff8000"><font color="#cccccc">In past releases, if you wanted to host the DLR you needed to create your own ScriptRuntimeSetup which uses Microsoft.Scripting.Silverlight.BrowserScriptHost to tell your hosted scripts about how Silverlight. Your code would look like this:</font></font></p><div style="padding-bottom: 0px; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; float: none; padding-top: 0px" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:1eb14652-ef65-4429-8262-80a08fd0abaf" class="wlWriterSmartContent"><pre name="code" class="c#">using Microsoft.Scripting.Silverlight;
 using Microsoft.Scripting.Hosting;
 
@@ -40,54 +40,4 @@ var runtime = DynamicApplication.Current.Runtime;
 var runtime = new ScriptRuntime(DynamicApplication.Current.Runtime.Setup);
 
 //...</pre></div><font color="#ff8000"><h4>Future</h4></font><p>Blah, blah, blah, I always talk about the future. Has anything happened? Nope. Well, it will eventually. Just keep pestering. If you have no idea what I'm talking about, take a look at my <a href="http://blog.jimmy.schementi.com/2008/08/silverlight-dynamic-languages-sdk-03.html">last post</a>.</p>
-</div>
-<div class="css-full-comments-content js-full-comments-content">
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/09225328238115006912">
-  <div class="css-comment-name js-comment-name">
-    Eloff
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2008-10-05T19:19:00.000Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    RC0 slipped in one major breaking change with regard to dynamic languages.<BR/><BR/><B>Font URI is Restricted to Assembly Resource</B><BR/>Who Is Affected: Silverlight 2 Beta1 or Beta 2 applications (not Silverlight 1.0 applications) that reference fonts (or zip of fonts) via the URI syntax in the Control.FontFamily, TextBlock.FontFamily or Glyphs.FontUri attributes and <B>where the fonts are not embedded within the assembly (dll) of the control or application</B>.<BR/>Fix Required<BR/>You can specify a font (or in some cases a zip of fonts) in URI format via the Control.FontFamily, TextBlock.FontFamily and the Glyphs.FontUri attributes. If you are, you will need to ensure your font is marked as a "resource" in the project system.<BR/><BR/>What does that mean for us dynamic language guys? We have no compile time resources or assemblies. How can we still use custom fonts?
-  </div>
-  <br/>
-</div>
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/05370777584064015818">
-  <div class="css-comment-name js-comment-name">
-    Jimmy Schementi
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2008-10-10T05:38:00.000Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    That it did, and it sucks. That's why "3dtext" was removed from the samples ... it depended on loading a custom font for the Glyphs. When this was announced, I screamed bloody murder and no one listened. It was removed because a "major customer" had concerns about font protection. Which is stupid, since assembly resources are no more protected than inside the XAP. <BR/><BR/>Anyway, long story short, I'm trying to come up with a solution that will work in the short-term (maybe building some functionality into Microsoft.Scripting.Silverlight to allow this), and then how to fix this for the next SL release. Ugh. Betcha Moonlight will let us do it ;)
-  </div>
-  <br/>
-</div>
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/09225328238115006912">
-  <div class="css-comment-name js-comment-name">
-    Eloff
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2008-10-10T15:58:00.000Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    Wow, that is stupid. Sometime I'd like to create a little Silverlight font ripper and release it to the web as my way of getting even :)<BR/><BR/>Good luck finding a workaround for this.
-  </div>
-  <br/>
-</div>
 </div>

@@ -18,7 +18,7 @@ author:
     image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
 ---
 
-<div class="css-full-post-content js-full-post-content">
+<div class="post-content">
 <div style="float: right; margin-left: 10px; margin-bottom: 10px;"> <a href="http://www.flickr.com/photos/jschementi/204128284/" title="photo sharing"><img src="http://static.flickr.com/66/204128284_92253e7bcc_m.jpg" alt="" /></a>
 <span style="margin-top: 0px;font-size:0;" >  <a href="http://www.flickr.com/photos/jschementi/204128284/">starline-logo</a>
 Originally uploaded by <a href="http://www.flickr.com/people/jschementi/">jschementi</a>. </span></div>Yesterday I revealed Starline (<a href="http://starline.schementec.com">starline.schementec.com</a>), a project of mine that I’ve kept on the backburner for about a year now. It was previously “POS”, a project Mike Veilleux started and I continued. We’ve moved between so many different technologies, but finally I’ve found happiness with this project being a web application. The main reason I’m meantioning this is to point out what I’ve learned from the project so far.
@@ -26,38 +26,4 @@ Originally uploaded by <a href="http://www.flickr.com/people/jschementi/">jschem
 Programming can be very painful. In college, it was easy; your projects were nicely scoped and you just pounded out code until the damn thing worked. Thought I’m still in school, I’ve been taking on more and more real projects and finding that a lot of my work can feel very ugly to me. I don’t know about you, but I have a need to write really neat code. The more time I spend working on code that doesn’t immediately solve my problem the more angry I get at the project. This is exactly what happened with POS. The first version was in Java/SQL, and creating the backend functions to handle every little thing I wanted to do with the database was SO ugly. I hated it so much I cut the SQL out and moved the ½ done application over to db4objects, a object database. The project sat for most of this time, accumulating dust, while I worked on <a href="http://jimmy.schementi.com/mqp">other cool stuff</a>. When I came back to it, I had such a hard time testing the object database (for example, tests would pass that it successfully stored the object, but the actual application couldn’t retrieve anything). I got so fed up with this <span style="text-decoration: line-through;">transactional crap</span> that I completely re-thought the application and switched technologies.<span style="font-style: italic;">Note: let me clarify myself a little here; I actually think object databases are very cool, and db4o is a great product and something I did enjoy using ... there was a reason I moved away from SQL and an object database was a good solution in Java. However, this post is about me getting frustrated with Java and moving to Ruby, db4o kinda got caught in the crossfire.</span>
 <p>This has been a common behavior of my projects. I start off using Java, then get frustrated and move to Ruby. Last time was ViGL, and that worked out for the best. This time, I decided that a web application would be more along the lines of what I wanted to make, so that’s what POS became. Plus, I figured I could deploy it easier on the web. Oh and it also needed to have a new name, and a long time ago I called this project “Starline” after a room in the restaurant we’re making the software for.
 </p><p>Anyway, I’m excited to get this prototype out the door and hopefully reach Alpha quality next week. But now, it’s time for sleep. I was at Microsoft until 10pm today, and I don’t want to do that again tomorrow.</p>
-</div>
-<div class="css-full-comments-content js-full-comments-content">
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/08700536902701538909">
-  <div class="css-comment-name js-comment-name">
-    Christof Wittig
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2006-07-19T14:59:00.000Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    Thanks for calling our project transactional crap.<BR/>Though db4o is far from perfect, some 10,000 users do manage to retrieve their objects, and I wonder whether you could have achieved the same.<BR/>Your blog post leaves the wrong impression that db4o is not able to store and retrieve objects.<BR/>Did you ask for some help in db4o's forums (http://developer.db4o.com/forums/default.aspx)  ?<BR/>Cheers,<BR/>Christof
-  </div>
-  <br/>
-</div>
-<div class="css-full-comment js-full-comment">
-  <div class="css-comment-user-link js-comment-user-link">
-  <a href="http://www.blogger.com/profile/05370777584064015818">
-  <div class="css-comment-name js-comment-name">
-    Jimmy
-  </div>
-  </a>
-  <div class="css-comment-date js-comment-date">
-    2006-07-27T09:11:00.000Z
-  </div>
-  </div>
-  <div class="css-comment-content js-comment-content">
-    Christof,<BR/><BR/>Sorry if that post came off wrong; check back for my corrections. To clarify, I was not calling db4o 'transactional crap', I was referring to the problems with transactions i was having. The way I was unit testing my persistance layer showed that the data was getting saved, but then when I used this layer in the actual application things wouldn't save properly. To be more specific, I was working with a tree-like object hierarchy and adding/removing children proved to be very difficult. After some testing I realized that the persistance layer was using the same db connection to check the data inside of the objects, and that worked, but when it was between two connections (like the application needed) it would break. <BR/><BR/>I did post around and I got the answers I needed, and got the presistance layer to pass my tests, but in was already re-prototyping this project as a web-app. So in short, I re-architected my project based on a language preference and business decision rather than just my problems with db4o as the underlying persistance layer. <BR/><BR/>However, I do want to make one point that would sell me 100% on db4o ... a much better object browser. Alot of times I couldn't just check to see if the object saved correctly or not b\c the object browser didn't work correctly. I have a team that works on Macs and PCs, and I don't think I ever got the browser to work on a Mac :P. I can't explain in-debth what specifics I didn't like about it, but I just remember not being able to check if data made it into the database easily as I can with most relational db management tools.<BR/><BR/>I'm working at Microsoft now on ASP.NET and dynamic languages, and I really do respect what you guys are doing. Keep up the good work and maybe another project of mine will be a better fit for db4o.<BR/><BR/>Regards,<BR/>~Jimmy
-  </div>
-  <br/>
-</div>
 </div>
