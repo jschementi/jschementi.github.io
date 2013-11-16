@@ -1,0 +1,126 @@
+---
+title: "ASP.NET and Dynamic Languages"
+layout: "post"
+permalink: "/2008/07/aspnet-and-dynamic-languages.html"
+uuid: "88119741387709199"
+guid: "tag:blogger.com,1999:blog-5419182.post-88119741387709199"
+date: "2008-07-04 00:04:00"
+updated: "2008-07-04 21:30:45"
+description: 
+blogger:
+    siteid: "5419182"
+    postid: "88119741387709199"
+    comments: "6"
+categories: [ASP.NET]
+author: 
+    name: "Jimmy Schementi"
+    url: "https://plus.google.com/116380716127564408544?rel=author"
+    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
+---
+
+<div class="css-full-post-content js-full-post-content">
+<p>In the last year, my team @ Microsoft hasn't really done much with <a href="http://asp.net/">ASP.NET</a>. Unfortunately so, since our focus has been on the languages themselves. Though, we have an integration with  <a href="http://silverlight.net/">Silverlight</a>, so why is ASP.NET left out?</p>  <p>That's definitely changing, 'cause now ASP.NET and Dynamic Languages are like this:</p>  <p style="text-align: center;"><a title="Best friends" href="http://www.flickr.com/photos/78656792@N00/84196531/"><img alt="Best friends" src="http://bp0.blogger.com/_OqCZhp9yI0Q/SG6WJQKvb2I/AAAAAAAAACw/W5mEsZNprEE/s400/84196531_143245f498.jpg" border="0" /></a></p>  <p>... but, that's not to say that we did <em>nothing </em>in the last year:</p>  <h4><span style="color: rgb(255, 128, 0);">ASP.NET Futures</span></h4>  <p>In July 2007 the <a href="http://www.asp.net/Downloads/futures/">ASP.NET Futures Release</a> contained Dynamic Language Support in ASP.NET, giving you <a href="http://codeplex.com/ironpython">IronPython</a> and Managed JScript as programming languages in ASP.NET. It also had a ton of other good stuff in there, like AJAX futures, Silverlight controls, and <a href="http://www.codeplex.com/aspnet/Wiki/View.aspx?title=Dynamic%20Data&amp;referringTitle=Home">Dynamic Data Controls</a>. If you're interested in learning more about this, take a look at the <a href="http://quickstarts.asp.net/Futures/dlr/doc/intro.aspx">Dynamic Languages in ASP.NET Quickstarts</a>.</p>  <p>The problem with this release is it's a one-off; as in <em>"who the hell knows when this stuff is going to be updated."</em> Also, IronPython releases every month, so the IronPython bits in this release were old fast. And sitting here a year later, a lot has changed! The release is really intended on being a <em>"look at what we *might* do in the future"</em>, and a year without anything substantial is way to long in our world.</p>  <p>More so, there is no support for IronRuby. Even today we're not as far along as people would hope. I have a couple "Hello, World" aspx pages using IronRuby running on my machine, but that's really the extent of it. Sucks.</p>  <p><em><strong>Shout out</strong>: Being able to use DLR languages in ASP.NET and Dynamic Data Controls are both the blood and sweat of </em><a href="http://blogs.msdn.com/davidebb/"><em>David Ebbo</em></a><em>, an Architect on the ASP.NET team, and the cool guy I got to give </em><a href="http://blog.jimmy.schementi.com/2006/07/techready-3.html"><em>a talk</em></a><em> with two years ago as an intern.</em></p>  <h4><span style="color: rgb(255, 128, 0);">ASP.NET MVC</span></h4>  <p>Tangential to the whole <em>"holy crap why can't I use Iron* in ASP.NET"</em> issue is giving the <em>"</em><a href="http://www.ruby-forum.com/topic/154936"><em>when is my IronRuby going to be in ASP.NET MVC</em></a><em>"</em> drones something to chew on. And at <a href="http://www.microsoft.com/events/teched2008/developer/default.mspx">TechEd 2008</a>, <a href="http://www.iunknown.com/">John Lam</a> gave them some slivers of meat: </p>  <p><a href="http://www.iunknown.com/2008/06/ironruby-and-aspnet-mvc.html">IronRuby and ASP.NET MVC</a>. Also, <a href="http://haacked.com/">Phil Haack</a> followed up with a <a href="http://haacked.com/archive/2008/06/12/ironruby-and-asp.net-bffs-forever.aspx">IronRuby and ASP.NET BFFs Forever</a> post. Yes, very cute.  =) </p>  <p>Anyway, no real bits are out there yet for this, but we do have proof for ourselves that ASP.NET MVC aren't doing things that alienate DLR languages. Woohoo! Now it's just a matter of doing it right and getting it out the door.</p>  <h4><span style="color: rgb(255, 128, 0);">Next stop: the Web Server</span></h4>  <p>Today we run on the client, which can be represented by cmd.exe/WPF/WinForms, as well in Firefox/Internet Explorer/Safari with <a href="http://codeplex.com/sdlsdk">Silverlight</a>. However, the web server has been fairly uncharted by us. This is what we're changing. </p>  <p>Really, this whole post is about DLR Languages and the web server. The DLR in ASP.NET and ASP.NET MVC (yes, they are different. yes, it's confusing).</p>  <p>But it extends past Microsoft web frameworks. At <a href="http://en.oreilly.com/rails2008">RailsConf 2008</a> <a href="http://www.iunknown.com/">John Lam</a> showed <a href="http://www.iunknown.com/2008/05/ironruby-and-rails.html">IronRuby running Rails</a>, and I showed integrating Ruby on Rails with Silverlight to nicely have Ruby on the server and the client (more information on the plugin soon).</p>  <p>It's all about making the Microsoft platform, being Windows or Silverlight, valuable to developers.</p>  <h4><span style="color: rgb(255, 128, 0);">Next steps</span></h4>  <p>All this kind of leaves you, the dude/dudette trying to get something done, at a loss, since any bits we have are a year old, and with all these pretty words, I've given you nothing but some continued hope. Wow, I'm cynical.</p>  <p>Not really sure about what's next, other than a ton of coffee with David and other folks on the ASP.NET team, trying to figure out how to get this stuff into your hands. We're pretty addicted to <a href="http://codeplex.com/">Codeplex</a>, so I'm pretty sure it'll find it's way there. However, we need to finish building it, so that's got to happen first. Again, that will be more coffee. Or <a href="http://www.odwalla.com/">expensive juice</a>, I've been hooked on that stuff. </p>  <p>So, with that, all I've got to say is "Stay Tuned" =)</p>
+</div>
+<div class="css-full-comments-content js-full-comments-content">
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/14215294631780902573">
+  <div class="css-comment-name js-comment-name">
+    Dody G.
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-07-11T13:35:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    I'm looking forward for the update.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/14215294631780902573">
+  <div class="css-comment-name js-comment-name">
+    Dody G.
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-08-02T20:39:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Hi Jimmy, <BR/><BR/>Any update ? :)
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/12630719258733674588">
+  <div class="css-comment-name js-comment-name">
+    AdamB
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-08-02T20:52:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    I'll send you a case of odwalla for the release of the ironpython/asp.net integration bits to codeplex.<BR/><BR/>Would love to see a more frequently updated repository as well as some community involvement to help push it along.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.perceptionsystem.com/">
+  <div class="css-comment-name js-comment-name">
+    Nimesh – Perception System
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-08-29T12:10:55.163Z
+  </div>
+  </div>
+  <div class="css-comment-title js-comment-title">
+    Nice Post
+Informative and useful one
+I am .Net Dev...
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Nice Post<br />Informative and useful one<br />I am .Net Developer and I am looking for this<br />Thanks for the great stuff.<br /><a href="http://www.perceptionsystem.com" rel="nofollow">Nimesh</a>
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Anonymous
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2011-05-12T10:20:34.370Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Nice blog thank you for sharing i really get what i was looking for. Keep it up the good work going.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.ydeveloper.com/ecommerce-development.html">
+  <div class="css-comment-name js-comment-name">
+    Ydeveloper
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2011-10-05T12:38:32.676Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Customizing an existing ecommerce website into asp.net is the great way..to have a most advanced website.
+  </div>
+  <br/>
+</div>
+</div>

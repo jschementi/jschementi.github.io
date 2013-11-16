@@ -1,0 +1,115 @@
+---
+title: "IronRuby at OSCON 2009: Mono, Moonlight, and scripting open source apps"
+layout: "post"
+permalink: "/2009/07/ironruby-at-oscon-2009-mono-moonlight.html"
+uuid: "7332682026707544851"
+guid: "tag:blogger.com,1999:blog-5419182.post-7332682026707544851"
+date: "2009-07-24 01:08:00"
+updated: "2009-07-24 01:13:40"
+description: 
+blogger:
+    siteid: "5419182"
+    postid: "7332682026707544851"
+    comments: "5"
+categories: [OSCON, IronRuby, Silverlight, Mono, Moonlight]
+author: 
+    name: "Jimmy Schementi"
+    url: "https://plus.google.com/116380716127564408544?rel=author"
+    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
+---
+
+<div class="css-full-post-content js-full-post-content">
+<p>Today I’ll be giving a talk at <a href="http://en.oreilly.com/oscon2009" target="_blank">OSCON 2009</a> titled “IronRuby 0.9”. For any new readers, <a href="http://ironruby.net" target="_blank">IronRuby</a> is an Open Source implementation of the <a href="http://ruby-lang.org" target="_blank">Ruby programming language</a> for the <a href="http://microsoft.com/NET" target="_blank">Microsoft .NET</a> Framework; it brings the expressiveness of Ruby to .NET, and the capabilities of .NET to Ruby. I’ll walk you through the talk in this post:</p>  <ul>   <li>Road to IronRuby 1.0 </li>    <li>Running the same application on the desktop and in the browser, on most major platforms (Windows, Mac OS, Linux) and most major browsers (Firefox, Safari, Internet Explorer) </li>    <li>Detour – Gestalt: Running Ruby and Python in the browser, again. </li>    <li>Using code written in any C# and Python from Ruby without it feeling foreign. </li>    <li>How IronRuby has improved in the past 6 months, and how you can help IronRuby become a 1.0 quality implementation. </li> </ul>  <h4><font color="#ff8000">Road to IronRuby 1.0</font></h4>  <p>It’s been a long ride since <a href="http://ironruby.net" target="_blank">IronRuby</a> was announced alongside <a href="http://silverlight.net" target="_blank">Silverlight</a> at <a href="http://videos.visitmix.com/MIX07/DEV02" target="_blank">MIX ‘07</a>, but in a few days the 0.9 version will be available, and all eyes will be focused on getting it to 1.0. The <a href="http://blog.jimmy.schementi.com/2009/03/ironruby-03-released.html" target="_blank">past</a> <a href="http://blog.jimmy.schementi.com/2009/05/ironruby-05-released.html" target="_blank">couple</a> of versions <a href="http://blog.jimmy.schementi.com/2009/07/ironruby-06-released.html" target="_blank">have made vast compatibility and performance improvements</a>, and 0.9 marks the last set of major features that will be added to IronRuby. From now on, all IronRuby languages will be primarily focused on bug fixing and anything else the community deems necessary to call IronRuby a 1.0 release. These improvements be delivered as point-point releases (0.9.1, 0.9.2, etc) until <strong>you </strong>decide it is ready to call 1.0.</p>  <p>But we’ll dive into the numbers and metrics at the end; let’s talk about why IronRuby is useful in your toolkit.</p>  <h4><font color="#ff8000">Cross-platform, cross-browser Ruby implementation</font></h4>  <p>Whenever people hear .NET <font color="#808080">[they first think about a top-level domain, but when in the context of “Microsoft”]</font> they immediately think “Windows”. But <a href="http://tirania.org/blog/" target="_blank">Miguel</a> and the <a href="http://mono-project.com/Main_Page" target="_blank">Mono</a> team have shown that isn’t reality. They’ve built a open-source implementation of .NET which runs on Linux, Mac OS, and also Windows. They are also building a open-source Silverlight 2 implementation, called Moonlight, allowing Silverlight applications to run on Linux browsers supporting Mozilla’s plug-in architecture; Silverlight 2 runs on Intel Macs and Windows. Since IronRuby runs on .NET and Silverlight, it also runs on Mono and Moonlight. Let’s explore that a bit:</p>  <p>With Microsoft.NET and Mono, IronRuby can run on Windows and Linux (anywhere Mono runs, including Mac OS).</p>  <p><a href="http://lh6.ggpht.com/_OqCZhp9yI0Q/SmkJfUwHRYI/AAAAAAAAALA/fgGEoGaGVaE/s1600-h/ir-mono%5B4%5D.png"><img style="display: inline" title="ir-mono" alt="ir-mono" src="http://lh3.ggpht.com/_OqCZhp9yI0Q/SmkJfxjORNI/AAAAAAAAALI/0HlD5hTs4yk/ir-mono_thumb%5B2%5D.png?imgmax=800" width="400" height="275" /></a> </p>  <p>You’ll notice that real Ruby code runs, it’s running on a Unix environment on Mono, and .NET types can be accessed in a Ruby-esk way, even generic types.</p>  <p>Because IronRuby integrates directly with .NET, you can use any existing .NET code from IronRuby. This means that any frameworks, be them Windows Forms, Windows Presentation Foundation (WPF), or GTK(#), can be used from IronRuby because .NET and Mono [respectively] have CLI bindings for these frameworks. Mono even has a Windows Forms implementation that translates to GTK, so the same application can run unmodified on both implementations. Mono only supports the “Silverlight” subset of WPF, which I’ll elaborate on in a bit.</p>  <p>There’s also a tiny subset of .NET which is part of a browser plug-in called Silverlight; Microsoft’s implementation runs on Windows and Mac, in Firefox, Safari, and Internet Explorer (though any browser which supports ActiveX, Mozilla’s, or Safari’s plug-in architecture should work fine, like Opera or Chrome).</p>  <p>The IronRuby tutorial application runs as a WPF desktop application (on the left), as well as Silverlight application (on the right).</p>  <p><a href="http://lh6.ggpht.com/_OqCZhp9yI0Q/SmkJgq8i2-I/AAAAAAAAALM/h2boWHHuRPQ/s1600-h/tut-wpf-sl%5B4%5D.png"><img style="display: inline" title="tut-wpf-sl" alt="tut-wpf-sl" src="http://lh3.ggpht.com/_OqCZhp9yI0Q/SmkJhCwlSyI/AAAAAAAAALQ/vbTlFbJjlgY/tut-wpf-sl_thumb%5B2%5D.png?imgmax=800" width="400" height="250" /></a> </p>  <p>Also, <a href="http://channel9.msdn.com/posts/mtaulty/Silverlight-3-Running-Out-Of-Browser-Apps-on-the-Macintosh/" target="_blank">Silverlight 3 supports running applications out of the browser</a>, very simply on Windows and Mac OS by right-clicking on the Silverlight application and selecting “Install”.</p>  <p>Through Moonlight the IronRuby tutorial app also runs on Linux:</p>  <p><a href="http://lh5.ggpht.com/_OqCZhp9yI0Q/SmkJh0YYXMI/AAAAAAAAALU/AhamxrZzaJc/s1600-h/tut-moon%5B5%5D.png"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="tut-moon" border="0" alt="tut-moon" src="http://lh3.ggpht.com/_OqCZhp9yI0Q/SmkJiYWcHlI/AAAAAAAAALY/uIsilwgKEIg/tut-moon_thumb%5B6%5D.png?imgmax=800" width="404" height="281" /></a> </p>  <p>Mono also supports running Moonlight applications through GTK on the desktop, just as a WPF application would work. While direct support isn’t in current daily builds of Moonlight, <a href="http://tirania.org/blog/archive/2009/Jul-20.html" target="_blank">Miguel shows how easy it is to make the same code target the browser with Moonlight and the Linux desktop with Mono</a>, just using C# code:</p> <script src="http://gist.github.com/152611.js"></script>  <p>Note: the latest Moonlight stable release will not work for IronRuby, you must install the latest Moonlight build from their build bot: <a title="http://sublimeintervention.com:8123/GetFile.aspx?id=11487919" href="http://sublimeintervention.com:8123/GetFile.aspx?id=11487919">http://sublimeintervention.com:8123/GetFile.aspx?id=11487919</a></p>  <h4><font color="#ff8000">Detour: </font><a href="http://visitmix.com/Labs/gestalt/" target="_blank"><font color="#ff8000">Gestalt</font></a><font color="#ff8000"> –- Ruby and Python in the browser</font></h4>  <p>My last blog-post talks about a new prototype from the <a href="http://visitmix.com/Lab" target="_blank">MIX Online Lab</a> called <a href="http://visitmix.com/Labs/gestalt/" target="_blank">Gestalt</a>, which lets you write Ruby and Python in place of JavaScript – literally in &lt;script&gt; tags. Here’s a very simple example:</p> <script src="http://gist.github.com/151756.js"></script>  <p>It uses Silverlight to do this, so this will work in Moonlight as well.</p>  <h4><font color="#ff8000">Dynamic and Static language interop</font></h4>  <p>IronRuby has great integration with the .NET framework APIs, so C#/VB code can be called from IronRuby without it feeling like “interop”. C# can also call IronRuby through the <a href="http://dlr.codeplex.com" target="_blank">Dynamic Language Runtime</a> (DLR) Hosting APIs. However, in .NET 4.0 dynamic method dispatch is part of C#, so calling IronRuby from C# is just as easy as a C# method call. Being that IronRuby is built on the DLR, it can interoperate with other DLR languages just as easily, so Python and Ruby play along nicely today, and future DLR languages as well.</p>  <p>A simple way to show that capability is by writing a unit test for a class in .NET; let’s pick “Stack”:</p> <script src="http://gist.github.com/153361.js"></script>  <p>As you can see, creating .NET types, calling methods on .NET classes, and all the other language features Ruby has work against .NET types (even re-opening .NET classes).</p>  <p>To show the reverse, lets look at a very simple <a href="http://en.wikipedia.org/wiki/REPL" target="_blank">REPL</a> implementation:</p> <script src="http://gist.github.com/153380.js"></script>  <p>In less than 100 lines of code, you have a program that runs arbitrary Python and Ruby code. The DLR hosting API lets you run dynamic language code from a static language just from strings.</p>  <p>Expanding on these ideas, let us give the experience a upgrade to the 21st century. <a href="http://www.iunknown.com/2009/05/dynamic-languages-at-teched-2009.html" target="_blank">John Lam has shown this before at TechEd 2009</a>: an editor that can double as a REPL.</p>  <p><a href="http://gist.github.com/152872" target="_blank"><img style="display: inline" title="repl-lib" alt="repl-lib" src="http://lh5.ggpht.com/_OqCZhp9yI0Q/SmkJijg10GI/AAAAAAAAALc/emG_oamAfXY/repl-lib%5B5%5D.png?imgmax=800" width="339" height="490" /></a> </p>  <p><a href="http://github.com/jschementi/repl-lib" target="_blank">Downlaod it here</a></p>  <p>This seems like a great idea, and it is even better once you start using it. It works like a normal editor, but selecting a block of code and pressing ctrl-e will run the code, showing the output directly below selected code as a comment, and ctrl-enter runs the current line. The code that gets run gets syntax highlighted. There is no need to have up-down-cursor history, as it’s all right there in the editor. If you need to modify something you’ve already run just, just modify it in the editor and re-run it! This integrates the editor-repl experience, making it a very valuable tool. </p>  <p>Note: this is not a new idea by any means, as <a href="http://macromates.com/" target="_blank">TextMate</a> does something similar, but no one seems to explain this as an upgrade to your traditional REPL.</p>  <p>Using this editor, it can be integrated into any .NET project as a lightweight way to experiment with adding scripting support. Using the hosting ideas I presented before, an application written in C# could use IronRuby to allow users to write applications against their object model, or extend it at runtime. Here’s a small example of hosting this editor in Witty, an open-source Twitter client running on .NET:</p>  <p><a href="http://gist.github.com/152877"><img style="display: inline" title="witty-scripting" alt="witty-scripting" src="http://lh5.ggpht.com/_OqCZhp9yI0Q/SmkJjIFLIYI/AAAAAAAAALg/5HtJOC--4ek/witty-scripting%5B5%5D.png?imgmax=800" width="400" height="202" /></a> </p>  <p><a href="http://github.com/jschementi/irwitty" target="_blank">You can get this version of Witty from GitHub</a>. </p>  <p>While it is great that you can so easily add scripting into a .NET application, it ends up exposing the design deficiencies in the application being scripted. In Witty’s case, the Twitter class (T) is very good, but the Window class (U) isn’t in good shape, as there are a ton of methods on the type, and it’s unclear how they should be used to drive the UI. <a href="http://twitter.com/jongalloway/statuses/2774402229" target="_blank">Jon Galloway wants to merge this into Witty</a>, so hopefully some of these refactorings can be made to enable scripting better.</p>  <p><font color="#ff8000"><strong>I extend this offer to all open-source .NET/Mono projects – if you want to improve your architecture and add scripting support, please let me know and I’ll help out.</strong></font></p>  <p>It's worth noting that .NET 4.0, the next version of the .NET framework, C# supports a &quot;dynamic&quot; keyword which will let you call Ruby or Python (or any DLR language) just by using method calls.</p>  <h4><font color="#ff8000">Project status</font></h4>  <p><a href="http://ironruby.info"><img style="display: inline" title="image" alt="image" src="http://lh6.ggpht.com/_OqCZhp9yI0Q/SmkJjpyKYmI/AAAAAAAAALk/J9Hng_e0B4I/image%5B16%5D.png?imgmax=800" width="400" height="89" /></a> </p>  <p>Compatibility is really good at this point. We run the <a href="http://ironruby.info" target="_blank">RubySpec test suite, passing at (85%)</a> and the test suites from popular Ruby frameworks, including Rails, Rake, RSpec, and RubyGems, on every check-in, and can run pretty substantial Rails applications. Increasing compatibility bugs will definitely be the focus of the point releases approaching 1.0; mainly based on what you tell us needs fixing.</p>  <p>This upcoming version will boast support for the <a href="http://github.com/shri/ironruby/commit/5fb483dd13b8c0c950627e9624973e4fa60cf784" target="_blank">Win32OLE</a> library, making existing Ruby applications with interact with COM work as they do in MRI, like <a href="http://wtr.rubyforge.org/" target="_blank">Watir</a>.</p>  <p><a href="http://lh6.ggpht.com/_OqCZhp9yI0Q/SmkJkNq4RwI/AAAAAAAAALo/U9KruHidO7c/s1600-h/image%5B15%5D.png"><img style="display: inline" title="image" alt="image" src="http://lh4.ggpht.com/_OqCZhp9yI0Q/SmkJkv1QyrI/AAAAAAAAALs/AK3KLnqDduE/image_thumb%5B9%5D.png?imgmax=800" width="400" height="297" /></a> </p>  <p>Performance is also in a very good place. This past version has pushed on the Ruby benchmark suite, and now we are &gt;= 2x better than MRI on almost all benchmarks. Those numbers will be published on http://ironruby.info around the same time IronRuby 0.9 comes out. The above image shows that IronRuby (in blue) is normally significantly faster than MRI (in red), except for a handful of cases. The is not the end-all-be-all metric to measuring performance, but it’s nice to see IronRuby continuing to improve here.</p>  <p>In prior releases, Rails startup has gotten dramatically better, going from 80+ seconds in March to ~20 seconds now. <a href="http://blog.jimmy.schementi.com/2009/07/ironruby-06-released.html" target="_blank">Read more about Rails performance is the IronRuby 0.6 release.</a></p>  <h4><font color="#ff8000">Interesting IronRuby usages</font></h4>  <p>Now that IronRuby is approaching 1.0, we're seeing very interesting usages of Ruby with .NET:</p>  <ul>   <li>AutoCAD scripting -- Kean Walmsley </li>    <li><a href="http://github.com/thbar/magic" target="_blank">magic DSL for Windows UI frameworks</a> -- <a href="http://github.com/thbar" target="_blank">Thibaut Barrère</a></li>    <li>Automated conversion of an app written in an in-house language (lang runs on FORTRAN77) and MOTIF UI “to” IronRuby and WPF -- Robert Brotherus </li>    <li>Point of Sale application based on WPF, IronRuby and FoxPro -- <a href="http://twitter.com/nightshade427" target="_blank">Nick Rickets</a> </li> </ul>  <p>If you know of more interesting usages, please send them my way!</p>  <h4><font color="#ff8000">Thanks!</font></h4>  <p>Thanks for reading this far! Keep an eye out on this blog and the <a href="http://ironruby.net" target="_blank">ironruby website</a> for the upcoming 0.9 release.</p>  <div style="padding-bottom: 0px; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; float: none; padding-top: 0px" id="scid:0767317B-992E-4b12-91E0-4F059A8CECA8:888f4617-ecd4-40cd-bfcb-a0fedd7808a8" class="wlWriterEditableSmartContent">Technorati Tags: <a href="http://technorati.com/tags/IronRuby" rel="tag">IronRuby</a>,<a href="http://technorati.com/tags/OSCON" rel="tag">OSCON</a>,<a href="http://technorati.com/tags/Mono" rel="tag">Mono</a>,<a href="http://technorati.com/tags/Moonlight" rel="tag">Moonlight</a>,<a href="http://technorati.com/tags/Silverlight" rel="tag">Silverlight</a></div>  
+</div>
+<div class="css-full-comments-content js-full-comments-content">
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/13225350000169212826">
+  <div class="css-comment-name js-comment-name">
+    Brendan W. McAdams
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-07-25T15:55:51.607Z
+  </div>
+  </div>
+  <div class="css-comment-title js-comment-title">
+    Jimmy, 
+
+The million dollar question is... Do you ...
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Jimmy, <br /><br />The million dollar question is... Do you have an idea of when C# 4.0&#39;s features for interop will become available/usable in Silverlight?  I&#39;m in a weird corner of development hell right now purely by virtue of the lack of real interop (my python objects don&#39;t &quot;Just work&quot; in c# code).<br /><br />It seems the VS 2010 / .Net 4 and the Silverlight (3) release schedules are a bit out of sync... I&#39;m hoping there are publishable plans for syncing these up (or am I missing some kind of obvious reality that they will just work now).
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/11428205606558379989">
+  <div class="css-comment-name js-comment-name">
+    mdi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-07-27T16:54:19.282Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Mhm, where could I get my hands on that nice IronRuby tutorial?
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-08-04T22:40:00.389Z
+  </div>
+  </div>
+  <div class="css-comment-title js-comment-title">
+    @brendan
+
+The next version of Silverlight should s...
+  </div>
+  <div class="css-comment-content js-comment-content">
+    @brendan<br /><br />The next version of Silverlight should support for &quot;dynamic&quot; in Silverlight, and be usable against the System.Windows.Browser APIs so calling into JavaScript isn&#39;t as painful as it is today.<br /><br />However, since the .NET 4 compilers can target CLR 2 just fine, Silverlight 3 tooling support can exist in VS 2010, but you won&#39;t get &quot;dynamic&quot; in that case. Not sure if the schedules are going to sync up.<br /><br />@mdi It&#39;s in the IronRuby source code: http://github.com/ironruby/ironruby/tree/master/Merlin/Main/Languages/Ruby/Samples/Tutorial
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.makeitspendit.com/">
+  <div class="css-comment-name js-comment-name">
+    Les
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-07-29T15:34:33.105Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Until it works just as C# and VB does in Visual Studio it&#39;s no good for me. I need existing code/binaries to work with IronRuby.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-08T20:06:51.661Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    @Les Not sure what &quot;I need existing code/binaries to work with IronRuby.&quot; means ... IronRuby has direct integration with .NET, so you can use existing binaries written in C# or VB  directly from IronRuby.
+  </div>
+  <br/>
+</div>
+</div>

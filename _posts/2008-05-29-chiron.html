@@ -1,0 +1,118 @@
+---
+title: "Chiron"
+layout: "post"
+permalink: "/2008/05/chiron.html"
+uuid: "8044196778368815696"
+guid: "tag:blogger.com,1999:blog-5419182.post-8044196778368815696"
+date: "2008-05-29 23:24:00"
+updated: "2008-05-29 23:30:47"
+description: 
+blogger:
+    siteid: "5419182"
+    postid: "8044196778368815696"
+    comments: "5"
+categories: 
+author: 
+    name: "Jimmy Schementi"
+    url: "https://plus.google.com/116380716127564408544?rel=author"
+    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
+---
+
+<div class="css-full-post-content js-full-post-content">
+<a href="http://jimmy.schementi.com/silverlight/Chiron.zip">http://jimmy.schementi.com/silverlight/Chiron.zip</a>
+
+This contains Chiron.exe, the Silverlight development web server for Dynamic Languages, with a fix for the IPv4/6 issues. Let me know if anyone has issues on Firefox on either Windows or Mac. This fix will appear on <a href="http://codeplex.com/sdlsdk">Codeplex</a> in a week.
+
+I haven't fixed the <span style="font-family:courier new;">"file:///" </span>bug on the Mac yet since it doesn't repro on Windows ... so it probably (?) is a Mono bug. I'll see if I can work around it, but in the meantime you can just do <span style="font-family:courier new;">"Chiron /m /d:app" </span>to generate the <span style="font-weight: bold;">AppManifest.xaml</span> to disk ... then you can edit it and remove the <span style="font-family:courier new;">"file://"</span>s (leave one <span style="font-family:courier new;">"/"</span> in the front though!).
+<span style="color: rgb(255, 153, 0);font-size:130%;" >
+More information about the issue</span>
+To understand the bug a little more, Chiron currently tries to listen on IPv6 first, and if that fails it then tries to listen on IPv4. While that’s a fine solution for Vista/XP/Mac, as well as browsers that are tied to their operating system’s network settings (IE, Safari), it’s a problem for browsers that support both in some configurable manner (Firefox). The new behavior is to listen on both IPv6 and IPv4 when it can, but not fail if IPv6 fails. This will work on both IPv6/v4 operating systems (so Vista/XP/Mac will both work), as well as v4/v6 configurable browsers (Firefox), no matter what their settings.
+
+<span style="color: rgb(255, 153, 0);font-size:130%;" >In the future</span>
+Along other Chiron news, I’m also planning on removing the “only works on localhost” constraint. I don’t think it’ll be difficult, but I just need to find hacking time. =) I find it useful because I’d like to do development on one machine and browser to it with another machine, especially if I’m testing different browsers. Would others find it useful as well?
+</div>
+<div class="css-full-comments-content js-full-comments-content">
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/06229713779852499022">
+  <div class="css-comment-name js-comment-name">
+    Fuzzyman
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-05-30T10:15:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Do you test Silverlight and Chiron on the Mac?
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-05-31T21:37:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Not as a checkin gate (we don't have any Macs in our checkin/build labs) but have a Macbook as my main work machine and I'm doing making SL apps on it all the time; which is why I'm a little confused as to "why" this doesn't work for you, and I definitely *had* it working for me, Gotta look into it.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/06229713779852499022">
+  <div class="css-comment-name js-comment-name">
+    Fuzzyman
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-06-01T13:46:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Why what doesn't work for me?<BR/><BR/>Do the guys who are responsible for the Safari plugin and the Mac installer test on a Mac?
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-06-01T17:56:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-title js-comment-title">
+    &gt;Why what doesn&#39;t work for me?<br><br>The u...
+  </div>
+  <div class="css-comment-content js-comment-content">
+    >Why what doesn't work for me?<BR/><BR/>The urlPrefix adding file:/// uris; I use that all the time on the mac, and I've only recently seen that behavior. That's what I was referring to when I said "it" =)<BR/><BR/>> Do the guys who are responsible <BR/>> for the Safari plugin and the Mac <BR/>> installer test on a Mac?<BR/><BR/>Short answer: oh yeah.<BR/><BR/>Long answer: Part of the "Silverlight check-in process" requires a full-stack build of Windows, Mac, along with a running a ship-stopper-checking test suite, before checkin. Also, builds are created daily, for Windows and Mac, and the full test suite is run daily against them. On top of that, there are a bunch of QA folks who run browser tests in Internet Explorer, Firefox, and Safari.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/06229713779852499022">
+  <div class="css-comment-name js-comment-name">
+    Fuzzyman
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-06-01T19:05:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Maybe the urlprefix problem is due to a recent Mono or OSX change? (More likely Mono and probably not worth testing on previous versions to find out).<BR/><BR/>Cool about the testing. I was pretty sure there was *some* testing on the Mac going on. :-)
+  </div>
+  <br/>
+</div>
+</div>

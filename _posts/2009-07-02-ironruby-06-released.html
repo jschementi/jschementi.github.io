@@ -1,0 +1,291 @@
+---
+title: "IronRuby 0.6 Released!"
+layout: "post"
+permalink: "/2009/07/ironruby-06-released.html"
+uuid: "1226883076398775337"
+guid: "tag:blogger.com,1999:blog-5419182.post-1226883076398775337"
+date: "2009-07-02 19:08:00"
+updated: "2009-07-02 19:30:57"
+description: 
+blogger:
+    siteid: "5419182"
+    postid: "1226883076398775337"
+    comments: "8"
+categories: [Cucumber, Testing, IronRuby, Silverlight, Release, Performance]
+author: 
+    name: "Jimmy Schementi"
+    url: "https://plus.google.com/116380716127564408544?rel=author"
+    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
+---
+
+<div class="css-full-post-content js-full-post-content">
+<a href="http://chemistry.about.com/od/fireworkspyrotechnics/ig/Fireworks-Displays/Fireworks-Display.-1ce.htm" target="_blank"><img src="http://www.stgabriels.co.uk/_files/images/fireworks2.jpg" width="400" height="341" /></a>   <p align="center">The IronRuby team is pleased to announce a new release of IronRuby: IronRuby 0.6!</p>  <p align="center"><font size="5"><strong><a href="http://ironruby.net/Download" target="_blank">Download IronRuby 0.6</a></strong></font></p>  <p align="center"><a href="http://github.com/ironruby/ironruby/zipball/v0.6.0" target="_blank">You can also get the source code for this release</a></p>  <p align="left">Staying true to our &quot;Conference-driven development schedule,&quot; this release is in conjunction with ... wait, there is no conference this time! Just a good ol' monthly release of <a href="http://ironruby.net" target="_blank">IronRuby</a>, chock full of awesomeness. And just so happens to be the 4th of July weekend, so hopefully you have some downtime this weekend and can give the new release a spin.</p>  <h4><font color="#ff8000" size="4">What's in the Release?</font></h4>  <p>Performance has been a major focus to this release, getting startup time quicker and optimizing built-in types. There has been more progress with Ruby compatibility (<a href="http://github.com/aslakhellesoy/cucumber" target="_blank">Cucumber</a> works!) and .NET interop. <a href="http://silverlight.net" target="_blank">Silverlight</a> binaries are back in the release, and there are a couple of samples to help you learn IronRuby.</p>  <p>Most of these descriptions are from <a href="http://blog.tomasm.net/" target="_blank">Tomas's</a> very detailed code review emails, so thanks Tomas! For more detailed information, please see the <a href="http://rubyforge.org/frs/shownotes.php?group_id=4359&amp;release_id=36423" target="_blank">CHANGELOG</a> (which includes all commit messages for the release ... not just &quot;syncing to head of tfs&quot;)</p>  <ul>   <li><a href="#ir06lazymc">Lazy method compilation</a></li>    <li><a href="#ir06clrmember">CLR member enumeration</a></li>    <li><a href="#ir06gmpi">Generic-Method Parameter-Inference</a></li>    <li><a href="#ir06cucumber">Testing C# with Cucumber</a></li>    <li><a href="#ir06sl">Silverlight building and updated binaries</a></li>    <li><a href="#ir06samples">Samples</li> </ul>  <h5><a name="ir06lazymc"></a><font color="#ff8000" size="3">Lazy method compilation</font></h5>  <p>Last release adaptive compilation was enabled for IronRuby, which uses a fast-to-start-up interpreter to start up the program, while code which gets run a lot is compiling on a background thread. This gave IronRuby significant performance improvements for large apps like <a href="http://rubyonrails.org" target="_blank">Rails</a>, <font color="#ff8000"><strong>which has improved startup by 2.5 times</strong></font>.</p>  <p>This release we've added &quot;lazy method transformation&quot; to the bag of startup performance tricks. In IronRuby 0.5, a method was transformed to the DLR AST as soon as it was defined. IronRuby 0.6 postpones the transformation until the first time the method is called. This significantly improves startup time. For example (not NGEN'd):</p> <script src="http://gist.github.com/139394.js"></script>  <p>This has made <font color="#ff8000"><strong>Rails startup time 30% faster</strong></font>, coming in approximately 20 seconds on my dual-core laptop running Windows 7.</p>  <h5><a name="ir06clrmember"></a><font color="#ff8000" size="3">CLR member enumeration</font></h5>  <p>Now methods like <code>Module#instance_methods</code>, etc, include CLR member names. Though it's a lot cooler than that. The array of methods returns contains strings for Ruby methods, and objects of type <code>IronRuby::Clr::Name</code> to represent CLR methods that can be called by either the actual CLR name or a mangled (Ruby-esk) name. ClrName has methods <code>to_s</code>, <code>to_sym</code>, <code>to_str</code>, <code>&lt;=&gt;</code>, <code>inspect</code>, and <code>dump</code> so that it can be used wherever a string can be used. The display string for the name uses single quotes so that you can easily distinguish CLR (dual) names from regular names (plain mutable strings). CLR strings display themselves as single quoted strings, so this fits nicely.</p> <script src="http://gist.github.com/139395.js"></script>  <p>Even cooler, this works well for meta-programming:</p> <script src="http://gist.github.com/139397.js"></script>  <p>A new set of define_method overloads, strongly typed to <code>ClrName</code>, have been added to enable this. They define the real method using the <code>ruby_name</code> and alias it using the <code>clr_name</code>. So both <code>CompareTo</code> and <code>compare_to </code>calls are intercepted.</p>  <h5><a name="ir06gmpi"></a><font color="#ff8000" size="3">Generic-Method Parameters-Inference</font></h5>  <p>Thanks to some work by the IronPython team, IronRuby now has parameter inference for generic methods.</p> <script src="http://gist.github.com/139399.js"></script><script src="http://gist.github.com/139398.js"></script>  <p>This needs some more TLC before it works perfectly, but this lets you use simple LINQ methods from IronRuby.</p> <script src="http://gist.github.com/139603.js"></script>  <h5><a name="ir06cucumber"></a><font color="#ff8000" size="3">Testing C# with Cucumber</font></h5>  <p>This release of IronRuby runs the Cucumber testing framework rather well. <a href="http://wiki.github.com/aslakhellesoy/cucumber/ironruby-and-net" target="_blank">Try out Cucumber against some C# code</a>.</p>  <p>Given a feature file (this being the addition.feature)</p> <script src="http://gist.github.com/139401.js"></script>  <p>A step_definition file (calculator_steps.rb)</p> <script src="http://gist.github.com/139403.js"></script>  <p>And a DLL:</p> <script src="http://gist.github.com/139405.js"></script>  <p>Cucumber will test the addition feature:</p>  <pre>3 scenarios (3 passed)
+12 steps (12 passed)
+0m0.753s</pre>
+
+<h5><a name="ir06sl"></a><font color="#ff8000" size="3">Silverlight building and updated binaries</font></h5>
+
+<p>This release re-adds Silverlight binaries to IronRuby, contained in the &quot;silverlight&quot; directory of the release. These bits have been integrated from the <a href="http://github.com/jschementi/agdlr" target="_blank">AgDLR project</a>, and will be maintained in the IronRuby and IronPython source code repositories from now on. The AgDLR GitHub project will redirect to one of those for binaries for both languages in Silverlight. In addition, the <a href="http://sdlsdk.codeplex.com" target="_blank">SDLSDK CodePlex site</a> will be redirecting to the IronRuby and IronPython CodePlex sites, for downloads, discussion, and issue tracking. AgDLR was a little side project to add new features to DLR Silverlight applications, and play around with Git. I'm very happy to see it merged back in with the languages.</p>
+
+<p>Note: <a href="http://ironpython.codeplex.com" target="_blank">IronPython</a> Silverlight assemblies are included directly in the release. They may be moved out to the separate package that contains IronPython desktop DLLs in the future.</p>
+
+<p><a href="http://github.com/ironruby/ironruby/commit/33211840f7482ffaa4970a6e630725fad2a70f5d" target="_blank">See the integration commit for more information</a></p>
+
+<p>Another notable change is that you can now build Silverlight binaries out of IronRuby's GitHub repository very easily. Given that you have Silverlight installed at <code>C:\Program Files\Microsoft Silverlight\2.0.40115.0</code>, this will build IronRuby for Silverlight:</p>
+
+<pre>msbuild Merlin/Main/Languages/Ruby/Ruby.sln
+  /p:Configuration=&quot;Silverlight Release
+  /p:SilverlightPath=&quot;C:\Program Files\Microsoft Silverlight\2.0.40115.0</pre>
+
+<p>You can also build IronPython for Silverlight in a similar manner. Aliases for this will be added soon, but if you need a custom build of the DLR languages for Silverlight, this is the way to do it.</p>
+
+<h5><a name="ir06samples"></a><font color="#ff8000" size="3">Samples</font></h5>
+
+<p>Six samples are included in this release. The first three are desktop samples in the “/samples” directory. The last three are Silverlight samples in the “/silverlight/samples” directory:</p>
+
+<p><a href="http://blog.jimmy.schementi.com/2009/06/ironruby-tutorial.html " target="_blank"><strong>Tutorial</strong> - An interactive IronRuby tutorial</a> 
+
+  <br /><a title="IronRuby example - Tutorial by jschementi, on Flickr" href="http://www.flickr.com/photos/jschementi/3681583787/"><img alt="IronRuby example - Tutorial" src="http://farm3.static.flickr.com/2425/3681583787_3e4deb7c3b.jpg" width="400" height="366" /></a> 
+
+  <br /></p>
+
+<p><strong>DiskUse</strong> - A small WPF application which visualizes the disk usage for a particular directory 
+
+  <br /><a title="IronRuby example - Disk Usage by jschementi, on Flickr" href="http://www.flickr.com/photos/jschementi/3682397770/"><img alt="IronRuby example - Disk Usage" src="http://farm3.static.flickr.com/2463/3682397770_bdb0aca262.jpg" width="400" height="230" /></a> 
+
+  <br /></p>
+
+<p><strong>IRPowerShell</strong> - a small library and sample applications showing how to interact with PowerShell from IronRuby 
+
+  <br /><a title="IronRuby example - minsysreq by jschementi, on Flickr" href="http://www.flickr.com/photos/jschementi/3681583811/"><img alt="IronRuby example - minsysreq" src="http://farm3.static.flickr.com/2477/3681583811_12a38ff54c.jpg" width="400" height="126" /></a> 
+
+  <br /></p>
+
+<p><strong>Clock</strong> – a simple Silverlight sample 
+
+  <br /><a title="IronRuby Silverlight example - Clock by jschementi, on Flickr" href="http://www.flickr.com/photos/jschementi/3681583727/"><img alt="IronRuby Silverlight example - Clock" src="http://farm3.static.flickr.com/2663/3681583727_b570016904.jpg" width="400" height="402" /></a> 
+
+  <br /></p>
+
+<p><strong>Photoviewer</strong> – do AJAX programming with IronRuby (ARAX =P) 
+
+  <br /><a title="IronRuby Silverlight example - photoviewer by jschementi, on Flickr" href="http://www.flickr.com/photos/jschementi/3681583659/"><img alt="IronRuby Silverlight example - photoviewer" src="http://farm4.static.flickr.com/3663/3681583659_61b9c793fb.jpg" width="400" height="317" /></a> 
+
+  <br /></p>
+
+<p><strong>REPL</strong> – Interactive console in the browser. 
+
+  <br /><a title="IronRuby Silverlight example - REPL by jschementi, on Flickr" href="http://www.flickr.com/photos/jschementi/3682397706/"><img alt="IronRuby Silverlight example - REPL" src="http://farm4.static.flickr.com/3652/3682397706_f0cde1f3c1.jpg" width="400" height="292" /></a> 
+
+  <br /></p>
+
+<h5><font color="#ff8000" size="3">Some more interesting changes:</font></h5>
+
+<ul>
+  <li>Improved DLR Interop: adds support for GetMember/SetMember with method_missing, Binary/Unary operators, and indexers. </li>
+
+  <li>Handling of CLR protected and private methods and properties </li>
+
+  <li>Reimplemented File.expand_path such that it does not use System.IO.Path. </li>
+
+  <li>This allows us to get better compatibility with MRI. The motivating reason was </li>
+
+  <li>that RSpec does File.expand_path(&quot;filename:linenumber&quot;) </li>
+
+  <li>Improves the implementation of singleton method dispatch. </li>
+
+  <li>These changes improve running time of specs significantly (2x) </li>
+
+  <li>Renames Method, UnboundMethod#overloads (plural) to </li>
+
+  <li>Method, UnboundMethod#overload (singular). </li>
+
+  <li>The old name is still available for now and throws an exception. </li>
+
+  <li>Implements adaptively compiled rules </li>
+
+  <li>Improves performance of Array#- from quadratic algorithm to linear. </li>
+
+  <li>Improves implementation of RubyArray </li>
+</ul>
+
+<h5><font color="#ff8000" size="3">Bugs closed</font></h5>
+
+<p>Here are all 37 bugs closed since the last release (2009-05-19). <a href="http://ironruby.codeplex.com/WorkItem/List.aspx" target="_blank">You can see more information about each one on CodePlex</a>.</p>
+
+<pre style="overflow: scroll">1521  Access is allowed to internal fields
+1502  alias_method fails for :do
+821   File.expand_path does not support a line number after filename
+1509  Proc.to_s should include line number where the block was declared
+1501  WinForms broken
+1400  $? is not always Process::Status	
+1345  load_assembly(<partial_name>) should work
+1344  System.Action.new does not work
+1306  Cannot call CLR constructor of builtin type
+1184  public(:foo) does not work correctly for mixed-in methods
+1085  Cannot call new on subtypes of builtin classes whose &quot;new&quot; method has optional arguments
+1060  visibility of send :define_method
+917   Passing a Ruby array to a .NET method that expects an IEnumerable derivative fails with GetEnumerator call
+783   Assert in SetMethodBasesNoLock when calling #== on Ruby class inheriting from CLR class which overrides Equals
+761   Wrong behavior when calling redefined methods on object instances
+1470  Can't call the BigIntegerOverload of a method with a DefaultProtocol Attribute on the BigInteger attribute
+1426  The located assembly's manifest definition does not match the assembly reference. (ctp dev10 beta1)
+1441  Error with cyrillyc text in Sharepoint	
+1352  Test Defects	
+814   Allocator underfined for <type> (TypeError)
+572   Error when running Cucumber examples with IronRuby
+718   IronRuby ignores RUBYLIB environment variable
+727   to_proc not working
+1351  redist-libs should have rubygems-1.3.1	
+466   ''.split(//, -1) returns [&quot;&quot;] instead of []	
+940   Can't inherit from abstract classes	
+1028  Missing conversion from Duration to Fixnum (ActiveSupport)?
+374   irails Foo: undefined method for OpenSLL::Random.random_bytes
+459   throw FileNotFoundException =&gt; rescue Errno.NoEntryError
+499   Pathname#cleanpath messes up the pathname
+467   &quot;igem install rails&quot; fails
+375   &quot;ir script\server&quot; causes a YAML parser error
+461   Generic type conversion from Fixnum to Integer
+674   autoload does not use File::SEPARATOR
+1021  Time class instance
+578   yield fails in eval'd code
+605   Array#hash should properly handle recursive arrays</pre>
+
+<h5><font color="#ff8000" size="3">Enjoy!</font></h5>
+
+<p>Please test out IronRuby 0.6 and let us know if you have any issues. We hope you enjoy this release!</p>
+
+<p>-- The IronRuby team</p>
+
+<div style="padding-bottom: 0px; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; float: none; padding-top: 0px" id="scid:0767317B-992E-4b12-91E0-4F059A8CECA8:2ecdd2dc-79c7-43ba-bc42-a6988ab05145" class="wlWriterEditableSmartContent">Technorati Tags: <a href="http://technorati.com/tags/IronRuby" rel="tag">IronRuby</a>,<a href="http://technorati.com/tags/Performance" rel="tag">Performance</a>,<a href="http://technorati.com/tags/Cucumber" rel="tag">Cucumber</a>,<a href="http://technorati.com/tags/Testing" rel="tag">Testing</a>,<a href="http://technorati.com/tags/Silverlight" rel="tag">Silverlight</a>,<a href="http://technorati.com/tags/Release" rel="tag">Release</a>,<a href="http://technorati.com/tags/Ruby" rel="tag">Ruby</a></div>  
+</div>
+<div class="css-full-comments-content js-full-comments-content">
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/15810450696387201756">
+  <div class="css-comment-name js-comment-name">
+    azamsharp
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-07-02T19:16:03.214Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Yes yes yes!! hhaha finally IronRuby is mine :D <br /><br />Awesome!
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/14627955690950344876">
+  <div class="css-comment-name js-comment-name">
+    Lukáš Čenovský
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-07-02T22:26:30.770Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    I cannot resist - there is a conference: Europython :D
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.nedforce.com">
+  <div class="css-comment-name js-comment-name">
+    Roderick van Domburg
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-07-02T23:08:41.926Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    What&#39;s the percentage you&#39;re getting on the Rails and RubySpec suites?
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-07-02T23:43:18.819Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    @Lukáš Actually, I would have mentioned EuroPython if I went there, but I wasn&#39;t able to (again) this year. Sigh.<br /><br />@Roderick. Take a look at ironruby.info for RubySpec -- 96% for language, 83% for core, and 90% for libraries (when compared with how MRI performs on Windows). Rails results more spread out: ActionPack 94% http://gist.github.com/100329, ActiveSupport 94% http://gist.github.com/106363, ActiveRecord 11% http://gist.github.com/135385. ActiveRecord is actually very usable; all the errors have to do with the testing infrastructure&#39;s dependencies on open YAML bugs.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/15831013545479438153">
+  <div class="css-comment-name js-comment-name">
+    Simon
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-07-03T03:16:18.238Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Is there a IronRubyCodeProvider yet?
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Anonymous
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-07-03T10:20:20.356Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Which release should be used for .NET Beta 1. Will this one work or should I use the specific .NET Beta 1 release
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/15810450696387201756">
+  <div class="css-comment-name js-comment-name">
+    azamsharp
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-07-06T18:24:07.296Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Is there a way to upgrade IronRuby from 0.5 to 0.6 without breaking the previous stuff?
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-07-06T18:33:56.936Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    @simon No specific VS integration, except for simple breakpoint/step debugging in VS.<br /><br />@anonymous This release will probably work on .NET 4.0 Beta 1, but doesn&#39;t take advantage of any new features (DLR in System.Core). If I were you I&#39;d stick with the prior .NET4.0-specific release.<br /><br />@azamsharp If you just replace the IronRuby binaries in your projects with the new 0.6 ones, things should just work. If they don&#39;t, then you were depending on a bug that was fixed.
+  </div>
+  <br/>
+</div>
+</div>

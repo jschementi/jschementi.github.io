@@ -1,0 +1,151 @@
+---
+title: "New Dynamic Silverlight site!"
+layout: "post"
+permalink: "/2008/03/new-dynamic-silverlight-site.html"
+uuid: "2041836104881774912"
+guid: "tag:blogger.com,1999:blog-5419182.post-2041836104881774912"
+date: "2008-03-15 03:36:00"
+updated: "2008-03-31 23:17:55"
+description: 
+blogger:
+    siteid: "5419182"
+    postid: "2041836104881774912"
+    comments: "7"
+categories: [Dynamic Languages, Silverlight, Microsoft]
+author: 
+    name: "Jimmy Schementi"
+    url: "https://plus.google.com/116380716127564408544?rel=author"
+    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
+---
+
+<div class="css-full-post-content js-full-post-content">
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://flickr.com/photos/jschementi/2334472514/"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer; width: 400px;" src="http://farm3.static.flickr.com/2118/2334472514_3629cd12ae_o_d.png" alt="" border="0" /></a><a href="http://dynamicsilverlight.net/">http://dynamicsilverlight.net</a> has got a shiny new look! Well, it just got it's first look, since before it was worse-looking than a 1990's-style website. Anyway, it's been bombarded with useful links, so let us walk through them:
+
+<a href="http://dynamicsilverlight.net/see">/see</a>
+Here you'll find links to sample apps written in Ruby and Python. There's only 3 up there now, but we'll be adding more ... I promise. =)
+
+<a href="http://dynamicsilverlight.net/get">/get</a>
+Download pointers to the Dynamic Silverlight SDK, Silverlight 2, Silverlight SDK, Visual Studio Tools, etc etc etc. Basically anything you could ever want to use to develop a Silverlight app is there.
+
+<a href="http://dynamicsilverlight.net/learn">/learn</a>
+Links to documentation, walk-throughs, blogs, talks, specs, and anything else to make you a browser ninja.
+
+<a href="http://dynamicsilverlight.net/contribute">/contribute</a>
+So, when you're done getting and learning all about this stuff, time to actually talk to people! Here you'll find pointers to IronRuby/IronPython project information.
+
+Enjoy! =)
+</div>
+<div class="css-full-comments-content js-full-comments-content">
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/09546077114542660075">
+  <div class="css-comment-name js-comment-name">
+    francois schnell
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-03-15T17:50:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Tahnks Jimmy it looks great :)<BR/><BR/>All examples works great for me except the dlrconsole:<BR/>http://dynamicsilverlight.net/see/dlrconsole/<BR/><BR/>Whatever the bowser I'm using (IE7 or Firefox) the page reports:<BR/><BR/>"""SyntaxError: Input string was not in a correct format."""<BR/>with line 475 showing in red:<BR/>"Line 475:  tb.Opacity = 0.5"<BR/><BR/>I'm not yet familiar with SL2, I'm maybe missing something very obvious.<BR/><BR/>For information I think I have the latest runtime engine (2.0.30226.2) running on a Vista Premium box with  the MS silverlight SDK 2.0
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-03-15T20:35:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    @francois: As long as you have SL2 installed (2.0.30226.2 is the right version) it should just work. <BR/><BR/>I'm not sure what could cause that error, since I can't reproduce it. If you'd like to reproduce it locally, you can:<BR/><BR/>1.) Download <A HREF="http://dynamicsilverlight.net/see/dlrconsole.zip" REL="nofollow">dlrconsole</A> and extract it.<BR/>2.) Make sure the Silverlight 2 SDK is installed.<BR/>3.) Make sure "C:\Program Files\Microsoft SDKs\Silverlight\v2.0\Tools\Chiron" is on your path.<BR/>4.) Open a command window, navigate to dlrconsole, and type "Chiron.exe /b"<BR/><BR/>If you get the same error as before, then something is borked with your machine and I suggest reinstalling Silverlight and clearing your browser cache. If you don't get an error, than something crazier is happening (!) and we'll take it from there.<BR/><BR/>~Jimmy<BR/><BR/>P.S. The reason you need to use the Silverlight SDK version of Chiron is simply because dlrconsole does not work with the DLR shipped on <A HREF="http://dynamicsilverlight.net" REL="nofollow">our website</A> =(<BR/><BR/>P.S.S. Anyone using a mac can just grab the SL2 SDK version of the DLR <A HREF="http://dynamicsilverlight.net/samples/beta1-lib/" REL="nofollow">here</A> (it's where the live dlrconsole version pulls them from). However, I suggest you always use the version shipped on <A HREF="http://dynamicsilverlight.net" REL="nofollow">our website</A>, not the SDK version. Only use the SDK version if you want to run dlrconsole locally.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/09546077114542660075">
+  <div class="css-comment-name js-comment-name">
+    francois schnell
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-03-15T21:50:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Thanks for your quick reply Jimmy.<BR/><BR/>I followed each step and have the same result on local host.<BR/><BR/>You can see a screenshot <A HREF="http://www.flickr.com/photos/frenchy/2335205323/sizes/o/" REL="nofollow">here</A><BR/> <BR/>I additionally (without success):<BR/>- tried with the full path of chiron to be sure<BR/>- uninstall/reinstall the runtime and SDK<BR/>- cleared cache and relaunched browser<BR/><BR/>Not sure what I'm messing.<BR/>Thanks for reading.<BR/><BR/>francois
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-03-15T23:20:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Try simply commenting out line 475 of dlrconsole/app/app.rb ... so it looks like<BR/><BR/>#tb.Opacity = 0.5<BR/><BR/>That's the best idea I have on a Saturday afternoon. =P
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/09546077114542660075">
+  <div class="css-comment-name js-comment-name">
+    francois schnell
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-03-16T01:01:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    """ Try simply commenting out line 475 of dlrconsole/app/app.rb """<BR/><BR/>I guess you meant app.py<BR/>Unfortunately it's not just an 'opaque' related story for me but a never-ending one. Event stuff like this doesn't go through:<BR/><BR/>Line 624: inputPercents = 0.0<BR/>Result: SyntaxError: Input string was not in a correct format. <BR/><BR/>Time to sleep on this part of the glob. Thanks and have a good WE. I'll probably try SL2/IPy another day.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-03-16T01:07:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Yep, I meant app.py =P ... sorry about that Francois. I have all public bits installed and everything works fine for me , and we've never seen a failure like this on any of the platforms we tests (Vista and Mac), so I'm at a loss right now.<BR/><BR/>Have a good weekend yourself, and we'll get you up and running soon enough =)
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Anonymous
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-03-18T07:45:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    That's i18n problem,if windows has set decimal separator to anything other than '.',you're in trouble.It's very strange and seems to be python compiler bug-c# always using dot as decimal separator.<BR/><BR/>Regards.
+  </div>
+  <br/>
+</div>
+</div>

@@ -1,0 +1,161 @@
+---
+title: "Pidgin and Twitter"
+layout: "post"
+permalink: "/2008/04/pidgin-and-twitter.html"
+uuid: "3982808223938965454"
+guid: "tag:blogger.com,1999:blog-5419182.post-3982808223938965454"
+date: "2008-04-03 08:44:00"
+updated: "2008-04-11 09:36:22"
+description: 
+blogger:
+    siteid: "5419182"
+    postid: "3982808223938965454"
+    comments: "5"
+categories: [Pidgin, Dbus, Twitter, Python]
+author: 
+    name: "Jimmy Schementi"
+    url: "https://plus.google.com/116380716127564408544?rel=author"
+    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
+---
+
+<div class="css-full-post-content js-full-post-content">
+I have been searching far and wide for something to turn my <a href="http://www.pidgin.im/">Pidgin</a> status messages into <a href="http://twitter.com/jschementi">Twitter</a> tweets. My search, as well as your, is over:
+
+<a href="http://arstechnica.com/reviews/apps/pidgin-2-0.ars/4">http://arstechnica.com/reviews/apps/pidgin-2-0.ars/4</a>
+
+Scroll down, and you'll see this block of code:
+<pre class="Code" style="overflow: auto; height: 250px; background-color: #222"><span class="Comment">#!/usr/bin/env python</span>
+
+<span class="PreProc">import</span> gtk, dbus, gobject, dbus.glib
+<span class="PreProc">import</span> base64, httplib, urllib
+
+TWITTER_USERNAME = "<span class="Constant">segphault</span>"
+TWITTER_PASSWORD = "<span class="Constant"><password></password></span>"
+
+PIDGIN_ACCOUNT = "<span class="Constant">segphault</span>"
+PIDGIN_PROTOCOL = "<span class="Constant">AIM</span>"
+
+<span class="Statement">def</span> <span class="Identifier">updateTwitter</span>(username, passwd, statusmsg):
+<span class="Comment"># Generate Twitter authentication header string</span>
+auth = {"<span class="Constant">Authorization</span>": "<span class="Constant">Basic %s</span>" %
+    base64.encodestring("<span class="Constant">%s:%s</span>" % (username, passwd)).strip()}
+
+<span class="Comment"># Create a connection to the Twitter web site</span>
+
+connection = httplib.HTTPConnection("<span class="Constant">twitter.com</span>", 80)
+<span class="Comment"># Use Twitter's REST API to post a status update</span>
+connection.request("<span class="Constant">POST</span>", "<span class="Constant">/statuses/update.xml</span>",
+    urllib.urlencode({"<span class="Constant">status</span>":statusmsg}), auth)
+
+<span class="Comment"># Initiate a connection to the Session Bus</span>
+bus = dbus.SessionBus()
+
+
+<span class="Comment"># Associate Pidgin's D-Bus interface with Python objects</span>
+obj = bus.get_object(
+  "<span class="Constant">im.pidgin.purple.PurpleService</span>", "<span class="Constant">/im/pidgin/purple/PurpleObject</span>")
+purple = dbus.Interface(obj, "<span class="Constant">im.pidgin.purple.PurpleInterface</span>")
+
+<span class="Statement">def</span> <span class="Identifier">onStatusChanged</span>(acctID, old, new):
+<span class="Comment"># Only update the Twitter status for one specific Pidgin account</span>
+<span class="Statement">if</span> purple.PurpleAccountGetUsername(acctID) == PIDGIN_ACCOUNT <span class="Statement">and</span> <span class="Special">\</span>
+    purple.PurpleAccountGetProtocolName(acctID) == PIDGIN_PROTOCOL:
+  <span class="Comment"># Retrieve the current Pidgin status message</span>
+  message = purple.PurpleSavedstatusGetMessage(
+      purple.PurpleSavedstatusGetCurrent())
+
+  <span class="Comment"># Update Twitter status with current Pidgin status message</span>
+  <span class="Statement">if</span> message: updateTwitter(TWITTER_USERNAME, TWITTER_PASSWORD, message)
+
+<span class="Comment"># Bind the onStatusChanged function to Pidgin's AccountStatusChanged event</span>
+bus.add_signal_receiver(onStatusChanged,
+  dbus_interface="<span class="Constant">im.pidgin.purple.PurpleInterface</span>",
+  signal_name="<span class="Constant">AccountStatusChanged</span>")
+
+
+<span class="Comment"># Start the main loop</span>
+gobject.MainLoop().run()
+</pre><p>Just paste that into a twitter.py file (for God sakes make sure you don't mess up the white space, this is Python!), set the Twitter/Pidgin configuration info at the top, and run it. Now, whenever your status changes, your Twitter is updated. Oh the magic of <a href="http://developer.pidgin.im/wiki/DbusHowto">Dbus</a> and <a href="http://groups.google.com/group/twitter-development-talk/web/api-documentation">REST</a></p>
+</div>
+<div class="css-full-comments-content js-full-comments-content">
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.muscetta.com">
+  <div class="css-comment-name js-comment-name">
+    Daniele Muscetta
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-04-11T14:37:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    I actually thought of <A HREF="http://www.muscetta.com/2007/10/01/facebook-implemented-a-usersetstatus-api/" REL="nofollow">writing a plugin for Live Writer that would update twitter and/or facebook</A> long time ago.<BR/><A HREF="http://www.25hoursaday.com/weblog/CommentView.aspx?guid=51b24ec1-ec28-4526-b7fe-9d1e6c7fc802" REL="nofollow">Dare also suggested it at one stage</A>.<BR/>But it seems that the <A HREF="http://msdn2.microsoft.com/en-us/library/aa905655.aspx" REL="nofollow">Live Messenger Plugin APIs have never made it out of beta and they have disappeared</A>, at least <A HREF="http://blogs.msdn.com/stevecla01/archive/2007/12/29/social-networking-add-ons-for-outlook-and-ie.aspx" REL="nofollow">that has been my experience when I actually wanted to TRY and write such a  thing</A> (read the comments).<BR/>But probably is just me not being an enough expert coder, as I see that there ARE plugins for MSN/Live messenger available on the net. Just wonder if they are written with supported or Unsupported methods/APIs.<BR/>But I see that you resorted to using Pidgin...
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/15880871365629715313">
+  <div class="css-comment-name js-comment-name">
+    Dave Lowe
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-08-18T13:09:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Yes, but can you go the other way? I want my latest tweet to be my Pidgin status.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/12973383030986156484">
+  <div class="css-comment-name js-comment-name">
+    Leonetix
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-11-16T21:06:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    This comment has been removed by the author.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/16620848393549660148">
+  <div class="css-comment-name js-comment-name">
+    Shane
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-12-05T14:41:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Hey Jimmy... i've been looking hi ang low! I'm keen as to have my Pidgin status update my Twitter... I'm glad you found something!<BR/><BR/>I've read through your instructions, but honestly im not really sure what to do. What is and where can i find a twitter.py file (and what is white space)?<BR/><BR/>If you have time to help me out that would be heaps awesome.<BR/><BR/>Thanks<BR/>Shane
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/01620603915248592954">
+  <div class="css-comment-name js-comment-name">
+    Michael
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2013-01-12T04:33:55.885Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    can you say why i might be having this problem with your script?<br /><br />NameError: name &#39;statusmsg&#39; is not defined<br />
+  </div>
+  <br/>
+</div>
+</div>

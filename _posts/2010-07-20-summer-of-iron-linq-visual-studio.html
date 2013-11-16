@@ -1,0 +1,57 @@
+---
+title: "Summer of “Iron”: LINQ, Visual Studio tooling, and the Apache License"
+layout: "post"
+permalink: "/2010/07/summer-of-iron-linq-visual-studio.html"
+uuid: "6620032828290068077"
+guid: "tag:blogger.com,1999:blog-5419182.post-6620032828290068077"
+date: "2010-07-20 03:05:00"
+updated: "2010-07-20 03:07:01"
+description: 
+blogger:
+    siteid: "5419182"
+    postid: "6620032828290068077"
+    comments: "2"
+categories: [Open Source, IronRuby, IronPython, DLR, Release]
+author: 
+    name: "Jimmy Schementi"
+    url: "https://plus.google.com/116380716127564408544?rel=author"
+    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
+---
+
+<div class="css-full-post-content js-full-post-content">
+<p>New releases and announcements from the “Iron” projects have come out over the last couple days, so I wanted to give you an overview of what’s happening, point out the really cool parts, and reiterate some of the motivations.</p>  <p>From a release perspective, both IronRuby and IronPython released new versions of the DLR-based .NET programming language implementations: <a href="http://ironpython.codeplex.com/releases/view/42434" target="_blank">IronPython 2.7 Alpha</a> and <a href="http://ironruby.codeplex.com/releases/view/43540" target="_blank">IronRuby 1.1</a>. Click on the respective release name for the full release notes and downloads, but I’ll summarize a bit here:</p>  <h4>IronPython 2.7 Alpha</h4>  <p><a href="http://ironpython.codeplex.com/releases/view/42434" target="_blank">Install IronPython 2.7 Alpha</a> (includes <a href="http://ironpython.net/tools/" target="_blank">Visual Studio tooling</a>)</p>  <p>This Alpha release is the first IronPython release working towards Python 2.7 compatibility, and contains a number of bug fixes and performance improvements. It also now <strong>requires</strong> .NET 4.0 or Silverlight 4; you will need to <a href="http://ironpython.codeplex.com/SourceControl/list/changesets" target="_blank">build from source</a> for down-level frameworks. The installer now includes Visual Studio support for IronPython, rather than being a separate installer, and the source-code for the tools has been open-sourced! Keep reading for licensing information …</p>  <h4>IronRuby 1.1</h4>  <p><a href="http://ironruby.codeplex.com/releases/view/43540" target="_blank">Install IronRuby 1.1</a></p>  <p>Aside from a bunch of bug-fixes, the latest release of IronRuby adds support for .NET extension methods, meaning that .NET programming patterns that are dependent on extension methods, like LINQ, the Reactive framework, Parallel.NET, etc, are now all usable from Ruby code. For example, here’s a simple LINQ example:</p> <script src="http://gist.github.com/482344.js?file=linq.rb"></script>  <p>For more information see the <a href="http://github.com/ironruby/ironruby/blob/master/Languages/Ruby/Samples/Linq/101samples.rb" target="_blank">101 LINQ samples ported to IronRuby</a>.</p>  <p>Also, since I never <a href="http://ironruby.codeplex.com/releases/view/25901" target="_blank">announced the IronRuby 1.0 release</a> on my blog … consider this the announcement.</p>  <h4>Apache License, Version 2</h4>  <p><a href="http://ironruby.codeplex.com/license" target="_blank">IronRuby</a>, <a href="http://ironpython.codeplex.com/license" target="_blank">IronPython</a>, and the <a href="http://dlr.codeplex.com/license" target="_blank">DLR</a> are now licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank">Apache License, Version 2</a>. To address all concerns around <em>“why”</em> this is changing, it is <strong>solely</strong> in reaction to feedback about the licensing terms from users and the .NET/Python/Ruby/dynamic-language communities at-large. The Apache License is a more familiar and popular license to those communities than the Microsoft Public License; using it should lower any license-related barriers people encountered in the past when considering these programming-language implementations.</p>  <h4>Enjoy!</h4>  
+</div>
+<div class="css-full-comments-content js-full-comments-content">
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/10732477960055957828">
+  <div class="css-comment-name js-comment-name">
+    Mike Strobel
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-07-20T12:29:00.761Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    d&#39;oh.  I could actually *read* the Ms-PL.  Oh well, can&#39;t please everyone :).
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-07-20T17:29:59.300Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    @Matt Being able to read a legal document doesn&#39;t ensure comprehension :)
+  </div>
+  <br/>
+</div>
+</div>

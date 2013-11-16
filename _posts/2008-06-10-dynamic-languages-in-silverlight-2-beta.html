@@ -1,0 +1,242 @@
+---
+title: "Dynamic Languages in Silverlight 2 Beta 2"
+layout: "post"
+permalink: "/2008/06/dynamic-languages-in-silverlight-2-beta.html"
+uuid: "5211718524697920189"
+guid: "tag:blogger.com,1999:blog-5419182.post-5211718524697920189"
+date: "2008-06-10 06:28:00"
+updated: "2008-06-10 21:57:51"
+description: 
+blogger:
+    siteid: "5419182"
+    postid: "5211718524697920189"
+    comments: "12"
+categories: [ruby, Dynamic Languages, JScript, Silverlight, Python]
+author: 
+    name: "Jimmy Schementi"
+    url: "https://plus.google.com/116380716127564408544?rel=author"
+    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
+---
+
+<div class="css-full-post-content js-full-post-content">
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://bp2.blogger.com/_OqCZhp9yI0Q/SE74VwxHC3I/AAAAAAAAACo/Z7Q--6yQISM/s1600-h/slpyrb-small.png"><img style="border: 0px none ; margin: 0pt 10px 10px 0pt; float: left; cursor: pointer;" src="http://bp2.blogger.com/_OqCZhp9yI0Q/SE74VwxHC3I/AAAAAAAAACo/Z7Q--6yQISM/s400/slpyrb-small.png" alt="" id="BLOGGER_PHOTO_ID_5210374871666068338" border="0" /></a>With the <a href="http://weblogs.asp.net/scottgu/archive/2008/06/06/silverlight-2-beta2-released.aspx">announcement </a>of <a href="http://www.microsoft.com/silverlight/resources/install.aspx?v=2.0">Silverlight 2 Beta 2</a>, the <a href="http://www.codeplex.com/sdlsdk/Release/ProjectReleases.aspx?ReleaseId=14254">Silverlight Dynamic Languages SDK</a> has been updated as well!
+
+<a href="http://www.codeplex.com/sdlsdk/Release/ProjectReleases.aspx?ReleaseId=14254">Download the Dynamic Languages SDK!</a>
+
+<span style="color: rgb(255, 102, 0);font-size:180%;" >What's new?</span>
+There's a lot of new stuff here, from new versions of IronRuby, IronPython, Managed JScript, and the Dynamic Languages Runtime, to more samples and better packaging.
+
+<span style="color: rgb(255, 102, 0);font-size:130%;" >Latest Bits
+</span>This release packages up the latest bits for the three languages, as well as the DLR and Silverlight integration. The most noticeable difference is the extra DLL that is provided: Microsoft.Scripting.Core.dll. This contains the core functionality of the DLR, while Microsoft.Scripting.dll contains non-necessary pieces like helpers and <a href="http://compilerlab.members.winisp.net/dlr-spec-hosting.pdf">Hosting API</a>.
+
+<span style="color: rgb(255, 102, 0);font-size:130%;" >More Samples</span>
+Also, there is a whole slew of new samples! IronPython and Managed JScript have their fare-share of samples; IronRuby is lacking a bit but new ones are being added in during this week, so sit tight!
+
+<span style="color: rgb(255, 102, 0);font-size:130%;" >Separate packages</span>
+One difference from the last release is now there are three packages: SDK, SDK Source Code, and SDK Samples.
+
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://www.codeplex.com/sdlsdk/Release/ProjectReleases.aspx?ReleaseId=14254"><img style="margin: 0pt 10px 10px 0pt; cursor: pointer;" src="http://bp2.blogger.com/_OqCZhp9yI0Q/SE4i9qLAM9I/AAAAAAAAACY/wKFXLFdjJ_0/s400/sdlsdkb2.PNG" alt="" id="BLOGGER_PHOTO_ID_5210140261602046930" border="0" /></a>
+<ul><li><span style="font-weight: bold;">SDK: </span>Necessary package to create dynamic language Silverlight applications.</li><li><span style="font-weight: bold;">SDK Source Code: </span>If you want to modify the languages/DLR/Silverlight integration, you can do so here, and build using the given Solution file in Visual Studio. This will create a /bin directory with the identical binaries as the /bin directory in the SDK, however without DLL signing.</li><li><span style="font-weight: bold;">SDK Samples: </span>a bunch of Ruby, Python, and JScript samples. Best bet is to unzip this in the SDK directory.</li></ul><span style="color: rgb(255, 102, 0);font-size:130%;" ><span style="font-size:180%;">Future</span>
+</span>This release is important, as it marks the last time this package will be the main ship vehicle for dynamic languages in Silverlight. Every binary release of IronPython/IronRuby will distribute Silverlight binaries necessary to build applications with the language, and the distributed source code will build against Silverlight. They will always work with the latest released version of Silverlight.
+
+This package will always be available as the languages that share the same version of the DLR, until the DLR stabalizes. Then, who knows ... =)
+
+Alright, go make some awesome stuff!
+</div>
+<div class="css-full-comments-content js-full-comments-content">
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Dave Bettin
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-06-10T22:17:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Is it possible to embed a DLR Language inside of a C# silverlight project?<BR/><BR/> There a are certain dynamic properties from a DLR language I would like to leverage inside of a "Standard" sl project.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-06-10T22:25:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Definitely! That's actually how this SDK works; it's a Silverlight application that hosts the DLR! Take a look at the source code; Microsoft.Scripting.Silverlight is the Silverlight application, and DynamicApplication.cs is where the actual entry-point class is defined. That'll show you how to host the DLR inside your C# application.<BR/><BR/>Dave, A write-up of exactly how to accomplish would be awesome, do you have interest in doing it? Or at least sharing with me your experience of doing it, and what pain-points there are?
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    KKI
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-06-12T07:18:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Please give me a DLR Console for Silverlight 2 Beta 2!!
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Anonymous
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-06-12T23:37:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Is it that the hosting API will reside in Microsoft.Scripting assembly instead of Microsoft.Scripting.Core from now on? Geez, when did that happen? Haven't seen IronPython's nor IronRuby's DLR code update for quite a while.<BR/><BR/>Ah, and there's this mispelling in ScriptHost.cs, line 32:<BR/>/// The areguments to the the constructor of the derived class are specified in ScriptRuntimeSetup<BR/>_arguments_<BR/><BR/>I've got a question, though. Besides calling LoadAssembly() on ScriptRuntime objects, what else has to be done in order to get the languages on DLR have a "System" variable on their global scopes, that points to a NamespaceTracker?<BR/><BR/>Say if I did this:<BR/>ScriptRuntime env = ScriptRuntime.Create(setup);<BR/>env.LoadAssembly("mscorlib");<BR/>env.LoadAssembly("System"); // is this all?<BR/>// env.Globals.SetVariable("my_var", myVar); // does this affect the following execution?<BR/>// have I successfully registered this my_var?<BR/><BR/>// ScriptEngine engine = _env.GetEngineByFileExtension("ts"); // yeah, ToyScript<BR/>// ScriptSource ...<BR/>I was trying to tweak something on ToyScript, but found it hard to _inject_ or say _register_ my own variables into the DLR's scope. I just can't get the global ScriptScope that's actually used by the language.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-06-19T00:34:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    @KKI: You got it; it's in the sdk-sdk-samples.zip
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-06-19T00:42:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    @anonymous:<BR/><BR/>You misspelled "mispelling" =P<BR/><BR/>To load mscorlib and System, you have to pass their full strong-name to LoadAssembly. We have helpers on the PlatformAdaptationLayer to do that:<BR/><BR/>runtime.Host.PlatformAdaptationLayer.LoadAssembly("mscorlib")<BR/>runtime.Host.PlatformAdaptationLayer.LoadAssembly("System")
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    KKI
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-06-19T02:18:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Bravo!!!!!!<BR/>I've been waiting for this day. I'm really really happy to get DLRConsole for SL2B2.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://globalsystembuilder.com">
+  <div class="css-comment-name js-comment-name">
+    Mitch
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-07-06T14:41:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Fantastic stuff!  Question about the DLR Console itself - app.py is about 2k lines of python code.  Just trying to wrap my head around it as I would like to add Jim's cool console to an app I am building that uses the DLR.  Is there a way in Visual Studio to debug and step through app.py?<BR/><BR/>Thanks
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/03426367508787117862">
+  <div class="css-comment-name js-comment-name">
+    Antoine Habert
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-07-22T15:52:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-title js-comment-title">
+    Hi,<br><br>Really nice. However I've BIG problem u...
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Hi,<BR/><BR/>Really nice. However I've BIG problem using ironpython on SL2B2 with new silverlight controls. Samples are ok for classis SL2 controls (textblock...), but using button, datagrid, etc don't works anymore, and no working sample are available on internet.<BR/><BR/>Building on example provided here :<BR/><BR/>http://www.voidspace.org.uk/ironpython/silverlight/minimal.shtml<BR/><BR/>I was unable to make SL2B2 controls (like button) works in my project)<BR/><BR/>could you provide a sample using SL2B2 controls (button for example) ?
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-07-23T16:35:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    @mitch if you have the silverlight tools installed and simply attach the debugger to your running silverlight app, then you can open app.py in VS and put breakpoints, etc. <BR/><BR/>Keep in mind the cocode is rather old and implements slot of the controls that are already avaliable in sl2. I'm working on a rewrite of it, and there's other efforts out there to make a nice dlr editor.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-07-23T16:41:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    @antoine I hear ya, it is lacking samples to show how to use controls, or just any external assembly for that matter. I'll port one of the c# controls samples to rb/py/js.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/03426367508787117862">
+  <div class="css-comment-name js-comment-name">
+    Antoine Habert
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-07-23T18:47:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Thanks Jimmy, it's Christmas ! :)
+  </div>
+  <br/>
+</div>
+</div>

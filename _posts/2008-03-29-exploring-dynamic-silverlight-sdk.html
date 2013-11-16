@@ -1,0 +1,93 @@
+---
+title: "Exploring the Dynamic Silverlight SDK"
+layout: "post"
+permalink: "/2008/03/exploring-dynamic-silverlight-sdk.html"
+uuid: "2512424218033725572"
+guid: "tag:blogger.com,1999:blog-5419182.post-2512424218033725572"
+date: "2008-03-29 01:30:00"
+updated: "2008-03-30 07:57:15"
+description: 
+blogger:
+    siteid: "5419182"
+    postid: "2512424218033725572"
+    comments: "2"
+categories: [Dynamic Languages, Silverlight]
+author: 
+    name: "Jimmy Schementi"
+    url: "https://plus.google.com/116380716127564408544?rel=author"
+    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
+---
+
+<div class="css-full-post-content js-full-post-content">
+<a href="http://dynamicsilverlight.net/">Dynamic Silverlight</a> is the catch-phrase I use to describe the integration between dynamic languages and Silverlight. The fact that I need to even call it by a name means that it isn't the norm, not the standard, not implied, and that sucks. Granted, <a href="http://rubyonrails.com/">Ruby on Rails</a> yells in your face that it uses Ruby, so maybe it's not that bad. =)
+
+The <a href="http://dynamicsilverlight.net/get">Dynamic Silverlight SDK</a> is the toolset developers will need on their machines to develop Silverlight applications using dynamic languages. End-users need nothing more than the <a href="http://www.microsoft.com/silverlight/resources/installationFiles.aspx?v=2.0">Silverlight runtime</a>.
+
+<span style="font-weight: bold;font-size:130%;" >Getting the bits</span>
+
+I will always tell you to download dynamic language support in Silverlight from <a href="http://dynamicsilverlight.net/get">http://dynamicsilverlight.net/get</a>. This package contains the latest binaries and sources of IronRuby and IronPython, as well as the Dynamic Language Runtime (DLR), which both the languages depend on. However, this is not the only place dynamic languages support exists in Silverlight. These languages, plus Managed JScript, are shipped in the <a href="http://www.microsoft.com/downloads/details.aspx?FamilyId=4E03409A-77F3-413F-B108-1243C243C4FE&amp;displaylang=en">Silverlight2 SDK</a>. Though, these bits are from the end of February, which are significantly older than the bits on <a href="http://dynamicsilverlight.net/get">http://dynamicsilverlight.net/get</a> ... it's great for getting started with dynamic silverlight if you already have the SDK installed, but it's just a snapshot of the Silverlight integration ... not the latest-and-greatest bits.
+
+I'm sure you have some questions already:
+
+<div style="margin: 5px; padding: 5px; background-color: rgb(34, 34, 34);"><a href="javascript://" onclick="document.getElementById('first').style['display'] = 'block'">Wait, why isn't Managed JScript on http://dynamicsilverlight.net?</a><div id="first" style="display: none;">Yeah, trust me, I don't like this either, and it'll be fixed. Here's what's going on: being that the Silverlight SDK and website versions of DLR/languages are different, this means you can't take IronRuby from the website and run it on the DLR in the SDK. Also, Managed JScript is only shipped in the Silverlight SDK today. Therefore, language interoperability between Managed JScript and IronRuby/IronPython is not possible with the latest bits! =( This is not cool, and I'm trying to get the JScript guys (over in India) to make a build of JScript that works with the website version of DLR. More info on that soon! =)</div></div><div style="margin: 5px; padding: 5px; background-color: rgb(34, 34, 34);"><a href="javascript://" onclick="document.getElementById('second').style['display'] = 'block'">How come we need to download the bits?</a><div id="second" style="display: none;">We rev the source code to our dynamic languages and the DLR very frequently, and we want to make sure you have the latest greatest bits to use in Silverlight as well.</div></div><div style="margin: 5px; padding: 5px; background-color: rgb(34, 34, 34);"><a href="javascript://" onclick="document.getElementById('third').style['display'] = 'block'">Will the users of my application have to download this as well?</a><div id="third" style="display: none;">These bits will downloaded automatically for people who visit Silverlight applications build in a DLR language (see the section on Chiron about how this works). This is how deployment works for all the libraries in the /Libraries/Client folder of the installed Silverlight SDK.</div></div><div style="margin: 5px; padding: 5px; background-color: rgb(34, 34, 34);"><a href="javascript://" onclick="document.getElementById('fourth').style['display'] = 'block'">Why isn't this in Silverlight already?</a><div id="fourth" style="display: none;">This is a change from Silverlight 1.1 Alpha, and something my team thought long and hard about. It's a trade-off between ease of deployment and speed of releases. Let me elaborate; here are 2 very important goals for dynamic languages in Silverlight:
+
+1. Simple deployment/development model
+2. Frequent Codeplex/Rubyforge binary/source releases which work in Silverlight (including contributed code)
+3. Keep download footprint small
+
+If we were to stay in the shipping runtime of Silverlight, this is the world we would live in:
+
+1. DLR, IronPython, IronRuby, Managed JScript on every box that has Silverlight installed
+2. Silverlight runtime download size would be around 6MB rather than 4MB.
+3. Could only release DLR, IronPython, IronRuby, and Managed JScript every time Silverlight released
+4. (Maybe) would have an issue shipping IronRuby contributed code in Silverlight (and IronPython in the future)
+
+#1 is awesome, and satisfies the first goal, but #2, 3, and 4 are contradictions against the second and third goal. To make sure we could get new bits into your hands as often as we had them finished, we were willing to trade-off being in the Silverlight runtime and explore other shipping/deployment options. Shipping in the SDK gets our bits onto developer's machines, and when someone visits their application the necessary assemblies are downloaded automatically with the app. This keeps both the deployment and release schedules simple, and takes a ton of weight off our shoulders!</div></div>
+
+<span style="font-weight: bold;font-size:130%;" >Looking at the bits</span>
+<p>So, you have the package on your disk and you've unzipped it, now what? The package contents are pretty straight-forward, but let me explain what some things mean.</p>
+<span style="font-family:courier new;">/bin</span><p>Contains the compiled binaries for the DLR (Microsoft.Scripting.dll), IronRuby (IronRuby.dll and IronRuby.Libraries.dll), IronPython (IronPython.dll and IronPython.Modules.dll), and Managed JScript (Microsoft.Jscript.Runtime.dll and Microsoft.Jscript.Compiler.dll). Also, it contains Chiron.exe, a command-line tool which lets you develop a dynamic-language application in Silverlight with just a text-editor and a browser. I'll talk about this more later.</p>
+<span style="font-family:courier new;">/scr</span><p>Contains the source to all the binaries in the /bin folder. We've provided a DynamicSilverlight.sln file so you can open it and build in Visual Studio easily. The DLLs it produces can be replaced with the DLLs in the /bin directory, and they will be loaded into Silverlight automatically.</p>
+<span style="font-family:courier new;">/samples</span><p>A few samples in python and ruby to get you started. You can run them with the following scripts:</p>
+<span style="font-family:courier new;">/server.bat</span>
+<p>Runs Chiron in the "server" mode, and causes your default browser to open to the dynamic silverlight directory. You can then navigate into the samples, and click on their HTML file(s) to see them run. Run this only on Windows.</p>
+<span style="font-family:courier new;">/server</span>
+<p>Same as server.bat, except this is for Mac (requires <a href="http://www.go-mono.com/mono-downloads/download.html">Mono to be installed</a>)</p>
+<span style="font-family:courier new;">/README.txt</span><p>Basically this blog post</p>
+<span style="font-family:courier new;">/LICENSE.txt</span><p>Copy of the license this package is under, which is the Microsoft Public License (MSPL)</p>
+<p>That's the Dynamic Silverlight SDK! The next post will be about how to use Chiron to develop a Silverlight application in Ruby or Python.</p>
+</div>
+<div class="css-full-comments-content js-full-comments-content">
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Anonymous
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-04-01T02:55:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Can i use WPF and the DLR jscript to execute jscript.<BR/>I try that but it the jscript.dll is linked to the silverlight system.dll which i can't use with wpf apps
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-04-07T17:47:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    @anonymous: JScript hasn't been released for the desktop, though their sources (compiled against the desktop CLR) definitely work. Talk to the guys over @ http://blogs.msdn.com/jscript if you want more information.
+  </div>
+  <br/>
+</div>
+</div>

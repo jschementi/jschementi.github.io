@@ -1,0 +1,541 @@
+---
+title: "Walk-through: Silverlight Flickr Client in IronRuby"
+layout: "post"
+permalink: "/2008/08/walk-through-silverlight-flickr-client.html"
+uuid: "9217369615180954818"
+guid: "tag:blogger.com,1999:blog-5419182.post-9217369615180954818"
+date: "2008-08-13 07:29:00"
+updated: "2008-08-16 21:32:29"
+description: 
+blogger:
+    siteid: "5419182"
+    postid: "9217369615180954818"
+    comments: "10"
+categories: [ruby, Flickr, Walk Through, Silverlight]
+author: 
+    name: "Jimmy Schementi"
+    url: "https://plus.google.com/116380716127564408544?rel=author"
+    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
+---
+
+<div class="css-full-post-content js-full-post-content">
+Yesterday I spoke about <a href="http://ironruby.net/" target="_blank">IronRuby</a> and <a href="http://silverlight.net/" target="_blank">Silverlight</a> to the <a href="http://www.netda.net/" target="_blank">.NET Developers Association</a>, or "NETDA", on (Microsoft's) campus tonight. In this post, I'll show one of the apps I built, a Flickr client. <br />
+<br />
+<a href="http://www.flickr.com/photos/24458122@N00/2759163228/" title="photoviewer"><img alt="photoviewer" border="0" src="http://static.flickr.com/3099/2759163228_83b3128ec6.jpg" /></a><br />
+<br />
+Here's the live app: <a href="http://jimmy.schementi.com/silverlight/photoviewer" target="_blank">http://jimmy.schementi.com/silverlight/photoviewer</a><br />
+<h4><span style="color: #ff8000;">Pre-requisites</span></h4>This walk-through will work for <b>both</b> Mac and Windows, however the app seems to have problems in Safari currently. Firefox or IE will work fine.<br />
+<br />
+For starters, you'll need <a href="http://go2.microsoft.com/fwlink/?LinkID=115261" target="_blank">install Silverlight 2 Beta 2</a>, as well as <a href="http://www.codeplex.com/sdlsdk/Release/ProjectReleases.aspx?ReleaseId=14254#ReleaseFiles" target="_blank">download the Silverlight Dynamic Languages SDK (Beta 2)</a>, or "sdl-sdk" for short. Unzip <a href="http://www.codeplex.com/Project/Download/FileDownload.aspx?ProjectName=sdlsdk&amp;DownloadId=36528" target="_blank">sdl-sdk.zip</a> to a folder named "sdl-sdk" anywhere on your file system.<br />
+<br />
+You'll also need <a href="http://jimmy.schementi.com/silverlight/photoviewer-start.zip" target="_blank">photoviewer-start.zip</a>, which contains images and libraries that this app depends on. (You can also grab <a href="http://jimmy.schementi.com/silverlight/photoviewer-final.zip" target="_blank">photoviewer-final.zip</a> if you want to <a href="http://www.homestarrunner.com/vcr_cheat.html" target="_blank">cheat</a>)<br />
+<h4><span style="color: #ff8000;">Creating a new project</span></h4>To create a Silverlight app, there's a script included in the SDK called "sl", which takes two arguments: the language (ruby, python, or jscript), and the name of your application. A folder will be created with the name of your app in your current directory, and a default app generated inside it. Enough talking, let's get to it ... open cmd.exe/Terminal.app/whatever and type:<br />
+<pre>$ cd path/to/sdl-sdk
+$ script/sl ruby photoviewer</pre><span style="color: #999999; font-size: xx-small;">(Note: if you're on Windows, make sure to use&nbsp;backslashes "\" instead of forward slashes "/" in the path names)</span><br />
+<br />
+This should say something along the lines of "<b>Your ruby Silverlight application was created in photoviewer</b>". It does for you too? Awesome, let's move on. So, what got generated? Inside the new "photoviewer" folder you'll find:<br />
+<br />
+<span style="color: #ff8000;"><b>index.html</b> -</span> This hosts the Ruby Silverlight app. <span style="color: grey; font-size: 78%;">If you're curious as to what's going on here, there's documentation inline, so read it!</span><br />
+<br />
+<span style="color: #ff8000;"><b>ruby/app.rb</b> -</span> Entry point to the Silverlight app. This generated file just renders app.xaml and sets some text from Ruby.<br />
+<br />
+<b><span style="color: #ff8000;">ruby/app.xaml</span></b> - XAML UI for the app. <span style="color: grey; font-size: 78%;">Actually, we're not going to use XAML for this app, so we'll delete this later.</span><br />
+<br />
+<b><span style="color: #ff8000;">ruby/silverlight.rb</span></b> - Defined "SilverlightApplication" and makes existing Silverlight API's friendlier to Ruby <span style="color: grey; font-size: 78%;">I gave you a newer version of this file in photoviewer-start.zip, so you'll have to overwrite this file with that.</span><br />
+<br />
+<b><span style="color: #ff8000;">stylesheets/error.css -</span></b> In the unfortunate event of you writing bad Ruby code, this stylesheet will format the in-browser error message all pretty-like for you.<br />
+<br />
+<b><span style="color: #ff8000;">javascripts/error.js -</span></b> In case you turn Ruby error reporting off, this file will still catch any errors and not cause your users to see some ugly alert box.<br />
+<h4><span style="color: #ff8000;">Running your newly created Ruby app</span></h4>Enough talk, does this thing work? We'll, let's try ...<br />
+<pre>$ cd photoviewer
+$ script/server /b:index.html</pre><span style="color: #999999; font-size: xx-small;">(Note "/b" is the same on Windows/Mac, always a forward slash since its part of the argument and not the path)</span><br />
+<br />
+This will start a Silverlight development web server called <a href="http://www.codeplex.com/sdlsdk/Wiki/View.aspx?title=Chiron&amp;referringTitle=Getting%20Started" target="_blank">Chiron</a>, and launch your default browser at index.html. Using the "/w" flag just starts the server and doesn't open your browser. Anyway, you should see this (in your default browser, of course):<br />
+<br />
+<a href="http://www.flickr.com/photos/24458122@N00/2758685635/" title="hello-silverlight"><img alt="hello-silverlight" border="0" src="http://static.flickr.com/3230/2758685635_0fed5fe9b9.jpg" /></a><br />
+<h4><span style="color: #ff8000;">Adding external libraries</span></h4>Before we can start coding, this app depends on some external libraries, so let's put them in our project now. Since I'm such a good guy, I put all the external dependencies in that <a href="http://jimmy.schementi.com/silverlight/photoviewer-start.zip" target="_blank">photoviewer-start.zip</a> file I had you download already. Yep, I'm awesome, you're welcome. Anyway, take the contents of that zip and place it in your project. Your OS may complain about overwriting silverlight.rb, but it's ok, overwrite it. Did it? Good. So, what did you just add to your app?<br />
+<br />
+<span style="color: #ff8000;"><b>images/loading.gif</b></span> - loading indicator gif thingy. <br />
+<br />
+<b><span style="color: #ff8000;">ruby/System.Json.dll</span></b> - JSON parser that ships in the Silverlight SDK.<br />
+<br />
+<b><span style="color: #ff8000;">ruby/json.rb</span></b> - requires and monkey patches System.Json to be more ruby-esk.<br />
+<br />
+<b><span style="color: #ff8000;">ruby/silverlight.rb</span></b> - This app will depend on a more up-to-date version of silverlight.rb, so you can replace the generated one with this.<br />
+<br />
+<b><a href="http://www.huddletogether.com/projects/lightbox2/" target="_blank"><span style="color: #ff8000;">lightbox/</span></a> -</b> A javascript library for showing images prettily. Love it.<br />
+<h4><span style="color: #ff8000;">Writing some freakin' code! UI, that is</span></h4>As I hinted at before, this application with have a HTML UI with IronRuby driving it. Yes, you can use Silverlight without all the pretty graphics. ;) Anyway, to accomplish this, we need to make the Silverlight canvas virtually invisible. Open index.html and on line 28 change the width and height attributes from "100%" to "1":<br />
+<div class="wlWriterSmartContent" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:d2523989-9b43-4751-b7ce-ae6f26331840" style="display: inline; float: none; margin: 0px; padding: 0px;"><pre class="html" name="code">&lt;object data="data:application/x-silverlight," type="application/x-silverlight-2-b2" width="1" height="1"&gt;</pre></div>By changing the width/height to "1", we're making the control basically invisible, but still actually visible so it still loads. Clever hack, huh?<br />
+<br />
+Now let's give our app a UI. Type this after the "&lt;/object&gt;" tag at the bottom of index.html:<br />
+<div class="wlWriterSmartContent" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:5cde73cd-27ec-4481-b85c-012097e0531f" style="display: inline; float: none; margin: 0px; padding: 0px;"><pre class="html" name="code">&lt;div class="search"&gt; 
+  &lt;form id="search" action="javascript:void(0)"&gt; 
+    &lt;input type="text" id="keyword" /&gt; 
+    &lt;input type="submit" id="submit_search" value="search" /&gt; 
+    &lt;img src="images/loading.gif" id="images_loading" /&gt; 
+  &lt;/form&gt; 
+  &lt;div id="search_results"&gt; 
+    &lt;div id="search_images"&gt;&lt;/div&gt; 
+    &lt;div id="search_links"&gt;&lt;/div&gt; 
+  &lt;/div&gt; 
+&lt;/div&gt; 
+&lt;div class="clear"&gt;&lt;/div&gt; 
+</pre></div>This is basic search box, submit button, and a place to render the images found. Let's style it ... open up stylesheets/screen.css. First comes first; delete the #silverlightControlHost style since we don't want our 1x1 control taking up 100% of the page.<br />
+<pre><strike>#silverlightControlHost {
+  height: 100%;
+}</strike></pre>Now let's style our plain UI we just made:<br />
+<div class="wlWriterSmartContent" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:73fb356e-92c1-4d0d-b192-3538462f03c1" style="display: inline; float: none; margin: 0px; padding: 0px;"><pre class="css" name="code">body { 
+  font-family: "Trebuchet MS" Verdana sans-serif; 
+  border: 0px; padding: 0px; margin: 0px; 
+} 
+
+div.clear { 
+  clear: both; 
+} 
+
+/* main search box */ 
+.search { 
+  padding: 20px; 
+  margin: 20px; 
+  border: 10px solid gray; 
+  background-color: #ccc; 
+} 
+
+form#search #images_loading { 
+  width: 18px;  
+  height: 15px; 
+  display: none; 
+} 
+
+
+/* search results */ 
+#search_results { 
+  display: none; 
+} 
+
+/* search images */ 
+#search_images { 
+  padding-top: 10px; 
+} 
+#search_images .image, .image a, .image a img { 
+  float: left;  
+  padding: 0px;  
+  margin: 0px;  
+  border: 0px; 
+} 
+#search_images .image a:link,  
+#search_images .image a:visited { 
+  background-color: white; 
+  padding: 5px; 
+  margin: 5px; 
+  background-color: white; 
+  border: 1px solid gray; 
+} 
+#search_images .image a:hover { 
+  background-color: #ff9966; 
+} 
+
+/* search links */ 
+#search_links { 
+  clear: both; 
+  padding-top: 10px; 
+} 
+#search_links a { 
+  border: 1px solid #003344; 
+  margin: 2px; 
+  padding: 0px 5px; 
+  color: #003344; 
+  background-color: white; 
+  text-decoration: none; 
+} 
+#search_links a:hover, 
+#search_links a.active { 
+  color: white; 
+  background-color: #003344; 
+  border: 1px solid white; 
+} 
+#search_links a.active { 
+  cursor: default; 
+}</pre></div><br />
+Refresh your browser and you'll see this:<br />
+<a href="http://www.flickr.com/photos/24458122@N00/2758745585/" title="html"><img alt="html" border="0" src="http://static.flickr.com/3111/2758745585_166b0d5c84.jpg" /></a><br />
+<h4><span style="color: #ff8000;">IronRuby loves the DOM</span></h4>Awesome, now we have a UI, but it does nothing ... <i>Ruby enters stage left</i>. Open up ruby/app.rb and let's start hacking.<br />
+The point of this app is to type a keyword, hit search, and see images from Flickr that have something to do with the keyword. So, I propose the first step would be to get Ruby handle that search button press. Agree? Good. Replace the entire body of the App class with the following:<br />
+<b></b><br />
+<div class="wlWriterSmartContent" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:3e87ec6a-0f51-4ce3-b2a0-ea7a62eb78ad" style="display: inline; margin: 0px; padding: 0px;"><pre class="ruby" name="code">def initialize 
+  document.submit_search.onclick do |s, e| 
+    puts "Search button pressed!"
+  end
+end
+</pre></div>That will print "Search button pressed!" at the bottom of the page every time you press the search button. Duh, that's what the code says! =P<br />
+<br />
+<a href="http://www.flickr.com/photos/24458122@N00/2758762001/" title="search"><img alt="search" border="0" src="http://static.flickr.com/3002/2758762001_50b114ebf6.jpg" /></a><br />
+<h4><span style="color: #ff8000;">Ruby loves Flickr</span></h4>Now that we know how to hook a button click with Ruby, let's make it talk to Flickr and get the data about our search back. First off, we need to know what to say to Flickr. So, let's redefine <span style="font-family: Courier New;">initialize</span> to do the following:<br />
+<div class="wlWriterSmartContent" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:2a964897-49a9-4704-a252-30400aa2f666" style="display: inline; float: none; margin: 0px; padding: 0px;"><pre class="ruby" name="code">def initialize 
+  @url = "http://api.flickr.com/services/rest" 
+  @options = { 
+    :method =&gt; "flickr.photos.search", 
+    :format =&gt; "json", 
+    :nojsoncallback =&gt; "1", 
+    :api_key =&gt; "6dba7971b2abf352b9dcd48a2e5a5921", 
+    :sort =&gt; "relevance", 
+    :per_page =&gt; "30" 
+  } 
+  document.submit_search.onclick do |s, e| 
+    create(document.keyword.value, 1) 
+  end 
+end 
+</pre></div>We're going to talk to Flickr using REST, because we're sane. The <span style="font-family: Courier New;">@options</span> hash simply collects the various parts that the REST call requires; we'll build a function to make this into a URL later. The important part is that we're calling <span style="font-family: courier;">flickr.photos.search</span> and asking for the response to be JSON. The <span style="font-family: Courier New;">onclick</span> event calls this cryptically-name <b>create </b>method which doesn't exist yet, so let's write it.<br />
+<div class="wlWriterSmartContent" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:7f485b1f-e763-458b-b33f-9a5117546bec" style="display: inline; margin: 0px; padding: 0px;"><pre class="ruby" name="code">def create(keyword, page) 
+  @options[:tags] = keyword 
+  @options[:page] = page 
+  request 
+end 
+
+def request 
+  make_url 
+  request = Net::WebClient.new 
+  request.download_string_completed do |sender, args| 
+    @response = args.result 
+    show 
+  end 
+  document.images_loading.style[:display] = "inline" 
+  request.download_string_async Uri.new(@url) 
+end 
+</pre></div>I had a feeling I'd need to reuse <b>create</b>, so it just adds those arguments to the <span style="font-family: Courier New;">@options</span> we built in <b><span style="font-family: courier new;">initialize</span> </b>since they're also needed to be part of the URI, and call this request method. This is where the "talking" happens.<br />
+<br />
+First, it makes the URL from the <span style="font-family: Courier New;">@options</span> (we'll define that method soon enough). Then it news-up an instance of <span style="font-family: Courier New;">System::Windows::Net::WebClient</span>, part of Silverlight, to actually make the request to Flickr. The <span style="font-family: Courier New;">images_loading.style[:display] = "inline"</span> causes the loading indicator to start spinning. When the response comes back, I call <b>show,</b> which presumable should show the results in some way. For now, we'll just print the response, and stop our loading indicator.<br />
+<div class="wlWriterSmartContent" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:d54908c6-f4ca-48c6-b3bc-662b95b39066" style="display: inline; margin: 0px; padding: 0px;"><pre class="ruby" name="code">def show 
+  puts @response 
+  document.images_loading.style[:display] = "none" 
+end
+</pre></div>Oh, and now would be a good time to implement <b><span style="font-family: courier new;">make_url</span></b> ;)<br />
+<div class="wlWriterSmartContent" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:0e0e8dc0-73c0-454e-bfbd-dbd66d53618b" style="display: inline; margin: 0px; padding: 0px;"><pre class="ruby" name="code">def make_url 
+  first, separator = true, '?' 
+  @options.each do |key, value| 
+    separator = "&amp;" unless first 
+    @url += "#{separator}#{key}=#{value}" 
+    first = false 
+  end 
+end 
+</pre></div>Nothing’s really special here, just puts the "?", "&amp;", and "=" in the right places. Anyway, we're not ready to give her another run. Save app.rb, refresh your browser, type a search-term, click search, and you'll see the magic unfold:<br />
+<br />
+<a href="http://www.flickr.com/photos/24458122@N00/2758561585/" title="json-dump"><img alt="json-dump" border="0" src="http://static.flickr.com/3046/2758561585_e18127bddf.jpg" /></a><br />
+<h4><span style="color: #ff8000;">Let's make this gunk pretty</span></h4>So, what to do with all this Flickr data ... hmmm ... thoughts? Somewhere in that muck are some pretty pictures, so let's squeeze them out ... aka parse the JSON. At the top of app.rb, add the following:<br />
+<div class="wlWriterSmartContent" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:83bcea08-ddc7-4bab-bf55-2f6bdc5eda5f" style="display: inline; float: none; margin: 0px; padding: 0px;"><pre class="ruby:nogutter:nocontrols" name="code">require 'json'</pre></div>That'll load that json.rb file we copied in the beginning. It simply monkey patches <span style="font-family: courier new;">System::Json::JsonValue</span> to give easier access to the data. Here's a loot at json.rb, just for fun.<br />
+<div class="wlWriterSmartContent" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:ea06c678-5181-409a-8462-6b3e08462e59" style="display: inline; margin: 0px; padding: 0px;"><pre class="ruby" name="code">require 'System.Json.dll' 
+include System 
+
+module System::Json 
+
+  class JsonValue 
+    def [](index) 
+      item = self.get_Item(index.to_clr_string) 
+      type = item.get_JsonType 
+      return item.to_string.to_s.to_f if type == JsonType.Number 
+      return item.to_string.to_s.split("\"").last if type == JsonType.String 
+      return System::Boolean.parse(item) if type == JsonType.Boolean 
+      item 
+    end 
+  
+    def inspect 
+      to_string.to_s 
+    end 
+  end 
+
+end</pre></div>This just adds the <span style="font-family: courier new;">[]</span> method to <span style="font-family: courier new;">JsonValue</span> so you can access JSON values like <span style="font-family: courier new;">foo['bar']</span> where the JSON was <span style="font-family: courier new;">foo = {'bar' : 'baz'}</span>. Useful. Anyway, back to writing code ourselves. In app.rb, let's redefine the show method to parse our JSON and do something useful with it.<br />
+<div class="wlWriterSmartContent" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:1819af05-b561-44b4-b252-2c2a6f3a6598" style="display: inline; margin: 0px; padding: 0px;"><pre class="ruby" name="code">def show 
+  @flickr = System::Json::JsonValue.parse(@response) 
+  render 
+end 
+
+def render 
+  @render = Render.new(@flickr, @options[:tags], @options[:page]) 
+  document.search_images[:innerHTML] = @render.generate_photos 
+  document.search_links[:innerHTML] = @render.generate_pages 
+  @render.hook_page_events('search_links') 
+  document.images_loading.style[:display] = "none" 
+  document.search_results.style[:display] = "block" 
+end 
+</pre></div>So, now show just calls <span style="font-family: courier new;">System::Json::JsonValue.parse</span> on our Flickr response, and then I've written a new method called render which delegates the rendering to a new class called <span style="font-family: courier new;">Render</span> (defining that is next), and stops the loading indicator. Let's make a new file called render.rb and require it in app.rb:<br />
+<pre class="ruby" name="code">require 'render'</pre>Open render.rb and let's first tackle rendering the photos:<br />
+<div class="wlWriterSmartContent" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:789c0f59-4c77-4303-9779-78daa678135a" style="display: inline; float: none; margin: 0px; padding: 0px;"><pre class="ruby" name="code">class Render 
+  def initialize(flickr, tags, current_page) 
+    @flickr = flickr 
+    @tags = tags 
+    @current_page = current_page 
+  end 
+
+  def generate_photos 
+    if @flickr['stat'] == "ok" &amp;&amp; @flickr['photos']['total'].to_i &gt; 0 
+      tag(:div, :class =&gt; 'images') do 
+        @flickr['photos']['photo'].collect do |p|  
+          photo(p) 
+        end.join 
+      end 
+    else 
+      "No images found!" 
+    end 
+  end 
+
+  def photo(p) 
+    source = "http://farm#{p['farm'].to_i}.static.flickr.com/#{p['server']}/#{p['id']}_#{p['secret']}" 
+    thumb = "#{source}_s.jpg" 
+    img = "#{source}.jpg" 
+    tag(:div, :class =&gt; 'image') do 
+      tag(:a, :href  =&gt; "#{img}") do 
+        tag(:img, :src =&gt; "#{thumb}") 
+      end 
+    end 
+  end 
+
+  def generate_pages 
+    "" 
+  end 
+
+  def hook_page_events(div) 
+  end 
+
+private 
+
+  def tag(name, options, &amp;block) 
+    output = "" 
+    output &lt;&lt; "&lt;#{name}" 
+    keyvalue = options.collect do |key, value|  
+      "#{key}=\"#{value}\"" 
+    end 
+    output &lt;&lt; " #{keyvalue.join(" ")}" if keyvalue.size &gt; 0 
+    if block  
+      output &lt;&lt; "&gt;" 
+      output &lt;&lt; yield  
+      output &lt;&lt; "&lt;/#{name}&gt;" 
+    else 
+      output &lt;&lt; " /&gt;" 
+    end 
+    output 
+  end 
+end</pre></div>A bit of code here, but it's all straight-forward, except for all these "tag" calls. The private <span style="font-family: courier new;">tag</span> method does most of the work here, but generating HTML based on a name and options; it makes writing HTML more ruby-esk. You'll also notice that <span style="font-family: courier new;">generate_pages</span> and <span style="font-family: courier new;">hook_page_events</span> aren't implemented yet. You can not implement them now, refresh your browser, do a search, and you'll at least get the images back:<br />
+<br />
+<a href="http://www.flickr.com/photos/24458122@N00/2759400768/" title="images"><img alt="images" border="0" src="http://static.flickr.com/2412/2759400768_02c6f84414.jpg" /></a><br />
+<h4><span style="color: #ff8000;">Paginating the Flickrnation</span></h4>Flickr only sends you one page of your request. When we created the options for the Flickr request, there was a <span style="font-family: courier new;">:per_page =&gt; "30"</span> entry, saying that I want pages of 30 images ... duh. When we call <span style="font-family: courier new;">create(document.keyword.value, 1)</span> on the search button click, that second argument asks Flickr for the 1st page of the request. So, to get any page we want, you just give it to the create function, and it'll give is that page. Told you we'd need to reuse it!<br />
+So, to implement <span style="font-family: courier new;">generate_pages</span>, we just need to render links for the pages, and to implement <span style="font-family: courier new;">hook_page_events</span>, we need to hook each one of those page links with an event that calls create for the given page. Simple enough ...<br />
+<div class="wlWriterSmartContent" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:f28f9c9c-196c-47b5-a411-cff1aad7746a" style="display: inline; margin: 0px; padding: 0px;"><pre class="ruby" name="code">def generate_pages 
+  render = "" 
+  if @flickr['photos']['total'].to_i &gt; 0 
+    num_pages = @flickr['photos']['pages'].to_i &gt; 10 ? 10 : @flickr['photos']['pages'].to_i 
+    num_pages.times { |i| render += page(i + 1) } if num_pages &gt; 1 
+  end 
+  render 
+end 
+
+def page(i) 
+  tag(:a, :href =&gt; 'javascript:void(0)', :id =&gt; "#{i}") { "#{i}" } 
+end 
+
+def hook_page_events(div) 
+  $app.document.get_element_by_id(div.to_s.to_clr_string).children.each do |child| 
+    if child.id.to_s.to_i == @current_page 
+      child.css_class = "active"  
+    else 
+      child.onclick { |s, args| $app.create(@tags, child.id.to_s.to_i) } 
+    end 
+  end 
+end</pre></div>Do the whole save/refresh/search song-and-dance and you'll have pretty paging action.<br />
+<br />
+<a href="http://www.flickr.com/photos/24458122@N00/2759700250/" title="pagination"><img alt="pagination" border="0" src="http://static.flickr.com/3257/2759700250_51df2356b5.jpg" /></a><br />
+<h4><span style="color: #ff8000;">Ruby, you play nice with Javascript, ya hear!</span></h4>This is pretty awesome ... ya know, Ruby in the browser and all. But truth be told, I like Javascript too. Especially since there are a ton of Javascript libraries out there.<br />
+<br />
+That being said, I'd like to spruce up the "clicking on an image". Right now it opens in a completely new page, and breaks the back-button since your search is wiped away. It's be awesome to have some cool visual effect when clicking on the image, and even having it link to the real Flickr image page. Only if there was such a library ...<br />
+<br />
+<a href="http://www.huddletogether.com/projects/lightbox2/">http://www.huddletogether.com/projects/lightbox2/</a><br />
+<br />
+Like I said before, Lightbox is awesome. So, to pretty up zooming in on an image, we'll use Lightbox. First, let's go back to index.html and add some references to Lightbox:<br />
+<div class="wlWriterSmartContent" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:37165f0d-a8c3-4ee2-a17e-58c81ae113ed" style="display: inline; margin: 0px; padding: 0px;"><pre class="ruby" name="code">&lt;script type="text/javascript" src="lightbox/js/prototype.js"&gt;&lt;/script&gt; 
+&lt;script type="text/javascript" src="lightbox/js/scriptaculous.js?load=effects"&gt;&lt;/script&gt; 
+&lt;script type="text/javascript" src="lightbox/js/lightbox.js"&gt;&lt;/script&gt; 
+&lt;link rel="stylesheet" href="lightbox/css/lightbox.css" type="text/css" media="screen" /&gt;</pre></div>Lightbox uses special properties on the anchor tag to store information about the image you are viewing, like if it's part of a collection, or what the title of the image should be, etc. Let's go back into our <span style="font-family: courier new;">Render#photo</span> method and add a <span style="font-family: courier new;">:title</span> and <span style="font-family: courier new;">:rel</span> values to our <span style="font-family: courier new;">:a</span> tag.<br />
+<br />
+So, the entire <span style="font-family: courier new;">tag(:a)</span> call turns into this:<br />
+<div class="wlWriterSmartContent" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:e0cfcfdc-9f67-4d4b-8a67-845b185d1316" style="display: inline; margin: 0px; padding: 0px;"><pre class="ruby" name="code">tag(:a, {
+  :href  =&gt; "#{img}",  
+  :title =&gt; "&amp;lt;a href=&amp;quot;http://www.flickr.com/photos/#{p['owner']}/#{p['id']}&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;#{p['title']}&amp;lt;/a&amp;gt;", 
+  :rel   =&gt; "lightbox[#{@tags}]" 
+}) do 
+  tag(:img, :src =&gt; "#{thumb}") 
+end</pre></div>Lastly, let's initialize Lightbox when we show the response. Put the following after the <span style="font-family: courier new;">render</span> call in the <span style="font-family: courier new;">show</span> method in app.rb:<br />
+<div class="wlWriterSmartContent" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:06827386-be12-4afb-a7e4-1e0eac593b08" style="display: inline; margin: 0px; padding: 0px;"><pre class="ruby" name="code">if document.overlay &amp;&amp; document.lightbox 
+  document.overlay.parent.remove_child document.overlay 
+  document.lightbox.parent.remove_child document.lightbox 
+end
+HtmlPage.window.eval("initLightbox()") 
+</pre></div>That last line isn't the prettiest, but our images are all pretty. <br />
+<h4><span style="color: #ff8000;">And we're done!</span></h4>Congrats for getting this far! Now waste time searching for "boobs" or other dirty things on Flickr.<br />
+<br />
+<a href="http://www.flickr.com/photos/24458122@N00/2758561659/" title="lightbox"><img alt="lightbox" border="0" src="http://static.flickr.com/3030/2758561659_1f51cab446.jpg" /></a>
+</div>
+<div class="css-full-comments-content js-full-comments-content">
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://weblogs.asp.net/chrishardy">
+  <div class="css-comment-name js-comment-name">
+    Chris Hardy
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-08-13T08:49:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Hi Jimmy,<BR/><BR/>The live version doesn't seem to work by not showing any of the Silverlight. I've got Silverlight 2 Beta 2 installed so not sure what the problem is. Nothing shows except the search box and button in both Firefox 3 and IE7.<BR/><BR/>The screenshots look good though!<BR/><BR/>Chris
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://weblogs.asp.net/chrishardy">
+  <div class="css-comment-name js-comment-name">
+    Chris Hardy
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-08-13T08:53:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Ahh, All seems to be working now :)<BR/>Please ignore me!
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://weblogs.asp.net/chrishardy">
+  <div class="css-comment-name js-comment-name">
+    Chris Hardy
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-08-14T00:06:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Fantastic tutorial. Managed to get through it without too many error messages pop up due to me copy and pasting in the wrong places. Need to play around with IronRuby much more :)
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/00148438281388385097">
+  <div class="css-comment-name js-comment-name">
+    Thibaut Barrère
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-11-06T22:13:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Thank you for sharing all this. I'm very glad it works from a Mac, too.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/08927436783915252792">
+  <div class="css-comment-name js-comment-name">
+    JasonOh
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-01-22T02:23:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    thanks for the fantastic turorial.<BR/>however, i don't get page links.<BR/>is there anything i should do for getting page links?<BR/><BR/>JaeYoung Oh
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/08927436783915252792">
+  <div class="css-comment-name js-comment-name">
+    JasonOh
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-01-22T02:25:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    This comment has been removed by the author.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/16802937874216252835">
+  <div class="css-comment-name js-comment-name">
+    angelito
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-01-23T06:34:06.788Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    hi..sorry but I&#39;ve a problem..I install ironruby and download sdk but when I type script/sl ..... don&#39;t work...the error is in my lenguage but translate to english must be something like &quot;script is don&#39;t recognize like intern or extern command&quot;..I try typing this inside all carpets..I open chiron and type it too and don&#39;t work neither...what is my mistake? thank
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Anonymous
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-01-23T15:53:55.136Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Hi..I wrote before..I resolve the prior error but now when I create ruby photoviewer appear &quot;5 fies copieds your ruby silverlight application was created in (folder)&quot; when I view inside folder appear index.html,ruby/app.rb,ruby/app.xaml,ruby,stylesheets/error.css,javascripts/error.js but no silverlight.rb...I check all folders and I don&#39;t find it..what could be happen?..thank so much!!
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/17573156077750708634">
+  <div class="css-comment-name js-comment-name">
+    Rupak Ganguly
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-01-25T22:00:38.747Z
+  </div>
+  </div>
+  <div class="css-comment-title js-comment-title">
+    Hi James,
+   I was going thru. the post and I did ...
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Hi James,<br />   I was going thru. the post and I did not see the same structure generated for the app. I have IR RC1 (IronRuby 0.9.3.0 on .NET 2.0.0.0) installed from the RubyForge site.<br />The structure I get is as follows:<br />\app<br />\css<br />\js<br />index.html<br /><br />Do you know if that is the latest structure?
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Anonymous
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-01-26T04:30:35.989Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    could I use expression blend w ironruby or ironpython?..thanks
+  </div>
+  <br/>
+</div>
+</div>

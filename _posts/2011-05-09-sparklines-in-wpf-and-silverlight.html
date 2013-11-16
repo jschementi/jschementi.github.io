@@ -1,0 +1,89 @@
+---
+title: "Sparklines in WPF and Silverlight"
+layout: "post"
+permalink: "/2011/05/sparklines-in-wpf-and-silverlight.html"
+uuid: "5879555519916795818"
+guid: "tag:blogger.com,1999:blog-5419182.post-5879555519916795818"
+date: "2011-05-09 04:15:00"
+updated: "2011-05-10 01:56:58"
+description: 
+blogger:
+    siteid: "5419182"
+    postid: "5879555519916795818"
+    comments: "4"
+categories: [WPF, Finance, Sparkline, Silverlight, Lab49]
+author: 
+    name: "Jimmy Schementi"
+    url: "https://plus.google.com/116380716127564408544?rel=author"
+    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
+---
+
+<div class="css-full-post-content js-full-post-content">
+<p><a href="http://lh3.ggpht.com/_OqCZhp9yI0Q/TcdqGOwvLII/AAAAAAAAAXw/kv7ipoVOWWU/s1600-h/image%5B38%5D.png"><img style="background-image: none; border-right-width: 0px; padding-left: 0px; padding-right: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px; padding-top: 0px" title="image" border="0" alt="image" src="http://lh5.ggpht.com/_OqCZhp9yI0Q/TcdqHYBck1I/AAAAAAAAAX0/TfMiLAp5p9w/image_thumb%5B28%5D.png?imgmax=800" width="480" height="240"></a></p> <p>One seemingly-trivial-yet-recurring problem in financial software is the need for a live-updating line-chart. However, from multiple conversations with <a href="http://lab49.com" target="_blank">Lab49</a> folks, as well as from experience during my first project, I’ve learned that most WPF/Silverlight charting packages suck in various ways, especially if you’re updating their data frequently. Seems like everyone just rolls their own line chart and tailors it to each project, but doesn’t share it for some reason. I’d like to break that trend by sharing and early version of <a href="http://github.com/jschementi/sparkline" target="_blank">my own sparkline control for WPF and Silverlight</a>.</p> <p align="left"><a href="http://github.com/jschementi/sparkline"><strong><font size="3">http://github.com/jschementi/sparkline</font></strong></a></p> <p><strong>Sample Usage:</strong> </p><script src="https://gist.github.com/961143.js"> </script> <p>It’s implementation is very basic; <a href="https://github.com/jschementi/sparkline/blob/master/Schementi.Controls.Sparkline/Sparkline.xaml.cs#L255" target="_blank">Sparkline.AddTimeValue</a> constructs a point at the next time interval and adds it to a <a href="http://msdn.microsoft.com/en-us/library/system.windows.shapes.polyline.aspx" target="_blank">Polyline</a>. You can control the sparkline’s visuals, including adding visible points along the line and showing horizontal lines for the latest/highest/lowest values. The source builds assemblies for both .NET 4.0 and Silverlight 4.</p> <p>There are obvious features missing like rendered axis or variable x-axis (time) values, but hopefully this provides a simple starting place for anyone else needing a very simple updating line graph. </p> <p>By the way, <a href="http://decav.com/" target="_blank">Andre de Cavaignac</a>, a colleague of mine at Lab49, and Daniel Simon shared their own a while back: <a href="http://blog.lab49.com/archives/2028" target="_blank">Live Updating Line Graph in WPF</a>. Let me know if there are any others out there.</p> <p>Anyways, <a href="http://en.wikipedia.org/wiki/Mother's_Day" target="_blank">Happy Mother’s Day</a>!</p>  
+</div>
+<div class="css-full-comments-content js-full-comments-content">
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/02233568179376231704">
+  <div class="css-comment-name js-comment-name">
+    Anuj Seth
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2011-05-12T17:21:31.045Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Umm no they don&#39;t all suck. Try this http://www.youtube.com/watch?v=wPblKVjx14o<br /><br />what all do you think we lack ?<br /><br />ps: We&#39;re at version 1.0 and only about a month old.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Vladimir
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2011-06-02T13:24:36.145Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Actually there is a pretty nice and much more feature complete (althogh not free) sparklines package from Telerik. Check this out: http://www.telerik.com/products/silverlight/sparklines.aspx
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/01993309381002764362">
+  <div class="css-comment-name js-comment-name">
+    myBlog
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2011-07-13T07:20:03.212Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    It&#39;s a good program.<br />I&#39;ll Try next time.<br />now I rewrote program.<br />It is myBlog: IronPython Snow Gastalt...<br />http://softgarden.blog.ocn.ne.jp/blog/2011/07/ironpythonsnow_.html<br />thanks.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://howtojailbreakiphone4s.org/">
+  <div class="css-comment-name js-comment-name">
+    Mike
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2011-11-27T12:47:32.933Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Sparklines in Silverlight have been problem for my colleagues and each time someone asks if you can do this, they almost fall down from chair. Looks like there is more simple solution than most thought. <br /><br />Thanks for sharing!
+  </div>
+  <br/>
+</div>
+</div>

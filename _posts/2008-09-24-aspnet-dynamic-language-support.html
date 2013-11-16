@@ -1,0 +1,118 @@
+---
+title: "ASP.NET Dynamic Language Support Refreshed!"
+layout: "post"
+permalink: "/2008/09/aspnet-dynamic-language-support.html"
+uuid: "2712175335408040144"
+guid: "tag:blogger.com,1999:blog-5419182.post-2712175335408040144"
+date: "2008-09-24 01:21:00"
+updated: "2008-11-18 01:39:11"
+description: 
+blogger:
+    siteid: "5419182"
+    postid: "2712175335408040144"
+    comments: "4"
+categories: [ASP.NET, Python]
+author: 
+    name: "Jimmy Schementi"
+    url: "https://plus.google.com/116380716127564408544?rel=author"
+    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
+---
+
+<div class="css-full-post-content js-full-post-content">
+<p><img style="border-right-width: 0px; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" border="0" alt="party_time_top" src="http://lh4.ggpht.com/jschementi/SNmWFZx17EI/AAAAAAAAAEQ/EdmakcKmgIw/party_time_top.gif?imgmax=800" width="400" height="264" /> </p><p>Today, the IronPython team and the ASP.NET team released <a target="_blank" href="http://codeplex.com/aspnet/Wiki/View.aspx?title=Dynamic%20Language%20Support&amp;referringTitle=Home">ASP.NET Dynamic Language Support</a> on the <a target="_blank" href="http://codeplex.com/aspnet">ASP.NET Codeplex site</a>!</p><p align="center">&#160;</p><p align="center"><a target="_blank" href="http://www.codeplex.com/aspnet/Release/ProjectReleases.aspx?ReleaseId=17613"><font size="4">Download it here!</font></a></p><p align="center">&#160;</p><h3>Package</h3><p><font color="#ff8000"><strong>ironpython-webforms-sample.zip</strong>:</font> running IronPython ASP.NET website. Either dump this in IIS or open with Visual Studio as a website project.</p><p><strong><font color="#ff8000">ironpython-mvc-sample.zip:</font></strong> and IronPython ASP.NET MVC website, so you can get a feel for how dynamic languages can integrate into MVC. However, this just shows IronPython working in Views, not Controllers or Models yet. This requires <a target="_blank" href="http://www.codeplex.com/aspnet/Wiki/View.aspx?title=MVC&amp;referringTitle=Home">MVC to be installed</a> to open the project in Visual Studio. Open it with Visual Studio, build, and run your shiny IronPython ASP.NET MVC app.</p><p><strong><font color="#ff8000">aspnet-dlr-docs.zip:</font> </strong>Documentation on how to use all this stuff. Open intro.html and have fun. :)</p><p>&#160;</p><h3>Many Thanks!</h3><p>This is a project that me, <a target="_blank" href="http://blogs.msdn.com/davidebb/">David Ebbo</a>, and <a target="_blank" href="http://haacked.com/">Phil Haack</a> have been working on for a bit, and I'm so happy that the ASP.NET team is taking the DLR and committing to making dynamic languages work well on ASP.NET. Phil actually <a target="_blank" href="http://haacked.com/archive/2008/09/23/refreshing-asp.net-dynamic-language-support.aspx">announced this on his blog as well</a>, and I'm sure will be talking about this much more in the future. In short, a big thanks to David and Phil for getting this project kick-started again.</p><p>&#160;</p><h3>Walk-through: WebForms</h3><p><a target="_blank" href="http://blog.jimmy.schementi.com/2008/07/aspnet-and-dynamic-languages.html">Back in June I talked about this day coming</a>, but I didn't even have a piece offering, other than my whit. To make up for that, I'm going to walk you through using IronPython in ASP.NET.</p><p><em><font color="#959595">Note: I'm going to walk you through using Visual Studio to open the website and make changes. However, you can simply drop this directory into your IIS wwwroot and simply edit the files with a text-editor of your choice.</font></em> </p><p>1. Extract ironpython-webforms-sample.zip, open Visual Studio, and then open a website project (File &gt; Open &gt; Web Site ...). Navigate to where you extracted the webforms sample, and click open; now you should see the following.</p><p><img alt="merlinweb-start" src="http://lh3.ggpht.com/jschementi/SNmWFpozmDI/AAAAAAAAAD8/GsTJ4OsZlhQ/merlinweb-start%5B6%5D.jpg?imgmax=800" width="300" height="199" /> </p><p>2. Take a look at the code in Default.aspx and Default.aspx.py. The aspx page has a asp:Literal control, with the id &quot;messageLiteral&quot;, and the py file sets the text of that asp:Literal control.</p><div style="padding-bottom: 0px; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; float: none; padding-top: 0px" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:fd83766f-952e-441b-972e-cdf3ef401434" class="wlWriterSmartContent"><pre name="code" class="xml:nogutter">&lt;!-- Default.aspx --&gt;
+&lt;%@ Page Language="IronPython" CodeFile="Default.aspx.py" %&gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+
+&lt;html xmlns="http://www.w3.org/1999/xhtml" &gt;
+    &lt;head runat="server"&gt;
+        &lt;title&gt;Untitled Page&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;form id="form1" runat="server"&gt;
+        &lt;div&gt;
+            &lt;asp:Literal id="messageLiteral" runat="server" /&gt;
+        &lt;/div&gt;
+        &lt;/form&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</pre></div><div style="padding-bottom: 0px; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; float: none; padding-top: 0px" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:cba2604f-d22f-4672-b614-cb6f82e3a73d" class="wlWriterSmartContent"><pre name="code" class="py:nogutter"># Default.aspx.py
+def Page_Load(sender, e):
+    messageLiteral.Text = "Hello Dynamic World!"</pre></div><p>3. Hit Ctrl+F5 (Start without debugging), and the app will run. If you are not using Visual Studio, simply navigate to Default.aspx in your web browser.</p><p><a href="http://lh3.ggpht.com/jschementi/SNmWF5SiFcI/AAAAAAAAAEA/0l8OuUBM4qI/merlinweb-hello-dynamic-world%5B12%5D.jpg?imgmax=800"><img style="border-right-width: 0px; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" border="0" alt="merlinweb-hello-dynamic-world" src="http://lh3.ggpht.com/jschementi/SNmWGAyZDnI/AAAAAAAAAEE/unTFyP8oQyI/merlinweb-hello-dynamic-world_thumb%5B8%5D.jpg?imgmax=800" width="400" height="277" /></a> </p><p>4. Awesome, our app runs! Now let's make it do <em>something</em>. Replace the inside of the &lt;div /&gt; with a Label, TextBox, and a Button control <font color="#999999">(Note: you can also open the Toolbox in Visual Studio and drag these in).</font></p><div style="padding-bottom: 0px; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; float: none; padding-top: 0px" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:41823471-7549-435b-83e4-f4caabc88e6d" class="wlWriterSmartContent"><pre name="code" class="xml:nogutter">Enter your name: &lt;br /&gt;
+    &lt;asp:TextBox ID="TextBox1" runat="server"&gt;
+    &lt;/asp:TextBox&gt;
+    &lt;asp:Button ID="Button1" runat="server" Text="Button" /&gt;
+    &lt;br /&gt;&lt;br /&gt;
+    &lt;asp:Label ID="Label1" runat="server" Text="Label"&gt;
+    &lt;/asp:Label&gt;</pre></div><p>5. Open Default.aspx.py and change the Page_Load method to be the following:</p><div style="padding-bottom: 0px; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; float: none; padding-top: 0px" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:6d93e8a4-9615-4bc5-90ca-b2806c9d1ed9" class="wlWriterSmartContent"><pre name="code" class="py:nogutter">def Page_Load(sender, e):
+    if not IsPostBack:
+        Label1.Text = "...Your name here..."</pre></div><p>6. Now add the following code to Default.aspx.py to handle the button's Click event:</p><div style="padding-bottom: 0px; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; float: none; padding-top: 0px" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:ca2590c9-9b44-40dd-8dd5-8dbb6f1d15d9" class="wlWriterSmartContent"><pre name="code" class="py:nogutter">def Button1_Click(sender, e):
+    Label1.Text = Textbox1.Text</pre></div><p>7. Switch back to Default.aspx.py and make the Button handle the event:</p><div style="padding-bottom: 0px; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; float: none; padding-top: 0px" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:ee808bff-4128-49da-98c1-5fb68a2f1baa" class="wlWriterSmartContent"><pre name="code" class="xml:nogutter">&lt;asp:Button ID="Button1" runat="server" Text="Button"
+     OnClick="Button1_Click"/&gt;
+</pre></div><p>8. Now navigate back to your browser, and refresh the page. Enter any text in the textblock, click the button, and it'll appear in the label below.</p><p><font color="#ff0000"><a href="http://lh5.ggpht.com/jschementi/SNmWGVyaBnI/AAAAAAAAAEI/nQTI7AduXpU/merlinweb-name%5B6%5D.jpg?imgmax=800"><img style="border-right-width: 0px; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" border="0" alt="merlinweb-name" src="http://lh5.ggpht.com/jschementi/SNmWGvi1pOI/AAAAAAAAAEM/KUyaKI-TTHs/merlinweb-name_thumb%5B4%5D.jpg?imgmax=800" width="400" height="330" /></a> </font></p><p>Yeah, I know, not very useful, but it gives you an idea of how things work. Look through the &quot;ASP.NET Dynamic Language Runtime Support Documentation&quot; on the <a target="_blank" href="http://www.codeplex.com/aspnet/Release/ProjectReleases.aspx?ReleaseId=17613">downloads page</a> for more walk-throughs with IronPython and ASP.NET WebForms.</p><p>&#160;</p><h3>Go make awesome stuff!</h3><p>I'm so happy that this finally got out, so hopefully I'll hear about people starting to use IronPython in ASP.NET much more. Consult <a href="http://codeplex.com/aspnet">http://codeplex.com/aspnet</a> for any questions about roadmap or tutorials, and feel free to ask me questions as well.</p><br /><br />
+<br />
+</div>
+<div class="css-full-comments-content js-full-comments-content">
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Anonymous
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-10-02T03:23:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Any idea when we'll get Studio integration?  (ie. intellisense)
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-10-10T05:40:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Oleg (http://www.tkachenko.com/blog/) is working on VS integration for DLR languages in general, and ASP.NET will be part of it. Expect to see a first release soon. :)
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/16938645337644875643">
+  <div class="css-comment-name js-comment-name">
+    Rem
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-10-14T11:12:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Nice post...
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://web-aspnet.com">
+  <div class="css-comment-name js-comment-name">
+    Daniel
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-08T19:50:23.107Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Pretty good &quot;Hello Jimmy&quot; walk-through post, thanks! I&#39;ve been kicking up some dust in my old classic asp books, because it seems there a resurgence of interest in asp since the .net framework is ever-evolving into the go-to tool for business apps now. C# and VB, watch out!
+  </div>
+  <br/>
+</div>
+</div>

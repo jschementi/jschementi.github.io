@@ -1,0 +1,185 @@
+---
+title: "Git on Windows 7"
+layout: "post"
+permalink: "/2009/01/git-on-windows-7.html"
+uuid: "1783862898950321166"
+guid: "tag:blogger.com,1999:blog-5419182.post-1783862898950321166"
+date: "2009-01-12 03:52:00"
+updated: "2009-03-27 08:03:44"
+description: 
+blogger:
+    siteid: "5419182"
+    postid: "1783862898950321166"
+    comments: "10"
+categories: [git, Windows]
+author: 
+    name: "Jimmy Schementi"
+    url: "https://plus.google.com/116380716127564408544?rel=author"
+    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
+---
+
+<div class="css-full-post-content js-full-post-content">
+<p>I use <a href="http://gitscm.org" target="_blank">Git</a> everyday, whether it be for <a href="http://ironruby.net" target="_blank">IronRuby</a>, <a href="http://github.com/jschementi/agdlr" target="_blank">AgDLR</a>, or random other Rails/Ruby work. Being that I work at Microsoft, I got my hands on earlier build of <a href="http://en.wikipedia.org/wiki/Windows_7" target="_blank">Windows 7</a> during the fall. Unfortuantely, git didn’t work fully on Windows 7, failing whenever a merge happened, which made push fail, as well as pull when trying to get other people’s changes). <a href="http://blog.jredville.com/" target="_blank">Jim Deville</a> has been tracking this with the Windows team, and even bringing it up to the <a href="http://code.google.com/p/msysgit/" target="_blank">msysgit</a> maintainer to see if there’s any way around this. It was looking grim, so I left my main development machine on Vista, and was sad.</p><p>Windows 7 Beta was released this past Friday, and I managed to download the .iso, get a Product Key, etc, at home during the day on Saturday. Now that it’s released, I’m guessing other people will have this problem ...</p><p>I’m not sure of the specific details behind the issue, but msysgit calls into C:\windows\system32\msvcrt.dll during a merge, and the changes to that DLL in Windows 7 breaks msysgit. Last week, <a href="http://www.iunknown.com/" target="_blank">John Lam</a> was describing the issue to John Messerly, and realized that the easiest fix would be to copy the Windows Vista msvcrt.dll to the C:\Program Files\Git\bin directory, since Windows DLL resolution will look on the PATH, and “.” is included.</p><p><a href="http://blogs.msdn.com/curth/default.aspx" target="_blank">Curt Hagenlocher</a> just <a href="http://twitter.com/chagenlocher/status/1112241244" target="_blank">reminded me of the fix</a>, and it works!</p><p><a href="http://lh4.ggpht.com/_OqCZhp9yI0Q/SWq-biEzmNI/AAAAAAAAAHA/9JoANeiZnlE/s1600-h/gitwin7%5B7%5D.png"><img style="display: inline" title="gitwin7" alt="gitwin7" src="http://lh3.ggpht.com/_OqCZhp9yI0Q/SWq-cVMzCYI/AAAAAAAAAHE/w7lqk80YTsM/gitwin7_thumb%5B5%5D.png?imgmax=800" width="400" height="155" /></a> </p><p>Pretty awesome. Enjoy Git in Windows 7!</p>
+</div>
+<div class="css-full-comments-content js-full-comments-content">
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Anonymous
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-01-13T00:46:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Sorry, but it is really Windows' fault, breaking backwards compatibility in such a blatant way.  After all, it is the C runtime, part of the C standard, that we are talking about.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-01-13T00:58:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Yes, it is Windows' fault, and they should fix it for the final release of Win7. I never said that it wasn't Windows' fault, so no need to be sorry. <BR/><BR/>But to fix it now, and get Git running on Windows 7, this is the work-around.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://charlesroper.co.uk/">
+  <div class="css-comment-name js-comment-name">
+    charlesroper
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-01-28T17:37:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    This is why such broad-ranging public betas are so important. Thanks for the temporary work-around; much obliged. :)
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://bearassbear.blogspot.com/">
+  <div class="css-comment-name js-comment-name">
+    bearassbear
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-01-28T21:13:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    this will be really handy when i get home. i put windows 7 on my laptop and my girlfriend is always taking over my desktop.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://nickhodge.wordpress.com/">
+  <div class="css-comment-name js-comment-name">
+    nickhodge
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-02-04T04:32:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    @bearassbear<BR/><BR/>you have three choices:<BR/><BR/>get a new girlfriend<BR/><BR/>or purchase another laptop.<BR/><BR/>or both.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://stimpy77.myopenid.com/">
+  <div class="css-comment-name js-comment-name">
+    stimpy77
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-03-05T22:24:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Out of curiosity, when will Microsoft build on SUA? When will anyone in the *nix communities abandon Cygwin/MinWin for SUA? If SUA can't cut it, why not make it better? If it's a home-version Windows issue (SUA isn't available on thsoe), why not make it available on Home editions? Should we forever keep throwing SUA out for MinWin/Cygwin?
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Anonymous
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-03-26T16:34:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    The fix does not seem to work with the latest versions of Git, 1.6.1 works but 1.6.2.1 doesn't.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/10521364189908564016">
+  <div class="css-comment-name js-comment-name">
+    Viktor
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-04-11T11:39:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Thank you very much for info on how to work around it! I had to use version 1.6.1 of Git though. (So the post above seems to be correct)
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Anonymous
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-10-26T13:37:39.433Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Windows 7 final still has this problem, at least for me.. push with a merge fails.<br /><br />According to this post, I should:<br /><br />-Downgrade to msysgit 1.6.1<br />-Locate a msvrrt.dll from a Vista and copy to the bin dir of msysgit.<br /><br />It is a shame for microsoft developers that dlls are not back compatible, it has happened several times: VisulBasic did it a couple of times (begore .net), mcvsrt.dll did it also in the past (V4 and 5 I think), and now again with Windows 7... a great shame for microsoft developers, and a pain for the rest of us.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Sergio Hernandez
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-10-27T08:02:28.805Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Just for others that could come with the same problem:<br /><br />Lates version 1.7.x didn&#39;t worked for me on Win7 64bits, push with a merge didn&#39;t work.<br /><br />Using the msvcrt.dll V6 (Vista) instead of V7 (Win7) didn&#39;t solve it.<br /><br />Downgrading to V1.6.1 worked fine, without using any dll or changing anything... this far, V1.6.1 worked ok for me &quot;out of the shell&quot; on a Win7 64 bits.
+  </div>
+  <br/>
+</div>
+</div>

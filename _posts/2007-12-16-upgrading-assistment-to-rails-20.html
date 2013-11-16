@@ -1,0 +1,41 @@
+---
+title: "Upgrading Assistment to Rails 2.0"
+layout: "post"
+permalink: "/2007/12/upgrading-assistment-to-rails-20.html"
+uuid: "4574462913530026218"
+guid: "tag:blogger.com,1999:blog-5419182.post-4574462913530026218"
+date: "2007-12-16 08:56:00"
+updated: "2008-05-04 09:10:19"
+description: 
+blogger:
+    siteid: "5419182"
+    postid: "4574462913530026218"
+    comments: "0"
+categories: [rails, assistment]
+author: 
+    name: "Jimmy Schementi"
+    url: "https://plus.google.com/116380716127564408544?rel=author"
+    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
+---
+
+<div class="css-full-post-content js-full-post-content">
+<div style="text-align: center;"><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://b.lesseverything.com/assets/2007/10/4/rails2.0.jpg"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer; width: 400px;" src="http://b.lesseverything.com/assets/2007/10/4/rails2.0.jpg" alt="" border="0" /></a><span style="font-size:78%;">image linked from b.lesseverything.com
+</span></div>
+Today I spent some time upgraded Assistment (<a href="http://assistment.org/">http://assistment.org</a>) to Rails 2.0. I made the mistake of upgrading Rails before changing anything, and then fixing the errors one by one ... oy. So, I'll quickly go over what I had to do to get stuff working again.
+<span class="Apple-style-span"  style="font-size:x-large;">
+</span><div><span class="Apple-style-span"  style="font-size:180%;">Fix deprecation warnings in 1.2.6</span></div><div>If you haven't upgraded yet, make sure you're on Rails 1.2.6 and get rid of your deprecated API calls: <a href="http://www.rubyonrails.org/deprecation">http://www.rubyonrails.org/deprecation</a>. To easily find your deprecated usages grab the rake task from this site: <a href="http://www.slashdotdash.net/articles/2007/12/03/rails-2-upgrade-notes">http://www.slashdotdash.net/articles/2007/12/03/rails-2-upgrade-notes</a>. And of course, make sure your tests pass and your app actually runs before moving on!
+</div><div>
+Keep in mind some pretty useful parts of Rails have been pulled out into plugins, which you can find at <a href="http://svn.rubyonrails.org/rails/plugins/">http://svn.rubyonrails.org/rails/plugins/</a>. I had to install acts_as_list, acts_as_tree, classic_pagination (though, we really need to move to will_paginate!), and in_place_editing. I also had to spend time updating my forms to use the block-notation rather that start/end form tags. That was annoying.
+
+One plugin I had trouble with was acts_as_paranoid. It calls <span class="Apple-style-span"  style="font-family:'courier new';">construct_count_options_from_legacy_args</span>, which is deprecated, but I have not found an update to the plugin. To fix it, I had to add that method to the plugin. I left the deprecation notice in there to remind me to fix it =)
+
+Also, if you used <span class="Apple-style-span"  style="font-family:'courier new';">strip_tags</span> in you<span style="font-size:100%;">r </span><span class="Apple-style-span" style="font-weight: bold;font-size:100%;" >model</span><span style="font-size:100%;"> (shush, I had my reason: I used it since I stored HTML in the database and I wanted a nice way to clean it), you have to include </span><span class="Apple-style-span" style=";font-family:'courier new';font-size:100%;"  >A</span><span class="Apple-style-span"  style="font-family:'courier new';"><span style="font-size:100%;">ctionView::Helpers::SanitizeHelpe</span>r</span> in your model; just including <span class="Apple-style-span"  style="font-family:'courier new';">ActionView::Helpers::TextHelper</span> won't cut it.
+
+</div><div><span class="Apple-style-span"  style="font-size:180%;">Upgrading Rails</span>
+<pre><code>gem update rails</code></pre> should do the trick for upgrading you. I had some problems upgrading on Leopard, so I had to gem remove rails and the active*/action* gems before running "gem install rails". Even that failed the first 2 times with 404 errors for finding certain gems, but the 3rd time it worked.</div><div>
+<pre><code>rake rails:update</code></pre>Run that in your project to upgrade your configs, javascripts, and scripts. I took the extra step and generated a new rails project and merged any new config changes into Assistment. This was mainly environment.rb, and the extremely useful addition of a initializers directory for application config.
+
+</div><div><span class="Apple-style-span"  style="font-size:180%;">Running Two point Oh!</span></div><div>(Note: to use ruby-debug you don't need to manually set it up in environment.rb. Simply run ./script/server --debugger to enable debugging with the "debugger" method. Yep, that simple.)
+
+Run your app/tests and your on Rails 2.0! If anyone has any additional issues, <a href="http://www.google.com/">google</a> is your friend.</div>
+</div>

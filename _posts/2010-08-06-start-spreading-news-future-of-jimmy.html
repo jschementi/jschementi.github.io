@@ -1,0 +1,850 @@
+---
+title: "“Start spreading the news”: the future of Jimmy and IronRuby"
+layout: "post"
+permalink: "/2010/08/start-spreading-news-future-of-jimmy.html"
+uuid: "6302570575304821096"
+guid: "tag:blogger.com,1999:blog-5419182.post-6302570575304821096"
+date: "2010-08-06 21:40:00"
+updated: "2010-08-09 06:57:01"
+description: 
+blogger:
+    siteid: "5419182"
+    postid: "6302570575304821096"
+    comments: "51"
+categories: [.NET, Dynamic Languages, IronRuby, IronPython, DLR, Microsoft, Lab49]
+author: 
+    name: "Jimmy Schementi"
+    url: "https://plus.google.com/116380716127564408544?rel=author"
+    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
+---
+
+<div class="css-full-post-content js-full-post-content">
+<p>Though <a href="http://social.zune.net/bingplayer/?v=1.0#mid=1D5D1B01-0100-11DB-89CA-0019B92A3933&amp;title=New%20York%2C%20New%20York&amp;artist=Frank%20Sinatra&amp;album=New%20York%2C%20New%20York&amp;artistid=4E0C0000-0600-11DB-89CA-0019B92A3933&amp;albumid=FF5C1B01-0100-11DB-89CA-0019B92A3933&amp;dto=1&amp;preview=0&amp;explicit=0&amp;lyrics=">Frank Sinatra</a> <a href="http://www.bing.com/music/lyrics/detail?q=Frank+Sinatra+New+York,+New+York&amp;songID=1D5D1B01-0100-11DB-89CA-0019B92A3933&amp;lyricsID=T+++691568&amp;albumID=FF5C1B01-0100-11DB-89CA-0019B92A3933&amp;FORM=DTPMUM">says it best</a>, “I’m leaving today” isn’t exactly accurate; my last day as a Microsoft employee was July 23rd, 2010. This post is almost two weeks delayed as <a href="http://twitter.com/feliciacutrone" target="_blank">Felicia</a> and I have been on the road since the 26th, driving cross-country to the east coast; we also decided to leave Seattle in favor of New York, our home state.</p>  <p>Both decisions were extremely difficult to make, as I will miss all the brilliant people I worked with. Just being in their presence made me feel smarter, and we accomplished some amazing things together. Many were also my friends, making this a very heart-wrenching decision too. However, I joined Microsoft to bring Ruby and other open-source programming languages to the .NET framework, as well as to promote open-source practices in general, and I promised myself to ensure the truth of that statement throughout my Microsoft career. So, when my manager asked me, “what else would you want to work on other than Ruby,” I started looking for a new job outside Microsoft.</p>  <p>While Microsoft’s commitment to dynamic languages on .NET has been questioned many times, my tiny team has been excellent at suppressing those fears with quality implementations of <a href="http://ironruby.net" target="_blank">Ruby</a> and <a href="http://ironpython.net" target="_blank">Python</a> for .NET, compiler services and language embedding API called the <a href="http://dlr.codeplex.com" target="_blank">Dynamic Language Runtime</a>, and integration with .NET application frameworks like <a href="http://silverlight.net/dlr" target="_blank">Silverlight</a> and <a href="http://aspnet.codeplex.com/wikipage?title=Dynamic%20Language%20Support" target="_blank">ASP.NET</a>. And most recently the beginnings of <a href="http://ironpython.net/tools/" target="_blank">IDE support for dynamic languages in Visual Studio</a>. And all this released under an well-known open-source license, the <a href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank">Apache License (Version 2)</a>. This was only possible because my team had the freedom to do what we needed to do to counter those fears and run an effective open-source project</p>  <p>However, a year ago the team shrunk by half and our agility was severely limited. I’m omitting the internal reasons for this, as they are the typical big-company middle-management issues every software developer has. In short, the team is now very limited to do anything new, which is why the Visual Studio support for IronPython took so long. IronRuby’s IDE support in Visual Studio hasn’t been released yet for the same reasons. While this is just one example, many other roadblocks have cropped up that made my job not enjoyable anymore.</p>  <p>Overall, I see a serious lack of commitment to IronRuby, and dynamic language on .NET in general. At the time of my leaving <a href="http://blog.tomasm.net/" target="_blank">Tomas</a> and myself were the only Microsoft employees working on IronRuby. If this direction for dynamic languages on .NET is a path you <strong>do not</strong> want Microsoft to take, I strongly suggest you provide feedback to the <a href="http://tinyurl.com/2edqg6t" target="_blank">team’s management</a> directly. Also, <a href="http://blogs.msdn.com/b/jasonz/" target="_blank">Jason Zander</a> runs the Visual Studio team, which IronRuby, IronPython, and the DLR happen to be a part of, and is a big <strong>proponent</strong> of these dynamic languages efforts, so provide him with your thoughts as well.</p>  <p>That being said, I am still interested in implementing dynamic languages on .NET, so I will remain a <a href="http://ironruby.net" target="_blank">IronRuby</a> core-team member, ironically making me the first non-Microsoft core contributor. The bad-news is I will no longer be working on IronRuby full-time, but in the near future I’m definitely staying active. Also, Tomas will definitely continue working on IronRuby when he can; we weren’t the last two people left for no reason. :-)</p>  <p>Given that Tomas and I will only be working part-time on IronRuby now, I invite the Ruby and .NET communities to come help us figure out how to continue the IronRuby project, assuming that Microsoft will eventually stop funding it. I’ll start a thread on the <a href="http://rubyforge.org/pipermail/ironruby-core/" target="_blank">IronRuby Mailing List</a> shortly, so keep an eye on that if you’d like to help. [<strong>Update</strong>: <a href="http://bit.ly/dBVJSC" target="_blank">here’s the thread about the next steps for IronRuby</a>. <a href="http://bit.ly/aKJz7p" target="_blank">Join the list</a> and discuss.]</p>  <p>While moving to New York is mainly a personal decision, as both my fiancée and I grew up there and our immediate families are still there, it was also for professional reasons; I’ve accepted a new position at <a href="http://lab49.com/">Lab49</a>, a financial technology consulting firm in New York City. I chose the financial industry not just because its dominance in New York, but because I see a lot of similarities between financial software and developer tools. Financial software serves a very technical user, much like programmers, but unlike programmers I know nothing these users, making it a challenging new space. It will be familiar as well, as Lab49 has done work with the new <a href="http://www.zdnet.com/blog/microsoft/microsoft-launches-technical-computing-initiative-20/6240" target="_blank">Technical Computing</a> team, which many people who once worked on dynamic languages moved to. Lab49 was also very interested in my IronRuby and IronPython background, so it’s a great next step for me.</p>  <p>I’m grateful to have worked on compilers full-time, outside of academia, while still contributing to open-source, especially at a company that hardly showed up on the open-source radar just 4 years ago. And at least one dynamic language at Microsoft is getting love; <a href="http://blogs.msdn.com/b/ie/archive/2010/03/18/the-new-javascript-engine-in-internet-explorer-9.aspx" target="_blank">IE9’s JavaScript engine</a>, and Microsoft has awesome intentions with it. I’m totally a supporter of most things Microsoft is doing, and I look forward to working closely with them on financial problems. I’m just extremely disappointed with their decisions around dynamic languages on .NET. As one former-teammate’s email signature read, “If your ideas are any good, you'll have to ram them down people's throats.”</p>  <p>I’m looking forward to this new chapter in both my life and my career. Not only am I living in the <a href="http://en.wikipedia.org/wiki/New_York_City" target="_blank">city that never sleeps</a>, but I hope to build upon my dynamic language work and use it in an area completely new to me. While I expect to still be Ruby and .NET oriented, my posts will be about solving new problems, and should make for some good reading. Stay tuned, and thanks for all the support thus far.</p>  
+</div>
+<div class="css-full-comments-content js-full-comments-content">
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/00222070640958234371">
+  <div class="css-comment-name js-comment-name">
+    jdhardy
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-06T21:54:15.130Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    It&#39;s really too bad to hear the state the dynamic languages teams are in, although I had suspected as much for a while now. I hope this isn&#39;t the beginning of the end for the Iron* languages.<br /><br />Good luck in your future endeavours!
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/08009087262659272412">
+  <div class="css-comment-name js-comment-name">
+    Dax
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-06T22:04:46.453Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    That really sucks.  I love .Net and think it&#39;s way better than any other dev platform for virtually everything other than web dev.  ASP, even MVC, still requires way too much boilerplate, refusing to accept the &quot;convention over configuration&quot; ideal, which should be a &quot;duh&quot; for anything dealing with __ML.  I was really hoping they&#39;d embrace the dynamic concept a bit more for those types of things.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/06930585221957734363">
+  <div class="css-comment-name js-comment-name">
+    Ryan Riley
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-06T22:04:57.150Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Ditto jdhardy. Glad to hear you are moving on to greener pastures and staying involved with IronRuby, despite MS&#39;s apparent lack of interest. Thanks for all your hard work while you were there!
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/11428205606558379989">
+  <div class="css-comment-name js-comment-name">
+    mdi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-06T22:16:41.799Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    These are heart breaking news Jimmy.<br /><br />My guess is that you guys could not really tell the world what was going on at Microsoft while you were in the middle of things and the community was left to infer that things were not looking great.<br /><br />Very very sorry to hear this.   Terribly sorry to hear this.<br /><br />Miguel
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/16708206358133238819">
+  <div class="css-comment-name js-comment-name">
+    David
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-06T22:37:23.912Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    What do I need to start a IronGroovy project?... Just kidding but I would like to have Grails support in Visual Studio and why not .NET.<br /><br />Anyway good luck!!!
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/11976251467538757518">
+  <div class="css-comment-name js-comment-name">
+    Chris Bilson
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-06T22:41:10.623Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    This is sad news for us, but congratulations to you. Lab 49 are well respected in the financial services world and are doing some really innovative things. I hope you&#39;ll get a chance to work on many exciting things!
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/04152492636335592668">
+  <div class="css-comment-name js-comment-name">
+    Patrick
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-06T23:01:42.465Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    That&#39;s very difficult to hear about the dynamic language team at MS.  However, congrats on joining Lab49.  They are an awesome company and you have to be pretty slick to work there.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://blog.monnet-usa.com/">
+  <div class="css-comment-name js-comment-name">
+    Philippe Monnet
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-06T23:12:11.960Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    First of all Jimmy: a huge &quot;THANK YOU&quot; for making IronRuby possible on .NET and the DLR!!!<br />You have demonstrated tremendous delivery skills considering the challenge of working with a small dedicated crew, accepting public contributions, and most of all following an agile process with quite a bit of transparency.<br />I am sad to hear about all the reasons you mentioned.<br />But I wish you the best!
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/12946646943956308726">
+  <div class="css-comment-name js-comment-name">
+    Michael D. Hall
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-06T23:12:45.893Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Thanks for your work. Microsoft pulls the chair out from under another great thing for developers and a great developer.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/15732819755000554717">
+  <div class="css-comment-name js-comment-name">
+    Steve
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-06T23:18:11.209Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    It&#39;s a pity that Microsoft don&#39;t seem to be putting any corporate muscle behind the dynamic languages any more. They will live to regret it (not in a bet-your-business way, but it will lose them long-term market share).<br /><br />Still, we all have to put ourselves first. The trip across the US must have been both exhausting and fascinating.<br />Good luck in New York!
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/06400331959739924670">
+  <div class="css-comment-name js-comment-name">
+    Charles Oliver Nutter
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-06T23:58:26.256Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Sad to hear you&#39;re leaving MS and IronRuby has seen continued resource issues, but I and many other Rubyists thank you for your devotion to the project and your participation in the Ruby world these past years. I hope we&#39;ll still see you at Ruby events occasionally and manage to have that implementers&#39; dinner or beerfest we always talked about.<br /><br />Good luck with your new position!
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/14930698586926486164">
+  <div class="css-comment-name js-comment-name">
+    Darrel Miller
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-07T00:21:54.912Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    A stunningly bad decision on Microsoft&#39;s part to neglect the dynamic languages team.  <br /><br />Good luck to you Jimmy and thanks for your efforts.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Jim Deville
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-07T00:30:35.394Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    I don&#39;t know why Jimmy didn&#39;t mention me :), but I&#39;ll still be helping out too. My primary job will be on JS now. -Jim
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.mohundro.com/blog/">
+  <div class="css-comment-name js-comment-name">
+    David Mohundro
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-07T01:17:09.985Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    This frustrates me because I&#39;m interested in IronRuby <b>far</b> more than tools like WebMatrix and Lightswitch.<br /><br />Jimmy, I appreciate the work you&#39;ve done thus far with IronRuby and I can&#39;t blame you for moving on. Thanks!
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Anonymous
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-07T02:30:40.246Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Without words.<br /><br />Both Ruby and Python are key components of our .NET infrastructure and scripting story for our products.<br /><br />Microsoft&#39;s backing of these languages is what tilted us from the JVM to .NET, despite the JVM having two mature Python and Ruby implementations as well.<br /><br />This is a monumental mistake.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://blog.dispatched.ch">
+  <div class="css-comment-name js-comment-name">
+    Alain M. Lafon
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-07T09:05:56.584Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    I read this on the weekend just before I wanted to adopt IronPython into our company. It was supposed to make C# obsolete.<br /><br />Well.. what can I say. It sucks to use any M$ tech. I should stick to OSX and Linux and leave my current employer due to strict use of M$ tech.<br /><br />Sorry to say that man, but your story reads just like that to me.<br /><br />I want to thank you for your great work, though. And I wish you all the best for your NY future(;
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/06897054380811747185">
+  <div class="css-comment-name js-comment-name">
+    Harsha
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-07T10:03:40.368Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    This is shocking. We adopted IronRuby just because it is from MS and assured to be part of .Net framework. Having done so in .Net 4, news like this is a serious concern.<br /><br />Anyway I wish you good luck for your future endeavor and hope you succeed in keeping IronRuby alive.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/14215294631780902573">
+  <div class="css-comment-name js-comment-name">
+    Dody G.
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-07T11:16:57.726Z
+  </div>
+  </div>
+  <div class="css-comment-title js-comment-title">
+    Hi Jimmy,
+
+Much love from Egypt. Thank you so much...
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Hi Jimmy,<br /><br />Much love from Egypt. Thank you so much for your effort in open sourcing IronPython for ASP.Net and bringing IronRuby to life.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/07183311023912914019">
+  <div class="css-comment-name js-comment-name">
+    dev
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-07T11:49:01.093Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    filled out the contact form on mr. w&#39;s blog and told him how much i think bringing a proper ide to dynamic languages (esp. ruby) is a beautiful, beautiful idea.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/03939316104050454245">
+  <div class="css-comment-name js-comment-name">
+    Calvin
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-07T12:44:17.553Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Hate to hear this. Thank you for all your work on IronRuby. I&#39;ve been pulling for you guys.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/03276177807663129901">
+  <div class="css-comment-name js-comment-name">
+    DJL
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-07T13:52:01.683Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    I was getting worried that things had gone quiet... Hmm. Maybe with Jimmy on the &#39;outside&#39;, but with the &#39;inside&#39; knowledge it is actually an opportunity for the troops to rally round and help out a bit more and grow as an IronRuby community rather than a bit of &#39;us&#39; and &#39;them&#39;? Ruby on .Net is too important to let it wither.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/07256617142248365416">
+  <div class="css-comment-name js-comment-name">
+    Martyloo
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-07T17:04:46.344Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Are they cutting back on IronPython in the same way as with IronRuby? Maybe Microsoft decided to pick one, and they chose python. Just sayin&#39;.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/00222070640958234371">
+  <div class="css-comment-name js-comment-name">
+    jdhardy
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-07T17:55:50.768Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    I should mention what others have said elsewhere - this may be the best thing for IronRuby to flourish. If Microsoft hands the copyrights over to the CodePlex Foundation or the Mono team, then it could be run as a real OSS project.<br /><br />Ironically, being free of Microsoft might just save IronRuby.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://scott.blomqui.st/">
+  <div class="css-comment-name js-comment-name">
+    Scott Blomquist
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-07T19:41:57.389Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    It&#39;s not at all clear that IronRuby is going away any time soon.<br /><br />But even if it is, this is just open Source survival of the fittest.<br /><br />If the community isn&#39;t interested enough to contribute code to keep the project alive, then I don&#39;t see why Microsoft would keep investing corporate resources, either.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/17974432427573778202">
+  <div class="css-comment-name js-comment-name">
+    tpdorsey
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-07T19:59:38.114Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Good for you, Jimmy. Bravo!<br /><br />We only worked together very briefly on one or two articles for MSDN Magazine, but the work you did really reflected well on you and your dedication to IronRuby and IronPython. Very impressed!<br /><br />I wish you the best of luck in your future endeavors.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/13368132383395164003">
+  <div class="css-comment-name js-comment-name">
+    clive.boulton
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-08T05:34:50.693Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    A Big Shame. <br /><br />Web Apps will use Dynamic languages.  <br /><br />Microsoft FAIL.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/10677028529604524610">
+  <div class="css-comment-name js-comment-name">
+    Casper Fabricius
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-08T09:33:47.336Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    So sorry to hear that you are leaving Microsoft - they needed you, and they seemed to be going in the right direction. Now I&#39;m not so sure anymore.<br /><br />I for one have emailed Scott Wiltamuth and told him about my disappointment.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/12486278918715038618">
+  <div class="css-comment-name js-comment-name">
+    eduardob
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-08T12:24:03.927Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Congratulations in your new job.<br /><br />I&#39;m sorry that Microsoft is losing a great proponent of the Open Source wave.<br /><br />Hope this project doesn&#39;t die.<br />I did send an e mail to Jason Zanders.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.codebetter.com/blogs/glenn.block">
+  <div class="css-comment-name js-comment-name">
+    Glenn Block
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-08T21:12:52.468Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Sorry to see you go Jimmy. I was shocked when you told me you were leaving. You definitely helped make MS a brighter place. I hope we find a way to keep dynamic languages on .NET alive.<br /><br />Good luck in your next venture!
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05539202931163964720">
+  <div class="css-comment-name js-comment-name">
+    AkitaOnRails
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-09T01:06:54.041Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Good Luck Jimmy, thank you so much for your commitment. It is very sad to still see this kind of lack of vision from Microsoft, although this was totally expected, at least I already expected they would drop the ball but at the same time I kept a thread of hope that it could evolve. Today, my last thread of hope of anything good coming from Microsoft was crushed. <br /><br />I don&#39;t ever expect Microsoft to do anything useful in the near future and I only hope they keep themselves out of our way.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/12678750838556666846">
+  <div class="css-comment-name js-comment-name">
+    Ray Vernagus
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-09T12:11:04.709Z
+  </div>
+  </div>
+  <div class="css-comment-title js-comment-title">
+    Jimmy--
+Wishing you the brightest of futures! I en...
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Jimmy--<br />Wishing you the brightest of futures! I enjoyed collaborating with you!
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/04027286025058393036">
+  <div class="css-comment-name js-comment-name">
+    Charles Strahan
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-09T19:48:39.201Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Congrats on the new job, Jimmy.<br /><br />It&#39;s a shame that Microsoft can&#39;t recognize the value you bring to both the dynamic language enthusiasts and the general .NET community at large. Many thanks for all your hard work - I hope we&#39;ll get to squash some bugs together in the near future :).<br /><br />-Charles
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/01403166737046938219">
+  <div class="css-comment-name js-comment-name">
+    Colin Jack
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-09T22:36:32.527Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Good luck in your new role, real pity on IronRuby though.<br /><br />It does worry Microsoft has gotten a bit myopic again, all the overhyped RAD/CRUD and pre-mort stuff is fine and good but for most enterprise development IronRuby was far more relevant. <br /><br />As a .NET developer it does worry me that unless a project is under scottgu there is a good chance it&#39;ll fall foul of mis-management, reorganisation, politics.<br /><br /> Why can&#39;t the next under-resourced and unloved announcement relate to something like LightSwitch?
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Anonymous
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-10T06:38:51.251Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    It&#39;s curious that in the same week of your announcement, another &quot;scarey&quot; blog post, <a href="http://weblogs.asp.net/davidfowler/archive/2010/08/02/introduction-to-microsoft-data-dll.aspx" rel="nofollow">Introduction to Microsoft.Data.dll</a>, created waves of disbelief in the development community.<br /><br />I suspect that IronRuby and IronPython are just way to complicated for Microsoft&#39;s target audience!
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/03564953710596261212">
+  <div class="css-comment-name js-comment-name">
+    Priya
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-10T10:46:20.661Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    What a pity! I liked the &quot;cool&quot; power the DLR brought to the table. We did an interesting POC with Siverlight and DLR and I thought it had alot of potential - esp in the FS space where you&#39;d like to play with dynamic computations etc.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Anonymous
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-10T11:38:21.218Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    unfortunatelly, expectable. If MS cannot control something, they are not going to support it. In MS vision, you should not have any possibilities to migrate somewhere. Your story just confirms it. <br /><br />Good luck for you with a new job!
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/10937711120415041647">
+  <div class="css-comment-name js-comment-name">
+    Thorsten Hans
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-11T23:59:38.723Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Hey Jimmy,<br />sad to hear that. :(<br /><br />I hope you&#39;ll have a nice time in NYC. And enjoy your new job.<br /><br />Discontinuing IronRuby will be an hughe mistake. Millions of dollars are spend into RAD-Tools to show business people how fast &quot;good&quot; development is... xD <br /><br />But on the otherside they are shrinking the team, that builds the really interesting things...<br /><br />Microsoft, that sucks! So don&#39;t hoax the community!!!<br /><br />IronRuby rocks!
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/04914127829649218545">
+  <div class="css-comment-name js-comment-name">
+    Stan Selkow
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-12T20:39:01.216Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Welcome back east. Now that you&#39;re coming, I hear that Starbucks might be following close behind you.<br /><br />  Stan
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/01517888837691904868">
+  <div class="css-comment-name js-comment-name">
+    Bankruptcy records
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-13T07:37:17.849Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Find my bankruptcy discharge order; quickly, Quick way to get copies of your bankruptcy discharge order.For quick way to get <a href="http://bankruptcylive.com" rel="nofollow">bankruptcy records</a> in your email. Bankruptcy live is document retrieval service.; You will find it helpful to dig out your bankruptcy records at bankruptcylive.com for a very nominal fees. ( Serving    all 50 States).
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/02336138023988658536">
+  <div class="css-comment-name js-comment-name">
+    Mark E.
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-08-14T14:51:37.957Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    It makes sense to me that Microsoft would drop the DLR development and the support for Ruby and Python on the .NET Framework. Why? Because Microsoft doesn&#39;t *really* want those running on their runtime because that would make the .NET Framework &quot;just another run-time&quot; that could be swapped out with the MRI &quot;C&quot; version or the Java JRuby version. They want the features of Ruby (and other dynamic languages) without the ability for applications to just jump off the platform.<br /><br />In a .NET Rocks Podcast interview with Anders Hejlsberg (creator of C#), Anders talk specifically about Ruby and wanting to bring some of the meta-programing abilities to C# 5. [http://www.dotnetrocks.com/default.aspx?showNum=541]<br /><br />I have a friend who works as a patent attorney and their largest client is Microsoft. He commented recently about Microsoft doing a lot of patents on DLR technology.<br /><br />So I don&#39;t think it was an accident to invest 3 years of effort and then &quot;drop interest&quot;. I think they are getting what they want out it.<br /><br />Think about how Microsoft got into the Functional Programing domain. Through F#. What is F#? A syntactic copy of OCaml with &quot;enhancements&quot; that can&#39;t leave the .NET Runtime. Remember, Microsoft is all about lock-in.<br /><br />So I expect Microsoft got what they wanted. The technology developed in-house and patented. They can use that technology to help develop C# 5.0 or a new dynamic language inspired on Ruby and/or Python but with enough changes that it can&#39;t be taken off the .NET Framework.<br /><br />Embrace, Extend, Extinguish.<br /><br />Have they ever really done otherwise?
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://annuairepagesblanches.org/">
+  <div class="css-comment-name js-comment-name">
+    Annuaire pages blanches
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-09-25T16:45:35.810Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    I totally agree with you.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.skillforge.com">
+  <div class="css-comment-name js-comment-name">
+    SkillForge
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-10-04T00:27:58.984Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Sad to see - dynamic language support in .net was so promising. Why does MS continually swing like a pendulum on things like this?!
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://helppopikalaina.fi">
+  <div class="css-comment-name js-comment-name">
+    Pikalainat
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2011-08-24T08:05:35.464Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Good luck to your new projects. Everyone need a change once in a while!
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.pikavippi.fm">
+  <div class="css-comment-name js-comment-name">
+    Pikavippi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2011-09-30T22:51:41.854Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Congratulations for your new job!
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://pikavippikaleva.fi/">
+  <div class="css-comment-name js-comment-name">
+    vippi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2011-10-06T13:43:53.494Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    well nice done mate i wish you the best of lucks
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Antares
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2011-11-10T19:29:56.811Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    I wish you all the best for your bright future in New York<br /><br /><a href="http://www.seoantares.com/" rel="nofollow">seo ny</a>
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.reissuvippi.fi">
+  <div class="css-comment-name js-comment-name">
+    pikavippi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2011-12-07T20:24:31.196Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Good Job.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.lainasto.fi">
+  <div class="css-comment-name js-comment-name">
+    Lainaa
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2011-12-07T20:25:50.713Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Congratulations
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.seonewyork1.com/">
+  <div class="css-comment-name js-comment-name">
+    seo New York
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2012-02-20T22:59:22.746Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Sorry to see you go Jimmy. I was shocked when you told me you were leaving. You definitely helped make MS a brighter place. I hope we find a way to keep dynamic languages on .NET alive.<br /><br />Good luck in your next venture!
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.seonewyork1.com/">
+  <div class="css-comment-name js-comment-name">
+    Eimantas
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2012-02-23T01:01:04.987Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    This is sad news for us, but congratulations to you. Lab 49 are well respected in the financial services world and are doing some really innovative things. I hope you&#39;ll get a chance to work on many exciting things!
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.animal-clinic-nyc.com">
+  <div class="css-comment-name js-comment-name">
+    Jason
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2013-05-13T23:33:34.702Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    I should mention what others have said elsewhere - this may be the best thing for IronRuby to flourish. If Microsoft hands the copyrights over to the CodePlex Foundation or the Mono team, then it could be run as a real OSS project.
+  </div>
+  <br/>
+</div>
+</div>

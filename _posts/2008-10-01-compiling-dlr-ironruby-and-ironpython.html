@@ -1,0 +1,41 @@
+---
+title: "Compiling the DLR, IronRuby, and IronPython for ANY version of Silverlight"
+layout: "post"
+permalink: "/2008/09/compiling-dlr-ironruby-and-ironpython.html"
+uuid: "8224986643847439579"
+guid: "tag:blogger.com,1999:blog-5419182.post-8224986643847439579"
+date: "2008-10-01 06:25:00"
+updated: "2008-11-18 01:38:51"
+description: 
+blogger:
+    siteid: "5419182"
+    postid: "8224986643847439579"
+    comments: "1"
+categories: [ruby, Silverlight, Python]
+author: 
+    name: "Jimmy Schementi"
+    url: "https://plus.google.com/116380716127564408544?rel=author"
+    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
+---
+
+<div class="css-full-post-content js-full-post-content">
+<p><a title="swan2008 (1)" href="http://www.flickr.com/photos/24129409@N03/2291963395/"><img border="0" alt="swan2008 (1)" align="middle" src="http://static.flickr.com/3039/2291963395_0c35a5057c.jpg" /></a></p>  <p>I know you feel like this sometimes when trying to solve a problem. I do. Almost all the time. Even when I'm not angry ... but I digress.</p>  <p><font color="#ff8000"><a target="_blank" href="http://silverlight.net/GetStarted/sl2rc0.aspx">Silverlight 2 RC0</a></font> was released this past Thursday, but anyone wanting to use the DLR in it was surprised ... no new binary release of the DLR bits for Silverlight 2 RC0 yet. As I said on <a target="_blank" href="http://twitter.com/jschementi/statuses/939462615">Twitter</a>, it would be delayed until today, but that shouldn't stop anyone from <a target="_blank" href="http://www.codeplex.com/sdlsdk/Release/ProjectReleases.aspx?ReleaseId=16845">taking the sources</a> and compiling them against the new SIlverlight build, right?</p>  <p><font color="#ff8000">Of course!</font> Everything should just work, since there were no major breaking changes in Silverlight that affect the DLR between Beta2 and RC0. So, you hacked up the csproj files to point at mscorlib.dll, system.dll, etc in the new Silverlight install directory (C:\Program Files\Microsoft Silverlight\2.0.30923.0), compile, and it builds fine. Then you try to run an app ...</p>  <p><font color="#ff8000">&quot;InitializeError- Failed to load the application. It was built with an obsolete version of Silverlight&quot;</font></p>  <p>Poof! What the hell happened? That's a really bad error message, but what it means to say is:</p>  <p><font color="#ff8000">&quot;The application's AppManifest.xaml has a RuntimeVersion &lt;= 2.0.30523.00, which is Silverlight 2 Beta 2's version number, so Silverlight 2 RC0 won't load this application.&quot;</font></p>  <p>So you see, the XAP file that was produced by Chiron is still for SL2 Beta2. But that's an easy fix;</p>  <ol>   <li>Make sure Chiron.exe isn't running.</li>    <li>Go to your custom build, and edit Chiron.exe.config</li>    <li>Find the &lt;AppManifest.xaml&gt; section, and where it says &quot;RuntimeVersion&quot; make it's value be &quot;2.0.30923.0&quot; (anything with the first three version numbers being greater than the current will do, but be save and use the actual version.)</li>    <li>Re-run Chiron.exe, navigate to your Silverlight application, and .... it works!</li> </ol>  <p>Welcome to the wonderful world of versioning in Silverlight. :)</p>  
+</div>
+<div class="css-full-comments-content js-full-comments-content">
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/01657131250710713920">
+  <div class="css-comment-name js-comment-name">
+    mogli
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-07-20T09:40:01.584Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Thanks, works fine :)
+  </div>
+  <br/>
+</div>
+</div>

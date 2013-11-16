@@ -1,0 +1,66 @@
+---
+title: "The DLR will continue to be licensed under Ms-Pl"
+layout: "post"
+permalink: "/2008/06/dlr-will-continue-to-be-licensed-under.html"
+uuid: "2184081818260142899"
+guid: "tag:blogger.com,1999:blog-5419182.post-2184081818260142899"
+date: "2008-06-13 20:53:00"
+updated: "2008-11-18 01:39:57"
+description: 
+blogger:
+    siteid: "5419182"
+    postid: "2184081818260142899"
+    comments: "1"
+categories: [Open Source, Dynamic Languages]
+author: 
+    name: "Jimmy Schementi"
+    url: "https://plus.google.com/116380716127564408544?rel=author"
+    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
+---
+
+<div class="css-full-post-content js-full-post-content">
+Yesterday <a href="http://en.wikipedia.org/wiki/The_Register"><span style="font-weight: bold;">The Register</span></a> posted an article titled <span style="font-weight: bold;"><a href="http://www.theregister.co.uk/2008/06/12/microsoft_dlr_closed/">"Microsoft: keep your sticky mitts off our language runtime."</a> </span>It's a scary-sounding title, but simply says that the DLR will not accept contributions. Plus, it's got some interesting quotes from me (=P). Anyway, I'd like to use this post to clarify and emphasize certain points.
+
+First off, let me say this:
+
+<span style="font-weight: bold; color: rgb(255, 153, 0);">The Dynamic Language Runtime (DLR) will continue to be licensed under the <a href="http://www.opensource.org/licenses/ms-pl.html">Microsoft Public License (Ms-Pl)</a>.</span>
+
+Today the DLR is packaged in <a href="http://www.codeplex.com/IronPython">IronPython 2.0</a>, <a href="http://www.ironruby.net/">IronRuby</a>, and the <a href="http://codeplex.com/sdlsdk">Silverlight Dynamic Languages SDK</a>, which are all licensed under Ms-Pl. When the DLR becomes 1.0 later in the year it will have it's own <a href="http://codeplex.com/">Codeplex</a> project and will still retain the Ms-Pl license. And we don't plan on that changing in the future.
+
+<span style="color: rgb(255, 153, 0);">Now for some clarifications:</span>
+<span style="font-size:85%;"><span style="font-style: italic;"><blockquote>"It's official: Microsoft will not accept any external code contributions to its  planned Dynamic Language Runtime (DLR), which will run Microsoft's new scripting  languages for the web and Silverlight content on .NET"</blockquote></span></span>Today, <span style="font-weight: bold;">IronRuby accepts contributions to the libraries, and will open up entirely after the DLR becomes 1.0</span>. IronPython does not accept contributions, though in the future it will have the same fate as IronRuby. Now that the line between the languages and the DLR is a bit clearer, we've decided to let people know now that there are definitely no plans to accept contributions.
+
+<span style="color: rgb(255, 153, 0);">Why no contributions?</span>
+<p style="font-style: italic;"><span style="font-size:85%;"><blockquote>"Closing off the DLR will potentially prevent unwanted and unaccounted IP from  creeping into the code. [snip] The company could have left itself, and customers, open to IP claims from  disgruntled code authors. [snip] Also, Microsoft does not want code that's distributed under copyleft  licenses, such as GPL, creeping in. [snip] A copyleft license would compel Microsoft to ship the product  source code and contribute changes back to the community. This is not a typical  business model for Microsoft."</blockquote></span></p>Microsoft cares more about IP getting in that IP getting out. Projects Microsoft wants to monetize, like Visual Studio, need to be more closed off to protect the IP. However, other projects that don't have any monetization plans, like IronRuby, Ajax Control Toolkit, etc, can be more lenient and eventually can become open-source.
+
+<span style="color: rgb(255, 153, 0);">Why? Because the openness does benefit those projects:</span>
+<p style="font-style: italic;"><span style="font-size:85%;"><blockquote>"Microsoft will, though, continue to accept source-code contributions to its  slowly emerging implementation of Ruby for .NET, IronRuby. Contributions are  helping to build IronRuby and shepherd the language towards the first-full  release."</blockquote></span></p>So, this leads to the conclusion that the DLR is closing down because we want to monetize it? Not quite, but ...
+<blockquote><span style="font-style: italic;font-size:85%;" >"Microsoft is keeping the DLR closed because it will go into the next version of  the .NET Framework, expected around the same time as Visual Studio 10. Microsoft  had committed to release DLR 1.0 by the end of 2008."</span></blockquote><span style="font-style: italic;font-size:85%;" ></span><span style="font-weight: bold; color: rgb(255, 153, 0);">Again, The DLR will 1.0 EOY 2008 and will stay Ms-Pl</span><span style="color: rgb(255, 153, 0);">.</span>
+
+The DLR is a bunch of services and tools for implementing languages with dynamic features on .NET. However, only the language/compiler services of the DLR will move into the .NET Framework in Visual Studio 10. The rest will still be distributed by languages/frameworks that want to use them.
+
+We're openly making this distinction today though; everywhere the DLR ships you will find two Microsoft.Scripting namespaces; Microsoft.Scripting and Microsoft.Scripting.Core. Microsoft.Scripting.Core is what we're <span style="font-style: italic;">staging </span>for moving into the framework. I say <span style="font-style: italic;">staging </span>because what's in that namespace isn't final, so it could change.
+
+The comments are also fun, but when are <span style="font-weight: bold;">The Register</span> comments not? =)
+
+I hope that cleared up any confusion; please let me know if you have any other questions.
+<span style="font-style: italic;"></span>
+</div>
+<div class="css-full-comments-content js-full-comments-content">
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Anonymous
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-06-14T13:20:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    good stuff Jimmy.<BR/><BR/>i think john lam and the gang have been really clear about the intentions here from the outset, and it's all in line with what you've said.<BR/><BR/>it's a shame that the register twisted it into the angle they took.<BR/><BR/>lb (<A HREF="http://secretGeek.net" REL="nofollow">secretGeek</A>)
+  </div>
+  <br/>
+</div>
+</div>

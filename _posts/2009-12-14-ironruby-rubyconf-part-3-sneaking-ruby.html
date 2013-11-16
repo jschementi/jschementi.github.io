@@ -1,0 +1,73 @@
+---
+title: "IronRuby @ RubyConf - Part 3: Sneaking Ruby to the top"
+layout: "post"
+permalink: "/2009/12/ironruby-rubyconf-part-3-sneaking-ruby.html"
+uuid: "6474314197621642837"
+guid: "tag:blogger.com,1999:blog-5419182.post-6474314197621642837"
+date: "2009-12-14 09:28:00"
+updated: "2009-12-15 23:58:22"
+description: 
+blogger:
+    siteid: "5419182"
+    postid: "6474314197621642837"
+    comments: "3"
+categories: [IronRuby, rubyconf]
+author: 
+    name: "Jimmy Schementi"
+    url: "https://plus.google.com/116380716127564408544?rel=author"
+    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
+---
+
+<div class="css-full-post-content js-full-post-content">
+<p><em>This is part of a <a href="http://blog.jimmy.schementi.com/search/label/rubyconf">RubyConf 2009 series</a>:</em>     <br /><a href="http://blog.jimmy.schementi.com/2009/12/ironruby-rubyconf-2009-part-1-summary.html">Overview</a> | <a href="http://blog.jimmy.schementi.com/2009/12/ironruby-rubyconf-2009-part-2-what-sets.html">What sets IronRuby apart?</a> | <strong>Sneaking Ruby to the top</strong> / <a href="http://blog.jimmy.schementi.com/2009/12/ironruby-rubyconf-2009-part-35.html">Embedding IronRuby</a> | <a href="http://blog.jimmy.schementi.com/2009/12/ironruby-rubyconf-2009-part-4-project.html">Project status</a></p>  <p>Let’s be honest: not everyone uses Ruby. I know, it hurts to hear, but it’s the truth. To get a general idea of how <em>bad</em> it really is, let’s look at indeed.com’s job trends for Ruby, Python, Java, and .NET, and <em>assume </em>that’s a good measure of usage:</p>  <div style="width: 540px"><a title="Ruby, Python, .NET, Java Job Trends" href="http://www.indeed.com/jobtrends?q=Ruby%2C+Python%2C+.NET%2C+Java"><img border="0" alt="Ruby, Python, .NET, Java Job Trends graph" src="http://www.indeed.com/trendgraph/jobgraph.png?q=Ruby%2C+Python%2C+.NET%2C+Java" width="400" height="222" /> </a></div>  <p><strong>Holy crap!</strong> Regardless of the actual numbers, we all know what this graph is saying to be true. But why are dynamic language’s so <em>under-used</em>? Aside from the obvious, like fear of something different, the dynamic language community hasn’t sufficiently answered the “why” questions to the other camp, like “Why should I use Ruby if I already know .NET?”, and “why even bother.” Our answer has always been “Productivity, expressiveness, blah, blah, blah”; that turns out to be a horrible way to sell dynamic languages to people who love C# or Java for it’s productivity and expressiveness. =) However, their fears are justified; Ruby’s main usage today is for stand-alone apps (mainly websites, but there are some client apps), so they assume Ruby can’t be use it in their existing environment.</p>  <h4><font color="#ff8000">Let’s solve this!</font></h4>  <p>Let’s make it easy for those programmers at the top of the graph to use the languages at the bottom of the graph. Ruby gets to expand its ecosystem, and <em>enterprise</em> developers get a great dynamic language to use. Ruby is nicely position for this specific scenario since implementations of Ruby exist for both Java and .NET, so Ruby’s usage could become more on-par with Java and .NET. And here’s the way we make this happen: <font color="#ff8000">.NET and Java developers can easily <strong>embed</strong> Ruby into their existing applications for <strong>scripting</strong></font><em>.</em></p>  <p><em>All this also applies for Python, and IronPython is forging this path along with IronRuby. This talk was for a Ruby crowd … I hope you understand <a href="http://www.voidspace.org.uk/" target="_blank">Michael</a> :). But don’t worry, <a href="http://blogs.msdn.com/dinoviehland/archive/2009/11/17/world-s-worst-paint-program.aspx" target="_blank">Dino Viehland</a> has already <a href="http://microsoftpdc.com/Sessions/FT30" target="_blank">begun brainwashing .NET developers for Python</a>.</em></p>  <p><em>Also, since I work on IronRuby, I’ll be talking about this in relation to IronRuby and .NET from now on, though the same arguments work for JRuby and Java (and Jython). Check out the <a href="http://kenai.com/projects/jruby/pages/RedBridge" target="_blank">embedding JRuby page</a>, and <a href="http://www.jython.org/archive/21/docs/embedding.html" target="_blank">also how all this work in Jython</a>.</em></p>  <p>The .NET people reading this might be smiling, but the Ruby people want to vomit … <em>(maybe partly because of .NET, but in all seriousness)</em> … because of the word “<em>scripting”</em>. I know, I too hate the negative associations “<em>scripting”</em> has; when I first started working at Microsoft I was openly against naming a component “Microsoft.Scripting”, but who listens to the new guy? For those who don’t get it, “<em>scripting”</em> makes these amazing languages sound like they are only useful for little toy things, and not for real work. Anyway, this plan takes advantage of that misconception, so don’t look at it as such a bad thing. :)</p>  <h4><font color="#ff8000">Why and How?</font></h4>  <p><em>Ok, .NET developers, stop reading … you’ll ruin the surprise! Just kidding. I love you. Read on …</em></p>  <p>Since .NET developers see Ruby as a <em>scripting</em> language, it’s not a stretch to convince them that Ruby is good for embedding into their applications as a extensibility feature; allowing customize their application with bits of Ruby code. Here’s where all the <a href="http://en.wikipedia.org/wiki/Trojan_Horse" target="_blank">Trojans jump out of the wooden horse</a>. Getting Ruby into existing .NET applications is a much easier way for those developers to learn and use Ruby, rather than asking them to build a new app from scratch, or just look at tutorials, docs, etc, without having a good reason to. If .NET developers want to look at Ruby for use in their existing projects, then we’ve succeeded; it’ll then be pretty obvious that they can do <em>real </em>things with these <em>so-called</em> scripting languages. They’ll probably start using Ruby to prototype new features in their existing system, and then either keep that code as Ruby, or port some of it to their main language. Keep in mind, the goal isn’t to steal people from .NET – they would have left long ago like many of the Ruby community did – it’s to make Ruby co-exist with these more “enterprise” systems, and overall <font color="#ff8000"><strong>make software development fun again for everyone</strong></font>. </p>  <p>But how do .NET developers really benefit from having a scripting language they can use from their current environments? Three words: <font color="#ff8000"><strong>No More XML</strong></font>. XML seemed to be the solution to all .NET developer’s problems since it was a way to make their environments more dynamic. It is easy to parse and walk XML, making it also easy to attach some meaning to seemingly meaningless angle-brackets. One could implement anything using this technique, even logic. Which is why XML became a dynamic language and meta-programming tool for .NET. But really <font color="#ff8000"><strong>XML is a work-around to these static languages lacking the ability to be treated as both code and data</strong></font>.</p>  <p>Being able to use your code just like your data is liberating. For example, running Ruby code from just at string:</p> <script src="http://gist.github.com/254800.js?file=MainWindow1.cs"></script>  <p><em>IronRuby supports the <a href="http://dlr.codeplex.com/Project/Download/FileDownload.aspx?DownloadId=91404" target="_blank">DLR Hosting API</a>, a language-neutral script hosting API for .NET. For instance, supporting another is just as easy as changing the 2nd line to &quot;IronPython&quot;.</em></p>  <p>Imagine doing this with XML; you’d have to somehow encode what element and field you want to modify, along the value to update it to, and then use something like reflection to interpret the XML and do the work. And that’s just for this simple example of setting the text of a TextBlock. So using a real programming language allows for endless extensibility-possibilities. Ruby is especially interesting since it can be <font color="#ff8000"><strong>simple enough for non-programmers, but powerful enough for adding full features</strong></font>.</p>  <p>Software which allows simple extensibility, like Firefox and Rails, tend to always create an ecosystem of extensions around them, which end up being one of the most compelling features of the program. Maybe that next app could be yours?</p>  <p><strong><font color="#ff8000">Next up, <a href="http://blog.jimmy.schementi.com/2009/12/ironruby-rubyconf-2009-part-35.html">an example of embedding IronRuby for graphics</a>.</font></strong></p>  
+</div>
+<div class="css-full-comments-content js-full-comments-content">
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://johan.danforth.myopenid.com/">
+  <div class="css-comment-name js-comment-name">
+    Pix
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-12-14T13:37:45.109Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Jimmy, good post(s), people need samples and good intros to see how they can easily benefit from IR and IP. BUT! You&#39;ll *never* get good adoption of the Iron-languages as long as there&#39;s no proper built-in support for the languages inside Visual Studio. Project support, syntax highlightning and at least some basic intellisense. <br /><br />Seems that Microsoft nor the people at Sapphire will do anything for IR in VS2010, so it&#39;s not looking too good IMHO.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Anonymous
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-12-14T20:28:57.088Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Pix hit the nail on the head.  What&#39;s the point of even developing IronRuby and IronPython if you&#39;re by omission of an addin telling developers to go use notepad.<br /><br />F# has great VS integration.  IronPython has been around for almost as long as it.  Maybe Microsoft should make a deal with the Sapphire Steel people.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-12-14T20:37:45.215Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    VS integration will happen eventually; we&#39;ve been focusing on the languages up until now. After the 1.0 is released we&#39;ll probably have some time to make the VS integration. However, I&#39;m a little disappointed in the community for not making this already ...<br /><br />@Anonymous:<br /><i>&gt;&gt;&gt; What&#39;s the point of even developing IronRuby and IronPython if you&#39;re by omission of an addin telling developers to go use notepad.</i><br /><br />I didn&#39;t tell them to use *notepad*; use a good text-editor that supports Ruby/Python like Vim, inType, notepad2, etc. Also, SharpDevelop has specific IronPython support, so there are other options than VS.<br /><br />I see lack of VS integration a hinderance, but in this scenario I layed out it shouldn&#39;t matter; you&#39;re giving scripting support to your end-users, so you&#39;d need to give them a seperate editor that VS -- and I wouldn&#39;t expect you to license <a href="http://msdn.microsoft.com/en-us/vsx2008/products/bb933739.aspx" rel="nofollow">VSTA</a> just to do this.
+  </div>
+  <br/>
+</div>
+</div>

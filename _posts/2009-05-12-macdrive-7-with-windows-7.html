@@ -1,0 +1,126 @@
+---
+title: "MacDrive 7 with Windows 7"
+layout: "post"
+permalink: "/2009/05/macdrive-7-with-windows-7.html"
+uuid: "9110619865718913431"
+guid: "tag:blogger.com,1999:blog-5419182.post-9110619865718913431"
+date: "2009-05-12 21:23:00"
+updated: "2009-07-14 07:21:46"
+description: 
+blogger:
+    siteid: "5419182"
+    postid: "9110619865718913431"
+    comments: "6"
+categories: [MacOSX, MacDrive, Windows 7, Windows]
+author: 
+    name: "Jimmy Schementi"
+    url: "https://plus.google.com/116380716127564408544?rel=author"
+    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
+---
+
+<div class="css-full-post-content js-full-post-content">
+<p><span style="color: red; font-weight: bold">UPDATE: </span><a href='http://www.mediafour.com/products/macdrive/' target="_blank">MacDrive 8</a> has been released, which has support for Windows 7, so the work-around explained in this post is no longer necessary. Also, people have been experiencing issues with it, so my advice is to upgrade.</p><hr /><p>If you’re running Windows on a Mac, and you’re shuffling files between Mac OS and Windows, <a href="http://www.mediafour.com/products/macdrive/" target="_blank">MacDrive</a> is the best tool for mounting your <a href="http://en.wikipedia.org/wiki/Hierarchical_File_System" target="_blank">HFS</a> (Mac OS’s default file-system format) partitions in Windows. MacDrive costs $49.95, but is well worth it. However, MacDrive does not release versions for pre-release operating systems, and there are a couple speed bumps when trying to use MacDrive on <a href="http://www.microsoft.com/windows/windows-7/" target="_blank">Windows 7</a>. There are various version of this solution posted in a bunch of forums, but no definitive guide. Here’s exactly how I solved it:</p><p>1. <font color="#ff8000"><strong>MacDrive’s installer will only run on Windows XP and Vista</strong></font>. To have it run on Windows 7, you must run as Administrator, run in “Windows Vista” compatibility mode.</p><p>2.<font color="#ff8000"><strong> Also remove the operating system version checks the installer makes with </strong></font><a href="http://www.technipages.com/wp-content/uploads/2007/11/orca.Msi" target="_blank"><strong><font color="#8080ff">Orca</font></strong></a>. MacDrive’s installer is an self-extracting exe, so you must extract it first; using <a href="http://www.7-zip.org/" target="_blank">7-zip</a> or any other unzipping tool will do the trick. Once extracted launch Orca and open MacDrive/x86.en-US/MacDrive7.x86.en-US.msi (or the x64 version if that applies to you). Once open, look for the “LaunchCondition” table and delete all rows from it.</p><p>3. If you run the main setup.exe from the extracted location it will install fine, but upon reboot you will not see your Mac OS drive. This is because <font color="#ff8000"><strong>MacDrive simply doesn’t assign the drive a letter</strong></font>. To do so, download <a href="http://prdownloads.sourceforge.net/ext2fsd/Ext2Fsd-0.46a.zip?download">Ext2Fsd</a>, unzip, and run Ext2Mgr.exe. Find your HFSJ-formatted partition, right-click and select “Change Drive Letter”. Assign it a letter, exit the application.</p><p><a href="http://lh5.ggpht.com/_OqCZhp9yI0Q/Sgno57PMYbI/AAAAAAAAAI0/Yy1xawEql14/s1600-h/image%5B9%5D.png"><img style="display: inline" title="image" alt="image" src="http://lh4.ggpht.com/_OqCZhp9yI0Q/Sgno6CGWVOI/AAAAAAAAAI4/8kkXsWdsOg8/image_thumb%5B5%5D.png?imgmax=800" width="400" height="323" /></a> </p><p>4. <font color="#ff8000"><strong>Open up your “Computer” screen and you should see your Mac OS drive now:</strong></font></p><p><a href="http://lh6.ggpht.com/_OqCZhp9yI0Q/Sgno6dgnxaI/AAAAAAAAAI8/e4X5uluVjkA/s1600-h/image%5B15%5D.png"><img style="display: inline" title="image" alt="image" src="http://lh4.ggpht.com/_OqCZhp9yI0Q/Sgno6tQIlfI/AAAAAAAAAJA/bxQwAoLZ_G4/image_thumb%5B9%5D.png?imgmax=800" width="400" height="62" /></a> </p><p>Please post in the comments if this doesn’t work for you, and I’ll update the steps. Enjoy!</p>
+</div>
+<div class="css-full-comments-content js-full-comments-content">
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.linkedin.com/in/ejstembler">
+  <div class="css-comment-name js-comment-name">
+    Edward J. Stembler
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-05-13T01:30:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    The next version of Mac OS X (code name "Snow Leopard") will include HFS+ drivers with BootCamp.  Not sure if they'll make the drives available separately for use in a VM though...
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Jesse
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-05-15T05:08:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    i am running windows 7 on my imac but under the Ext2Mgr it says my drive is raw drive and it sees the mac drive on explorer as (H) but cant access it says it need to be formated and idea whats going on
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-05-26T01:31:30.283Z
+  </div>
+  </div>
+  <div class="css-comment-title js-comment-title">
+    @Jesse
+
+You need to restart your computer after in...
+  </div>
+  <div class="css-comment-content js-comment-content">
+    @Jesse<br /><br />You need to restart your computer after installing MacDrive. If you don't, Ext2Mgr will still thing it's a RAW drive.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/17698977454439277437">
+  <div class="css-comment-name js-comment-name">
+    Chirag
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-06-02T00:33:29.069Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Hey Hi Jimmy...I had the same problem as Jesse. I did as you suggested. I can see the drive now but it says you need to format the drive to use it.. And it still shows that the drive is RAW...Can you please help me with it...<br />Thank You
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/12279660238300290702">
+  <div class="css-comment-name js-comment-name">
+    KristofV
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-07-09T15:27:01.455Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    You can also use the disk management tool that&#39;s built into windows to assign a drive letter. Anyway, this is not the problem. Macdrive is still not working after this, I&#39;m on build 7264 btw.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/11311792304456554505">
+  <div class="css-comment-name js-comment-name">
+    Junghee_Won
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-04-03T23:09:35.589Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Jimmy could you please explain a little more about what you did with Orca?  What do you mean by delete all the rows of &quot;LaunchCondition&quot;?  Thanks.
+  </div>
+  <br/>
+</div>
+</div>

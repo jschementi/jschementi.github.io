@@ -1,0 +1,178 @@
+---
+title: "Dragging elements in Silverlight with DLRConsole"
+layout: "post"
+permalink: "/2008/08/dragging-elements-in-silverlight-with.html"
+uuid: "6863666874844480076"
+guid: "tag:blogger.com,1999:blog-5419182.post-6863666874844480076"
+date: "2008-08-27 05:34:00"
+updated: "2008-08-27 17:45:56"
+description: 
+blogger:
+    siteid: "5419182"
+    postid: "6863666874844480076"
+    comments: "7"
+categories: [ruby, Dynamic Languages, Silverlight]
+author: 
+    name: "Jimmy Schementi"
+    url: "https://plus.google.com/116380716127564408544?rel=author"
+    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
+---
+
+<div class="css-full-post-content js-full-post-content">
+<center><a href="http://www.flickr.com/photos/jschementi/2801795133/" title="DLRConsole Rocks by jschementi, on Flickr"><img src="http://farm4.static.flickr.com/3244/2801795133_13e205b1b8.jpg" width="346" height="393" alt="DLRConsole Rocks" /></a></center><br />
+<p>Dragging elements around in Silverlight is not trivial, so I wrote a Drag class in IronRuby during a demo of DLRConsole to show how cool REPL-programming is. I did a <a href="http://www.flickr.com/photos/jschementi/2802888469/" target="_blank">10-minute screencast of this same demo</a> a while ago, but I've given this demo enough times that it deserves a post on its own.</p><h4 style="color: rgb(255, 204, 0);">Meet DLRConsole</h4><p>Can't show dragging without having stuff to drag, can I? Well, rather than requiring you to download a bunch of stuff, let's just program in the browser. Yes, the browser.<br />
+</p><a href="http://www.flickr.com/photos/jschementi/2801783623/" title="DLRConsole by jschementi, on Flickr"><img src="http://farm4.static.flickr.com/3125/2801807513_da498c5182_o.jpg" alt="DLRConsole" /></a><br />
+<p><a href="http://jimmy.schementi.com/silverlight/dlrconsole" target="_blank">DLRConsole</a> (<a href="http://jimmy.schementi.com/silverlight/dlrconsole.zip">download</a>)</p><p><small>You'll need Silverlight 2 Beta 2, but DLRConsole will tell you to install Silverlight if you don't have it.</small></p><p>If you haven't been introduced to DLRConsole yet, there she is. Pretty straight-forward; a Ruby and Python REPL prompt on the left for typing code in, and a Silverlight canvas on the right for <i>pretty</i> stuff to come out. Got it? Good.<br />
+</p><h4 style="color: rgb(255, 204, 0);">Makin' some stuff to drag</h4><p>So what do you want to drag around? I know, a clock? Of course, since we can't get enough of those freakin' things in Silverlight-land. I've done you a favor and build a clock already, so you don't have to. You're welcome. Click on the "Ruby" text on the bottom left to switch the console to Ruby, and then type the following in the prompt: <br />
+</p><pre name="code" class="ruby">require 'lib/clock'
+$clock = Clock.show
+</pre><a href="http://www.flickr.com/photos/jschementi/2802630898/" title="DLRConsole clock by jschementi, on Flickr"><img src="http://farm4.static.flickr.com/3116/2801812537_b4d7d50e88_o.jpg" alt="DLRConsole clock" /></a><br />
+<p>Awesome, a clock, in all it's majesty. You might have the urge to try to click said clock to move it ... go ahead, it won't bite. <br />
+</p><h4 style="color: rgb(255, 204, 0);">Drag that face all over the place</h4><p>Didn't move, huh? Sucks. Let's fix that. Go back to the console and type this:</p><pre name="code" class="ruby">require 'lib/drag'
+Drag.new($clock.canvas)
+</pre><p><small>And for the curious, here's the code in lib/drag.rb:</small></p><pre name="code" class="ruby">class Drag
+  def initialize(obj)
+    @click = nil
+    @obj = obj
+  end
+  
+  def enable
+    @obj.mouse_left_button_down do |s,e| 
+      @click = e.get_position @obj
+    end
+    Application.current.root_visual.mouse_left_button_up do |s,e| 
+      @click = nil
+    end
+    canvas.mouse_move do |s,e|
+      unless @click.nil?
+        mouse_pos = e.get_position canvas
+        @obj.left, @obj.top = mouse_pos.x - @click.x, mouse_pos.y - @click.y
+      end
+    end
+    self
+  end
+end
+</pre><object type="application/x-shockwave-flash" width="400" height="248" data="http://www.flickr.com/apps/video/stewart.swf?v=59154" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"> <param name="flashvars" value="intl_lang=en-us&amp;photo_secret=095a44c348&amp;photo_id=2802715720&amp;show_info_box=true"></param><param name="movie" value="http://www.flickr.com/apps/video/stewart.swf?v=59154"></param><param name="bgcolor" value="#000000"></param><param name="allowFullScreen" value="true"></param><embed type="application/x-shockwave-flash" src="http://www.flickr.com/apps/video/stewart.swf?v=59154" bgcolor="#000000" allowfullscreen="true" flashvars="intl_lang=en-us&amp;photo_secret=095a44c348&amp;photo_id=2802715720&amp;flickr_show_info_box=true" height="248" width="400"></embed></object><br />
+<p>Now click, hold, and moooooove! Awesome, we can move shit. Go ahead, get carried away. Try to find that "Silverlight Canvas" TextBlock and make that dragg-able too. Enjoy your new found powers.</p>
+</div>
+<div class="css-full-comments-content js-full-comments-content">
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/16185182738753954263">
+  <div class="css-comment-name js-comment-name">
+    Alex
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-08-27T10:07:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Hi Jimmy,<BR/><BR/>I tried dragging the clock according to your instructions but it didn't work in neither Firefox 3 or Safari 3.1.2, on Mac OS X Tiger with the latest version of Silverlight.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-08-27T13:45:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Interesting, doesn't work in tiger? Can you be more specific? What type of mac do you have? Does dlrconsole run, but the code you type in not work? All the screenshots are from leopard.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-08-27T18:53:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    umm, it's probably a caching issue, try clearing your browser cache. I had issues this morning with one of my macs not downloading the latest version.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Anonymous
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-10-28T19:30:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-title js-comment-title">
+    Jimmy<br><br>where do I get the latest zip of cons...
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Jimmy<BR/><BR/>where do I get the latest zip of console for mac with jscript?<BR/><BR/>dvorak on tiger only maps char not punctuation!<BR/><BR/>can I use haxe to create jscript as it creates javascript?<BR/><BR/>cheers Justin
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.airjordans.cc/air-jordan-4-4/">
+  <div class="css-comment-name js-comment-name">
+    Air Jordan 4
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-05-11T01:20:20.589Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    What a great post! Just one suggestion:If you add some pics, it would be easiler to follow!<br />By <a href="http://www.airjordans.cc/air-jordan-4-4/" rel="nofollow"> Air Jordan 4 </a>
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/01993309381002764362">
+  <div class="css-comment-name js-comment-name">
+    myBlog
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2011-07-09T09:58:23.198Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    This comment has been removed by the author.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/01993309381002764362">
+  <div class="css-comment-name js-comment-name">
+    myBlog
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2011-07-09T10:07:21.184Z
+  </div>
+  </div>
+  <div class="css-comment-title js-comment-title">
+    Hi Jimmy,
+I tried dragging the clock according to ...
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Hi Jimmy,<br />I tried dragging the clock according to your instructions.<br />It&#39;s so cool!<br />and I tried dragging the clock in WPF/IronPython.<br />myBlog: IronPython ...《 Drag clock 》<br />http://softgarden.blog.ocn.ne.jp/blog/2011/07/ironpython_drag.html<br />thank you.
+  </div>
+  <br/>
+</div>
+</div>

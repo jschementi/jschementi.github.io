@@ -1,0 +1,428 @@
+---
+title: "The story of Ruby and Python in Silverlight"
+layout: "post"
+permalink: "/2008/05/story-of-ruby-and-python-in-silverlight.html"
+uuid: "3165137119837219318"
+guid: "tag:blogger.com,1999:blog-5419182.post-3165137119837219318"
+date: "2008-05-04 06:36:00"
+updated: "2009-06-15 21:41:02"
+description: 
+blogger:
+    siteid: "5419182"
+    postid: "3165137119837219318"
+    comments: "16"
+categories: [ruby, Silverlight, Python]
+author: 
+    name: "Jimmy Schementi"
+    url: "https://plus.google.com/116380716127564408544?rel=author"
+    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
+---
+
+<div class="css-full-post-content js-full-post-content">
+In early March, right around the time we shipped <a href="http://codeplex.com/ironpython">IronPython</a> and <a href="http://www.ironruby.com/">IronRuby</a> with support for Silverlight 2, <a href="http://www.ironpythoninaction.com/">Michael Foord</a> wrote a email to the <a href="http://lists.ironpython.com/pipermail/users-ironpython.com/">IronPython Mailing List</a> expressing a very valid point-of-view on the <a href="http://codeplex.com/sdlsdk">dynamic language integration</a>. I recently found the email, and it rattled me a bit.  <b>I dedicate this post to Michael, thanks for inspiring me to tell this story</b>.  <a href="http://lists.ironpython.com/pipermail/users-ironpython.com/2008-March/006559.html">http://lists.ironpython.com/pipermail/users-ironpython.com/2008-March/006559.html</a>  Here's the quote: <br />
+<pre>&gt; This is instead of the previous model (fro Silverlight 1.1) 
+&gt; where assemblies and Python files would only be fetched 
+&gt; from the server if they were actually needed. If what 
+&gt; I have just said is true then the new model is *massively* 
+&gt; inferior in my opinion.
+</pre>After fighting with Silverlight not to cut features, getting screwed over in every which way possible, but then in-fact being able to preserve the same development experience as SL1.1 had for dynamic languages while improving the deployment story, reading this felt like being back in those feature planning meetings when my precious features were getting cut. But Michael didn't do anything wrong, he's actually pointing out a totally different problem altogether; we don't communicate the "why" enough. There are very good reasons dynamic languages in Silverlight work the way they do, and I want to take this opportunity to tell you the story of how we got from Silverlight 1.1 Alpha to Silverlight 2.  <br />
+<br />
+<span style="color: #ff9900; font-size: 130%;">Silverlight and synchronous downloading</span> <br />
+<br />
+This is a very rough topic, as users insist on the feature, and no one seems to listen. Just search for "<a href="http://www.google.com/search?hl=en&amp;client=firefox-a&amp;rls=org.mozilla:en-US:official&amp;hs=hLD&amp;pwst=1&amp;sa=X&amp;oi=spell&amp;resnum=0&amp;ct=result&amp;cd=1&amp;q=silverlight+and+synchronous+downloading&amp;spell=1">silverlight synchronous downloading</a>" and you'll see what I mean. =)  Silverlight applications start running on the UI thread of the browser. This means that all downloads on the UI thread in Silverlight must happen asynchronously, as to not hang the browser. Though there is a way to <a href="http://silverlight.net/forums/t/11508.aspx">access the JavaScript XmlHttpRequest object (which supports synchronous behavior) from managed code and dispatch downloads through that</a>, it has limited functionality (no cross domain, sync download may hang browser, browser behavior may be different, etc, etc). Presumably you should be able to download synchronously from a background thread, but Silverlight doesn't support that today. =(  <span style="font-size: 130%;"><span style="color: #ff9900;">&nbsp;</span></span><br />
+<br />
+<span style="font-size: 130%;"><span style="color: #ff9900;">Where did this XAP thing come from?</span></span><br />
+<br />
+SL1.1 was very uncomplicated. Just files. SL2 comes around, and there's this XAP thing. WTF? Any dynamic languages require it too? WTF!?!  Given the synchronous=nono mindset, the Silverlight team decided to create this XAP-package, so they didn't have to programmatically download dependencies on application startup (outside of resources in XAML). Also, you can argue that packaging up the entire application is better for startup and is nicer to web servers (keeps # of requests down). If you want to keep that initial XAP size small, you can <a href="http://joel.neubeck.net/2008/03/silverlight-how-to-on-demand-assembly-deployment/">programmatically download and load assemblies after</a>.  <br />
+<br />
+<span style="color: #ff9900; font-size: 130%;">This SUCKS for dynamic languages!</span> <br />
+<br />
+Trust me, this was my initial reaction. When I started in July, I became in charge of everything that is Silverlight and Dynamic Languages. I fought and fought to get features that would still allow for just-text deployment, but it all boiled down to cutting a feature all this depended on: synchronous download.  Why is synchronous download important to the SL1.1 dynamic language model? Because we don't support continuations. In SL1.1 when we saw an "import" we triggered a synchronous download of the python module. This always bothered me since it's not what Python does, and we provided no way of changing it. To support this asynchronously we'd have to change import to have it trigger a callback when the download was done to continue on with the program. Uck! That's not python anymore, and changing the language is <span style="font-weight: bold;">not an option</span>. So, without asynchronous downloading, the old model was as good as dead.<br />
+<br />
+<span style="font-size: 130%;"><span style="color: #ff9900;">How Ironic?</span></span><br />
+<br />
+Another quote from the same email Michael sent: <br />
+<pre>&gt; It is also ironic that Jim Hugunin and John Lam 
+&gt; (in Mix 07) made much of how the great advantages 
+&gt; of working with dynamic languages for Silverlight 
+&gt; is that they can be deployed as text. Now of course
+&gt; they need to be 'compiled' with a custom tool 
+&gt; (chiron) and deployed in this compiled form - 
+&gt; and not deployed as text...
+</pre>Keep in mind, we always wanted to support XAP as a deployment model; we just didn't want it for development. So, the real question is "how do you use XAP for development but still keep the edit-refresh experience of a dynamic languages?" The answer: Chiron. <br />
+<br />
+<span style="color: #ff9900; font-size: 130%;">Just-text "resurrected"</span><br />
+<br />
+When you develop a dynamic language app, your app is just text; there should be no xap files. The only place you'd see a reference to .xap is in your HTML file. Given a app folder structure that looked like this: <br />
+<pre>Foo/
+   Index.html
+   App/
+      App.py
+</pre><br />
+You'd see this in Index.html: <br />
+<pre>&lt;param name="source" value="App.xap" /&gt;
+</pre><br />
+This just means "You're start script (App.py, by default), is in the App directory". Run Chiron from your app's root directory like this: <br />
+<pre>&gt;&gt;&gt; Chiron /w
+</pre><br />
+Then navigate to http://localhost:2060, and whola! You're application is running! You can edit your files, hit refresh on the browser, and the app will update with your changes! The XAP is being generated in memory when it's requested and sent to the client, so you'll never see it on the file system. In the end, it all matters about the experience of developing your app, and this gives you the same effect as SL1.1 did.<br />
+<br />
+<span style="color: #ff9900; font-size: 130%;">Deployment: an upgrade from SL1.1</span> <br />
+<br />
+Also, now we support the package deployment model: simply run this in your app's root directory: <br />
+<pre>&gt;&gt;&gt; Chiron /d:App /z:App.xap
+</pre><br />
+App.xap will be generated with the contents of your /App folder, and now you can throw the application on any web server you'd like (and remove the /App folder if you choose).  Note: though Chiron seems like a web-server, it's not; It only listens on localhost. This is slightly annoying when using 2 machines to develop your app (one to code it and one to view it), so that restriction will be lifted in the future. However, do not use Chiron for a deployment server! IIS or Apache are just fine. =)<br />
+<br />
+<span style="color: #ff9900; font-size: 130%;">My XAP is filled with CRAP!</span><br />
+<br />
+Here's where the broken bottles should start flying at my face: App.xap is simply a zip file. If you extract it, you'll see your original application (from the /app folder down), but with some extra gunk: <br />
+<pre>Foo.xap/
+       App.py
+       AppManifest.xaml
+       IronPython.dll
+       IronPython.Modules.dll
+       Microsoft.Scripting.dll
+       Microsoft.Scripting.Silverlight.dll
+</pre><br />
+Eek! Why all the DLLs!? Here's another dirty little secret; Silverlight doesn't ship with IronPython anymore! =( I can't blame this totally anyone else though, this was our call ... but for good reasons.  We wanted to get the new language bits to you quicker than Silverlight releases. I'll even go as far as saying I want you to be able to take our sources and compile them for Silverlight. With IronPython in the box, that wouldn't have been very pleasant. Plus, being in a shipping Microsoft product comes with a ton of red tape, and we wanted to avoid that. Lastly, Microsoft is very concerned with intellectual property, and the lawyers still haven't figured out the "open source project that takes contributions from non-Microsoft employees that ships in a Microsoft product" scenario. Since we take contributions to IronRuby today, and will in the future for IronPython, the best bet was for us to get the hell out of the Silverlight runtime.  Silverlight did give us some pressure though; we would have added more size to the Silverlight runtime. They are extremely concerned about size, and given the other issues we agreed to moving outside.   However we still are part of the Silverlight development process, and we still stick our bits in the Silverlight SDK for some publicity. =)  <br />
+<br />
+<span style="color: #ff9900; font-size: 130%;">Extensions to the rescue, NOT!</span> <br />
+<br />
+Keep in mind, this decision was made long before I joined the team, and long before XAP was a word you heard in the Silverlight hallways. At the time, Silverlight was designing a extension model, such that it didn't matter that you weren't in the core, end-user applications would automatically download "extensions" as needed. So, it seemed obvious that this new-fangled extension story was exactly what we wanted to do.  In SL1.1, the DLR provided hooks that the XAML Parser called when &lt;x:code source="app.py" /&gt; was encountered. With the knowledge of SL2 moving to a code-first model, we planned on removing these hooks, and instead use the new Silverlight application model to host the DLR and call into script code first. From there, the app developer could load XAML.  Then features started getting cut. And of course, extensions were one of them. WTF!? The DLR bet its entire existence in Silverlight on this being in! This was my first experience of how shipping software works at Microsoft; lots of planning, prioritizing, and scheduling. Slipping is very frowned upon, and extensions were looked upon as a threat to shipping SL2 (<i>contrary to popular belief, Microsoft doesn't have unlimited resources =P</i>).  This, coupled with XAP, set me completely back to square one. Or so I thought. XAP saved our ass with not having to depend on synchronous download (which was cut around the same time). But not having the extension model was kind of annoying. This meant that we had to stick our assemblies inside the XAP. Sure, a XAP is cached by your browser, but every time you download a dynamic language app for the first time you have to download the language assemblies. That was a big bummer, and that's why the DLLs are in the XAP, <span style="font-style: italic;">by default</span>. =P <br />
+<br />
+<span style="color: #ff9900; font-size: 130%;"> Haha! Our feature works!</span> <br />
+<br />
+But as luck would have it, though the testing for extensions were cut, the fundamental feature actually exists in SL2; <span style="font-weight: bold;">the ability to point your AppManifest.xaml file at assemblies outside the XAP</span>. Since the code to load these assemblies goes through the Silverlight network stack, these assemblies could even be cross-domain! Awesome!! So, we discovered this, and quickly make Chiron understand this. So, if you look at Chiron.exe.config, you'll see an <code><appsettings></appsettings></code> section with some interesting contents. <br />
+<pre>&lt;!--
+    This sets the base URL to load language assemblies from, instead of
+    packaging them in the XAP. If omitted, assemblies are copied from
+    localAssemblyPath and inserted in the XAP file.
+
+    For a rooted path but a relative domain name:
+    &lt;add key="urlPrefix" value="/path/to/language/assemblies" /&gt;
+
+    For an absolute URL on a domain:
+    &lt;add key="urlPrefix" value="http://example.com/assemblies/" /&gt;
+    --&gt;
+
+    &lt;!-- the location of language assemblies on disk --&gt;
+    &lt;add key="localAssemblyPath" value="." /&gt;
+</pre><i>Word of warning: this isn't supported by the Visual Studio Silverlight tools, so don't go off expecting this to work in a C#/VB app. It's this by design feature that needs more work to be prime-time. However, since Chiron understands how it works, we use it</i> <span style="font-family: courier new;"></span> <span style="font-family: courier new;"></span><span style="font-family: courier new;"></span> <br />
+<br />
+<span style="color: #ff9900; font-size: 130%;">Assemblies get the f*** out of my XAP</span> <br />
+<br />
+The "urlPrefix" option is your savior! By default, there is no urlPrefix, so Chiron will stick the assemblies into the XAP. But, if you use the option with a rooted path: <br />
+<pre>&lt;add key="urlPrefix" value="/lib" /&gt;
+</pre>The assemblies <span style="font-weight: bold;">WILL NOT BE INCLUDED IN THE XAP</span>! You're XAP will look like this: <br />
+<pre>App.xap/
+       App.py
+       AppManifest.xaml
+</pre>You're application will look for the assemblies in the /lib folder of whatever server you put the application on. While running the app from Chiron. it will serve the assemblies from that directory "magically", so no extra work on your part during development. However if you deploy to http://foo.com, you need to make sure all the assemblies you need are located at http://foo.com/lib.  <br />
+<br />
+<span style="color: #ff9900; font-size: 130%;">Assemblies, go as far away as possible</span> <br />
+<br />
+Lastly, if you want to host the assemblies on a completely different domain than your app, you can! <br />
+<pre>&lt;add key="urlPrefix" value="http://bar.com/lib" /&gt;
+</pre>This will grab the assemblies from http://bar.com/lib, but there's a catch. Silverlight will enforce the existence of a clientpolicy.xml or clientaccesspolicy.xml file on http://bar.com, with the following contents: <br />
+<pre>&lt;access-policy&gt;
+  &lt;cross-domain-access&gt;
+    &lt;policy&gt;
+      &lt;allow-from&gt;
+        &lt;domain uri="*"&gt;
+      &lt;/allow-from&gt;
+      &lt;grant-to&gt;
+        &lt;resource path="/lib" subpaths="true" /&gt;
+      &lt;/grant-to&gt;
+    &lt;/policy&gt;
+  &lt;/cross-domain-access&gt;
+&lt;/access-policy&gt;
+</pre>This will give any app access to your /lib directory. You can tighten up the restrictions here (search for Silverlight clientaccesspolicy.xml, I'm sure you'll find what you need.), but this will work. Also, Silverlight respects Flash's clientpolicy.xml files. =)  The beauty of having the DLLs outside the XAP is they will only be downloaded once, and cached in your browser!  You're XAP will be small (around 2k, yes, the compression isn't great ... we're working on it). Actually, all the samples on <a href="http://dynamicsilverlight.net/">http://dynamicsilverlight.net</a> work this way, check it out if you don't believe me: <a href="http://dynamicsilverlight.net/see/ruby/clock">http://dynamicsilverlight.net/see/ruby/clock</a>. Fire up Firebug to see what gets downloaded.  <a href="http://flickr.com/photos/jschementi/2463015407/" onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}"><img alt="" border="0" src="http://farm3.static.flickr.com/2302/2463015407_7b468c65df_m_d.jpg" style="cursor: pointer; display: block; margin: 0px auto 10px; text-align: center; width: 320px;" /></a>  <i>Note: some domains (like Microsoft.com) don't allow serving of DLLs. This is the main reason we didn't throw these DLLs on download.microsoft.com and enable the cross-domain download by default. Again, this is why this feature needs some more thought and isn't supported by VS tools.</i><br />
+<br />
+<span style="color: #ff9900; font-size: 130%;">Hey, it's not crap after all</span><br />
+<br />
+So, dynamic languages in Silverlight let you:<br />
+<ol><li>Develop with a text-editor with edit-refresh while running "Chiron /w"</li>
+<li>Deploy as a XAP file</li>
+<li>Have the Dynamic Language DLLs be served outside the XAP file.</li>
+</ol>This was the goal we had at the beginning of SL2 development, and though there were a few bumps in the road, screaming at meetings, cursing with my office door closed (I'm a New Yorker, what do you expect?), the aggravation paid off and we've met those goals.   <br />
+<br />
+<span style="color: #ff9900; font-size: 130%;">... but there's still some crap</span> <br />
+<br />
+Granted, there is still a lot we can do to improve this.<br />
+<ol><li>A XAP with 2 files in it is almost amusing. It really shouldn't be needed. We need to find a way to make it optional. This, as always, boils down to synchronous downloads need to be allowed on background threads. SL2 Beta1 doesn't even support asynchronous downloads on a background thread, but Beta2 will, largely due to my yelling, but not synchronous yet. That needs to get in so we can provide the option the XAP-less option.</li>
+<li>True extension support. The browser cache doesn't cut it. We need a GAC for Silverlight, where you can optionally install ahead of time, or download ONLY ONCE. This will allow versioning of those assemblies to be easier, and side-by-side version not just a matter of what URL it came from.</li>
+</ol><br />
+<span style="color: #ff9900; font-size: 130%;">Don't agree with me?</span> <br />
+<br />
+Given all the things I've said, do you still have nits about dynamic languages in Silverlight? Please, let me know! I'm really a web developer acting as a Microsoft tools developer, so the littlest details piss me off until they are perfect. If you can convince me that something should change here, you can pretty much count on it getting into Silverlight. But that is if you can convince me ... I am stubborn. =P  And on that note, one last quote from Michael: <br />
+<pre>&gt; Feel free to pass my comments on to those who made these 
+&gt; decisions (I'm well aware it isn't you Dino)... On the 
+&gt; other hand I may be wrong (and would be both delighted 
+&gt; and apologetic).
+</pre>I hope I proved you wrong =)
+</div>
+<div class="css-full-comments-content js-full-comments-content">
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://bjorn.tipling.com">
+  <div class="css-comment-name js-comment-name">
+    Bjorn Tipling
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-05-04T08:06:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Nice post, but why bother supporting (and wasting all that effort) on an also-ran proprietary technology. The only way people will install silverlight is when microsoft shells out huge amounts of cash to get 'exclusive rights.' Silverlight is evil. I wont install it, ever.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Anonymous
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-05-04T10:11:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Thanks, Jimmy.  I feel for your situation.  Feature cuts are never pleasant, but better to ship at all than to always put it off another month trying to add yet another feature.<BR/><BR/>/rant/<BR/><BR/>Amazing how people manage to think themselves still professional when they start spouting out "X is evil" just because Microsoft developed it, or that nobody would want to use it just because they themselves don't want to.<BR/><BR/>If a comment like this came up in an interview, I'd invite the twit to go elsewhere until he achieved a better attitude.<BR/><BR/>/end rant/
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://bjorn.tipling.com">
+  <div class="css-comment-name js-comment-name">
+    Bjorn Tipling
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-05-04T16:53:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    I never said it was because it was evil because of Microsoft. I gave many other reasons, which apparently you weren't able to read. <BR/><BR/>And you know I want to work at a Microsoft shop like I want a hole in my head, anyways. Have fun with your visual source safe and your user agent security agent. At my job I can use whatever platform I want to develop on. How about you?
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/07587372778870922677">
+  <div class="css-comment-name js-comment-name">
+    Miha
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-05-04T17:00:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Insightful. Thanks. I wish you (read: Microsoft) would provide such insightful and *useful* information more often.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-05-04T17:51:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    @bjorn: For Microsoft to start a new product, there needs to be a way to make money. Silverlight is no different. However, the team is using it as an opportunity to get street cred as well; running on the Mac, collaboration with Novell, dynamic languages, etc. <BR/><BR/>We use <A HREF="http://msdn.microsoft.com/en-us/tfs2008/default.aspx" REL="nofollow">Team Foundation Server</A> and Source Depot (an internal version control system based on Perforce); Source Safe hasn't been used widely since 1999. <BR/><BR/>Though my team keeps it's code in TFS, I used a tfs+svn bridge to work out of svn. Now I'm moving my stuff to git. And a Macbook is my main machine, because I asked for it. I'm making this post from my Ubuntu machine at home. Because it's my choice.<BR/><BR/>@Miha Thanks. This is happening more and more. I think any extreme is bad, and being completely closed up ... especially when your making developer tools ... is definitely bad.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://bjorn.tipling.com">
+  <div class="css-comment-name js-comment-name">
+    Bjorn Tipling
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-05-04T23:54:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Jimmy, I think that's pretty cool. I actually like ASP.NET a lot. I like Visual Studio, but Silverlight bothers me because I don't think it will ever function well on my Ubuntu and Mac machine. With HTML 5 comes a lot of new functionality that I hope much of it will replace the use of Flash and Silverlight. I'm fine with whatever technology runs on the server, proprietary, fine. It's what happens on the client that I want to remain cross platform and open, and Microsoft doesn't have a good track record of that. Moonlight, is an unfulfilled promise of a future I don't think will ever come to pass.<BR/><BR/>How do you develop for Silverlight on a Mac?<BR/><BR/>Also sorry if I came across as rude, I just didn't like being called a twit. :P
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-05-05T00:31:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    I do all my Silverlight app building on a Mac with IronRuby, IronPython, or Managed JScript. If you head over to the <A HREF="http://www.microsoft.com/silverlight/resources/install.aspx?v=2.0" REL="nofollow">Silverlight 2 download site</A>you'll see a download for the Mac. SL1 works on all Macs, and SL2 works on Intel Macs. Then just grab the <A HREF="http://codeplex.com/sdlsdk" REL="nofollow">dynamic languages SDK</A> and you're all set; you just need a text editor, terminal, and a browser. =)<BR/><BR/>Moonlight is going to happen; true cross-platform something the Silverlight leadership (Scott Guthrie and company) definitely know is important on the web.<BR/><BR/>HTML 5 is definitely not replacing Flash/Silverlight; granted it's got a ton of cool things like a multimedia tag, better document management, local database capability, and "area post" for replacing common AJAX usages, but it's still just an upgrade to HTML. It's unfortunate that we live in a world where browser plug-ins are the only way to get true client-like applications. Ideally we need to get rid of the browser altogether and just make the desktop understand web applications. But I'm musing here ... =P
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/09225328238115006912">
+  <div class="css-comment-name js-comment-name">
+    Eloff
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-05-05T11:38:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Very interesting to get an inside look at some of the design tradeoffs in Silverlight. Good work sticking up for the DLR, it looks like in the end we got pretty much to the same place, just by a different path (Chrion vs Sync Download)<BR/><BR/>Something people seem to miss is that yes the HTML/svg/css/javascript model is open, but it's different in every browser. On top of that it, well, blows compared to the desktop environment. Build once, deploy everywhere is impossible with HTML, but seems to be a viable dream with Silverlight. I'm actually developing faster on Silverlight Beta 1 than I was in the browser, and I have 3 weeks experience vs 9 years.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    mark
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-05-05T13:26:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-title js-comment-title">
+    Jimmy,<br>Thanks for the post, it was very interes...
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Jimmy,<BR/>Thanks for the post, it was very interesting.<BR/><BR/>One thing that concerns me with the approach the Silverlight team has taken is that they seem to have gutted the SL Runtime of several classes that are key to certain programming 'patterns' in .net.  Even the DLR seems to have been impacted by this, as seen by your private replacements of things like System.SerializableAttribute, System.NonSerializableAttribute, System.StringSplitOptions, System.Runtime.Serialization.ISerializable, etc<BR/><BR/>The DLR has not been impacted, at least as far as I can see by a missing ICommand interface but UI applications built using the DLR certainly are.  <BR/><BR/>I am having to take a similar approach to what the DLR has done in some areas to achieve a common codebase.  <BR/><BR/>Here is my question: What is the back story behind the decision to totally eliminate these core types and idoms from the SL runtime?<BR/><BR/>Thanks for any insite you can give.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://bjorn.tipling.com">
+  <div class="css-comment-name js-comment-name">
+    Bjorn Tipling
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-05-05T16:56:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-title js-comment-title">
+    Jimmy,<br><br>Thanks. I had no idea you could deve...
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Jimmy,<BR/><BR/>Thanks. I had no idea you could develop silverlight on a mac. Pretty cool. And using python. :) I'll check it out thanks.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://bjorn.tipling.com">
+  <div class="css-comment-name js-comment-name">
+    Bjorn Tipling
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-05-05T16:59:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Ha I just installed silverlight. And I said I would never. :(<BR/><BR/>But seriously, until moonlight works, I'm not taking Silverlight serious, and I'm not recommending it to anyone. But I'm curious about Python and developing on the mac so I'll check it out. :D
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/06229713779852499022">
+  <div class="css-comment-name js-comment-name">
+    Fuzzyman
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-05-05T17:16:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Thanks Jimmy this is a very useful blog entry with some good information - information which as far as I can tell is not available elsewhere (documentation need!?).<BR/><BR/>A post like this along with or shortly after the release might have saved much confusion/ranting on my part at least... :-)<BR/><BR/>One comment:<BR/><BR/>"This was the goal we had at the beginning of SL2 development"<BR/><BR/>You say outright that deployment via xap was what you always had in mind - which is very much *not* what John and Jim said at Mix 07...<BR/><BR/>Other than that, with the URL prefix stuff at least deployed xap files can be less bulky. A solution that works more globally (as you suggest) would be better of course.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.thuban.org">
+  <div class="css-comment-name js-comment-name">
+    Keith J. Farmer
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-05-05T17:44:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Mac support was one of the *first* things they demonstrated with Silverlight.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-05-06T01:58:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    @fuzzyman <BR/><BR/>> You say outright that deployment <BR/>> via xap was what you always had <BR/>> in mind - which is very much<BR/>> *not* what John and Jim said at <BR/>> Mix 07...<BR/><BR/>Should have been more clear: deployment with a zip file was always an *option* we wanted to support, along side of flat-files. But when push-came-to-shove, we had to compromise on the flat-file deployment model. I really hope the next version of Silverlight supports it; it'll elevate dynamic languages to more first-class citizens. We're getting close though. =)
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/01086724202649904752">
+  <div class="css-comment-name js-comment-name">
+    Mark
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-05-06T13:31:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    These people like Bjorn are demented and have been indoctrinated by the open sores at places like Slashdork and other place.<BR/><BR/>This is coming from someone who was writing code for Linux professionally a decade ago.<BR/><BR/>Bjorn, pull your head out of your ass.  You're an embarrassment to yourself.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2008-05-06T21:42:00.000Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Be nice people, no name calling ... this isn't elementary school ... :)<BR/><BR/>@Mark: bjorne has every right to be skeptical. The open-source/cross-platform mindset at Microsoft is new, and not everyone in the company is fully appreciative of those ideals, so I wouldn't expect anyone else to believe it's happening until they see it. Everything needs to start somewhere, and things like <A HREF="http://codeplex.com/IronPython" REL="nofollow">IronPython</A>, <A HREF="http://www.ironruby.net" REL="nofollow">IronRuby</A>, <A HREF="http://silverlight.net" REL="nofollow">Silverlight</A>, <A HREF="http://www.codeplex.com/AtlasControlToolkit" REL="nofollow">AJAX Control Toolkit</A>, and <A HREF="http://codeplex.com" REL="nofollow">Codeplex</A> itself are steps in the right direction. But, as <A HREF="http://www.iunknown.com" REL="nofollow">John Lam</A> says, we work on open-source @ Microsoft because it's challenging. :)
+  </div>
+  <br/>
+</div>
+</div>

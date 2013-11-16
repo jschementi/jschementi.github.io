@@ -1,0 +1,41 @@
+---
+title: "Error reporting in Silverlight: Ruby and Python"
+layout: "post"
+permalink: "/2008/05/error-reporting-in-silverlight-ruby-and.html"
+uuid: "2405318493305503725"
+guid: "tag:blogger.com,1999:blog-5419182.post-2405318493305503725"
+date: "2008-05-01 20:38:00"
+updated: "2008-07-07 22:28:44"
+description: 
+blogger:
+    siteid: "5419182"
+    postid: "2405318493305503725"
+    comments: "0"
+categories: [ruby, Silverlight, Python]
+author: 
+    name: "Jimmy Schementi"
+    url: "https://plus.google.com/116380716127564408544?rel=author"
+    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
+---
+
+<div class="css-full-post-content js-full-post-content">
+<p>The beauty of dynamic languages in Silverlight is you don't need an IDE; just work in a text-editor, save, and refresh the browser. Got errors in your code? No problem, a syntax error or exception will show up in your browser.</p> <a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://flickr.com/photos/jschementi/2457931148/"><img style="margin: 0px auto 10px; width: 320px; cursor: pointer; display: block; text-align: center;" alt="" src="http://farm4.static.flickr.com/3187/2457931148_5126ff2af8_o.png" border="0" /></a>This functionality is enabled in the HTML that hosts Silverlight, so you can take a application and host it with debug-ability or not. Given HTML that looks like this:   <pre style="overflow: auto;" id="line52">&lt;<span class="start-tag">object</span><span class="attribute-name"> data</span>=<span class="attribute-value">"data:application/x-silverlight," </span><span class="attribute-name">type</span>=<span class="attribute-value">"application/x-silverlight-2-b1" </span><span class="attribute-name">width</span>=<span class="attribute-value">"800" </span><span class="attribute-name">height</span>=<span class="attribute-value">"600"</span>&gt;
+ &lt;<span class="start-tag">param</span><span class="attribute-name"> name</span>=<span class="attribute-value">"source" </span><span class="attribute-name">value</span>=<span class="attribute-value">"app.xap"</span><span class="error"><span class="attribute-name"> /</span></span>&gt;
+ &lt;<span class="start-tag">param</span><span class="attribute-name"> name</span>=<span class="attribute-value">"initParams" </span><span class="attribute-name">value</span>=<span class="attribute-value"><span style="color: rgb(255, 255, 153);">"debug=true, reportErrors=errorLocation"</span> </span><span class="error"><span class="attribute-name">/</span></span>&gt;
+&lt;/<span class="end-tag">object</span>&gt;</pre>The param "initParams" takes a comma-separated list of key=value pairs, which end up as a dictionary on Application.initParams. You can put arbitrary settings here, and read them into your application. Dynamic languages look for a couple of these options (below) to configure your application. If the option is not there, it's given a default value (in bold).
+<span style="font-style: italic;">
+Note: this is what these options "should" do; there are bugs and those are enumerated further down.</span>
+<h4><span style="color:#ff8000;">Error handling "initParams" options</span></h4><ul><li>debug = true|<span style="font-weight: bold;">false</span>
+<ul><li>Runs your code as debug-able; stack traces will be shown if an error occurs. Also, this lets you attach the browser to a debugger and step through the running program. </li><li>When omitted/set to false, all errors will be silent (for deployment purposes
+       </li>    </ul>  </li>  <li>reportErrors = [HTML element ID]
+     <ul><li>In the event of an error, the error window (shown in the screen shot above) will be written into the innerHTML property of the HTML element with an ID attribute matching the value of this field. </li>      <li>If there is no matching ID, a HTML element is created with that ID, and the error window inserted </li>      <li>If this field is omitted, no errors will be shown
+         <ul><li>You can define the "onerror" param<span style="font-size:85%;"><span style="font-family:courier new;"></span></span>, which will let you handle any error with JavaScript (the index.html templates do this, if you want sample code) </li>        </ul>      </li>      <li>This just causes HTML to be generated in the HTML element; the styling of the error window is defined in a separate error.css file that must be included in the page.
+      
+ </li>    </ul>  </li><li>exceptionDetail = true|<span style="font-weight: bold;">false</span>
+     <ul><li><span style="font-weight: bold;"></span>If set to true, this will also show the entire managed stack trace in the error window rather than just the dynamic stack trace. This is useful when debugging C#/Visual Basic when called from a dynamic language. </li>    </ul>  </li></ul><h4><span style="color:#ff8000;">What doesn't work in Silverlight 2 Beta 1?</span></h4><ol><li>debug seems to have no effect on the stack-trace in Python and JScript. </li>  <li>exceptionDetail only has an effect on Ruby code; Python and JScript always show a dynamic stack trace <em>(Note: this is fixed in Silverlight 2 Beta 2)</em> </li></ol><h4><span style="color:#ff8000;">Let me hear what you think!</span></h4><p>Enabling this type of functionality is not the most obvious thing in the world, and may not be the best way either. I'm mostly interested in what you think about this:
+ </p><ul><li>Is the behavior of each option intuitive, or did you think they did something else?
+     <ul><li>I sometimes get confused with "reportErrors", since I think it's a boolean flag. I'd think changing the name to "errorReportId" would make more sense. Thoughts?
+</li>    </ul>  </li>  <li>Should we have a separate "error window" for debug=true|false, rather than just failing silently? </li>  <li>Do you like having the separate error.css so you can have it for customization, or would you rather the CSS is generated in-line with the HTML when an error occurs?
+     <ul><li>Having different error.css for development/deployment could be useful?
+</li>    </ul>    <ul><li>Keep in mind in-line CSS will make it harder to customize the look of the error window. </li></ul></li>  <li>Anything else? </li></ul>Please let me know what you think. As always, the source code for this is on <a href="http://codeplex/sdlsdk">http://codeplex/sdlsdk</a>, and this specific feature is in the DynamicApplication class (Src/Microsoft.Scripting.Silverlight/DynamicApplication.cs). Simple patches are welcome. =)
+</div>

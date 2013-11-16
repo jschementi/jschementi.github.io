@@ -1,0 +1,285 @@
+---
+title: "IronRuby 0.9 Released!"
+layout: "post"
+permalink: "/2009/08/ironruby-09-released.html"
+uuid: "8365420027701416090"
+guid: "tag:blogger.com,1999:blog-5419182.post-8365420027701416090"
+date: "2009-08-02 00:54:00"
+updated: "2009-08-03 20:53:45"
+description: 
+blogger:
+    siteid: "5419182"
+    postid: "8365420027701416090"
+    comments: "14"
+categories: [OSCON, IronRuby, Release]
+author: 
+    name: "Jimmy Schementi"
+    url: "https://plus.google.com/116380716127564408544?rel=author"
+    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
+---
+
+<div class="css-full-post-content js-full-post-content">
+<p align="center"><a href="http://lh5.ggpht.com/_OqCZhp9yI0Q/SnTjqaLzSeI/AAAAAAAAALw/bHORChmv7yk/s1600-h/ir-logo-white%5B4%5D.jpg"><img style="display: inline" title="ir-logo-white" alt="ir-logo-white" src="http://lh5.ggpht.com/_OqCZhp9yI0Q/SnTjqyQdzqI/AAAAAAAAAL0/CbgKyPqQXao/ir-logo-white_thumb%5B2%5D.jpg?imgmax=800" width="400" height="115" /></a> </p>  <p align="center">I'm pleased to announce a new release of IronRuby: 0.9!</p>  <p align="center"><font size="5"><strong><a href="http://ironruby.net/Download" target="_blank">Download IronRuby 0.9</a></strong></font></p>  <p align="center"><a href="http://github.com/ironruby/ironruby/zipball/v0.9.0" target="_blank">You can also get the source code for this release</a></p>  <p>It’s been a long ride since <a href="http://ironruby.net">IronRuby</a> was announced at <a href="http://videos.visitmix.com/MIX07/DEV02">MIX ‘07</a>, but now all eyes are focused on getting it to 1.0. The <a href="http://blog.jimmy.schementi.com/2009/03/ironruby-03-released.html" target="_blank">past</a> <a href="http://blog.jimmy.schementi.com/2009/05/ironruby-05-released.html" target="_blank">couple</a> of versions <a href="http://blog.jimmy.schementi.com/2009/07/ironruby-06-released.html" target="_blank">have made vast compatibility and performance improvements</a>, and 0.9 marks the last set of <strong>major</strong> features that will be added to IronRuby. From now on, all IronRuby languages will be primarily focused on bug fixing <strong>and</strong> anything else the community deems necessary to call IronRuby a 1.0 release. These improvements be delivered as point-point releases (0.9.1, 0.9.2, etc) until <strong>you </strong>decide it is ready to call 1.0.</p>  <p>Though IronRuby is breaking away from it’s conference-driven development schedule, this release comes only a week after <a href="http://en.oreilly.com/oscon2009" target="_blank">OSCON 2009</a> where I talked about using <a href="http://blog.jimmy.schementi.com/2009/07/ironruby-at-oscon-2009-mono-moonlight.html" target="_blank">IronRuby with Mono and Moonlight, and scripting open source apps</a>.</p>  <h4><font color="#ff8000" size="4">What's in the Release?</font></h4>  <p>Library performance was a big focus for this release; basically going though the <a href="http://github.com/acangiano/ruby-benchmark-suite" target="_blank">Ruby Benchmark suite</a> and making sure any obvious slowness was fixed. As I said in <a href="http://blog.jimmy.schementi.com/2009/07/ironruby-at-oscon-2009-mono-moonlight.html" target="_blank">my previous post about OSCON</a>, IronRuby is approximately 2x faster than MRI when running the benchmark suite, but in the near future a complete evaluation of IronRuby’s performance will be done and published on the <a href="http://ironruby.info" target="_blank">website</a>.</p>  <p><em><a href="http://antoniocangiano.com/" target="_blank">Antonio Cangiano</a> has already published <a href="http://antoniocangiano.com/2009/08/03/performance-of-ironruby-ruby-on-windows/" target="_blank">benchmark results between IronRuby 0.9 and Ruby 1.8.6, and things look really good for IronRuby</a>.</em></p>  <p>On the compatibility front, the <a href="http://ruby-doc.org/stdlib/libdoc/win32ole/rdoc/classes/WIN32OLE.html" target="_blank">Win32OLE Ruby library</a> is now <a href="http://github.com/ironruby/ironruby/blob/v0.9.0/Merlin/Main/Languages/Ruby/Libs/win32ole.rb" target="_blank">available in IronRuby</a>. This builds on top of IronRuby’s existing COM interop from version 0.5, letting you script any Windows component/application that exposes a <a href="http://msdn.microsoft.com/en-us/library/ms877981.aspx" target="_blank">COM</a> interface. Though it hasn’t been fully tested yet, this will make things like <a href="http://wtr.rubyforge.org/" target="_blank">Watir</a> work on IronRuby.</p>  <p>Lastly, there have been interop improvements with .NET, most notably making Generic types more friendly to all the crazy things Ruby can do to them, and also with other DLR languages, making it really easy to call IronPython from IronRuby.</p>  <p>For more detailed information, please see the <a href="http://rubyforge.org/frs/shownotes.php?release_id=37484" target="_blank">CHANGELOG</a> (which includes all commit messages for the release ... not just &quot;syncing to head of tfs&quot;)</p>  <p><strong><font color="#ff8000">Want to find out more about the release? Read on:</font></strong></p>  <ul>   <li><a href="#pytorb">Calling Python code from Ruby</a> </li>    <li><a href="#win32ole">Win32OLE support</a> </li>    <li><a href="#generics">Rubyizing Generics</a> </li>    <li><a href="#notable-changes">Some more notable changes</a> </li>    <li><a href="#bugs09">Bugs closed</a> </li> </ul>  <h5><a name="pytorb"></a><font color="#ff8000" size="3">Calling Python code from Ruby</font></h5>  <p>In an effort to allow Ruby to call Python code easily, IronRuby provides a way to importing files of other DLR languages, giving you access to the DLR scope. Here's a basic usage:</p> <script src="http://gist.github.com/159528.js"></script>  <p><code>IronRuby#require(path), load(path)</code> allow you to include script files, just like <code>Kernel#require, #load</code> except that they execute the given script against a <b>new</b> <code>Scope</code> and return it, instead of just returning true/false/nil. If the target is an assembly they return the loaded assembly. Keep in mind you can still use <code>Kernel#require, #load</code> to use other language's script files, but if the language requires you obtain an object representing that file (in Python it's called a <code>module</code>) you'll have to get it elsewhere (see below).</p>  <p>There are other methods to help you use other languages from Ruby:</p>  <ul>   <li><code>IronRuby#loaded_scripts</code> has also been added to returns a dictionary that holds on loaded scripts and their Scopes, in-case you used <code>Kernel#require</code> to load a script, and need its Scope at a later time. </li>    <li><code>IronRuby#loaded_assemblies</code> returns an array of assemblies already loaded in the current runtime; though this isn’t needed for DLR language interop it makes sense to include along with <code>IronRuby#loaded_scripts</code>. </li>    <li><code>IronRuby#globals</code> returns the current <code>ScriptRuntime.Globals</code> scope; this allows you to easily use Python files and work with the modules they define. </li> </ul>  <p>Keep in mind these concepts don’t only apply to Python; they can be used with any language that uses first-class scopes.</p>  <h5><a name="win32ole"></a><font color="#ff8000" size="3">Win32OLE support</font></h5>  <p>Since IronRuby 0.1 was released we’ve said <a href="http://ruby-doc.org/stdlib/libdoc/win32ole/rdoc/classes/WIN32OLE.html" target="_blank">Win32OLE</a> was not going to be supported, due to the lack of general COM support in the <a href="http://dlr.codeplex.com" target="_blank">DLR</a>. However, when the DLR implemented a COM binder for the new <a href="http://msdn.microsoft.com/en-us/library/dd264736(VS.100).aspx" target="_blank">dynamic feature in C# 4.0</a>, this allowed IronRuby and IronPython to easily implement COM support. IronRuby 0.5 had this support, but in this release we provided win32ole.rb to implement Ruby’s Win32OLE API. Here’s a simple automation example which opens Excel, adds some data, generates a chart, and rotates the chart. taken from the <a href="http://whytheluckystiff.net/ruby/pickaxe/html/win32.html" target="_blank">Ruby Pragmatic Programmer’s Guide (aka. the pickaxe book)</a>, which now works in IronRuby:</p> <script src="http://gist.github.com/159829.js"></script>  <h5><a name="generics"></a><font color="#ff8000" size="3">Rubyizing Generics</font></h5>  <p><em>Note: this feature didn’t make it into 0.9, but it is in the <a href="http://github.com/ironruby/ironruby" target="_blank">sources</a> and will be part of 0.9.1</em></p>  <p>IronRuby has great .NET framework integration, so code written with a CLI-based language (C#, VB, F#) can be called from IronRuby, without it feeling like interop. As we work towards a stable 1.0 release and this integration continues to be polished; in this release we most notably made working with generics a bit friendlier to Ruby.</p>  <p>The first improvement has to do with re-opening a generic class. In the past you couldn’t just re-open a generic class and assume anything you added to it would be found on other versions of that generic class (eg. adding methods to <code>List[]</code> wouldn’t have them show up on <code>List[String]</code> and <code>List[Fixnum]</code>). Now the Ruby class corresponding to the CLR generic type definition is a super-class of all instantiations of that type, making this possible:</p> <script src="http://gist.github.com/159861.js"></script>  <p>There's a much more usability improvements to generics and .NET interop in general in this release, so either take a look at the <a href="http://rubyforge.org/frs/shownotes.php?release_id=37484" target="_blank">CHANGELOG</a> or keep an eye on the <a href="http://ironruby.net/Documentation/.NET" target="_blank">.NET documentation</a>.</p>  <h5><a name="notable-changes"></a><font color="#ff8000" size="3">Some more notable changes:</font></h5>  <ul>   <li>Fix to Module#autoload so it doesn’t squash an existing constant </li>    <li>Fix parsing of YAML time strings </li>    <li>Replace DLR closures by a Ruby-specific implementation for performance </li>    <li>Implement StringIO#ungetc – used in ActiveSuppor </li>    <li>Re-implements “tr”, “tr!”, “tr_s”, “tr_s!”. The new implementation is almost 12x faster. </li>    <li>Reimplements “join” to achieve better perf. </li>    <li>Change ComBinder class to internal. </li>    <li>Improves the ExpressionVisitor API </li>    <li>Improves implementation of RubyArray. A loop doing Array#shift is not shifting the entire array content left every iteration. </li>    <li>Add hosting of IronPython to hosting tutorial </li>    <li>Implements interpretation of coalescing expression </li>    <li>Implements Kernel#rand, Kernel#srand. </li>    <li>Improves scope allocation perf. </li>    <li>ironruby tutorial in Silverlight </li>    <li>More fixes to win32ole to get the ADO DBI driver working </li>    <li>String, Array, and Bignum fixes (thanks Daniele Allessandri!) </li>    <li>Explicit x64 support with ir64.exe, and force ir.exe to run in a 32bit process on a 64bit OS. </li>    <li>Implements basic debug views for classes that implement IRubyObject </li> </ul>  <p>For more details, see the <a href="http://rubyforge.org/frs/shownotes.php?release_id=37484" target="_blank">CHANGELOG</a>.</p>  <h5><a name="bugs09"></a><font color="#ff8000" size="3">Bugs closed</font></h5>  <p>Here are all 26 bugs closed since the last release (2009-07-02). <a href="http://ironruby.codeplex.com/WorkItem/List.aspx" target="_blank">You can see more information about each one on CodePlex</a>.</p>  <pre style="overflow: scroll">1841 	Rubygems Test Failures in 'hash'
+1506 	-X:PrivateBinding does not enable referring to classes that have internal visibility
+1533 	Unverifiable code generated by mspec :lang
+1678 	ArgumentError when calling System.String..ctor(Char[], int, int)
+1211 	Adding a random object to Time which responds to to_f
+910 	YAML does not properly deserialize Time values.
+1626 	Rubygems failures
+964 	overriding unsafe methods
+1537 	rand doesn't work collectly
+468 	Better error message for running ir.exe on pre-.Net 2.0 SP1
+1787 	All-caps .NET method names are mangled strangely
+1521 	Access is allowed to internal fields
+1502 	alias_method fails for :do
+821 	File.expand_path does not support a line number after filename
+1509 	Proc.to_s should include line number where the block was declared
+1501 	WinForms broken
+1400 	$? is not always Process::Status
+1345 	load_assembly(<partial_name>) should work
+1344 	System.Action.new does not work
+1306 	Cannot call CLR constructor of builtin type
+1184 	public(:foo) does not work correctly for mixed-in methods
+1060 	visibility of send :define_method
+917 	Passing a Ruby array to a .NET method that expects an IEnumerable derivative fails with GetEnumerator call
+783 	Assert in SetMethodBasesNoLock when calling #== on Ruby class inheriting from CLR class which overrides Equals
+761 	Wrong behavior when calling redefined methods on object instances
+1470 	Can't call the BigIntegerOverload of a method with a DefaultProtocol Attribute on the BigInteger attribute</pre>
+
+<h5><font color="#ff8000" size="3">Enjoy!</font></h5>
+
+<p>Please test out IronRuby 0.9 and let us know if you have any issues. We hope you enjoy this release! Please <a href="http://ironruby.codeplex.com/WorkItem/Create.aspx" target="_blank">submit issues to CodePlex</a> and help prioritize features for 1.0.</p>
+
+<div style="padding-bottom: 0px; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; float: none; padding-top: 0px" id="scid:0767317B-992E-4b12-91E0-4F059A8CECA8:22650565-0430-4c01-bc82-33d6fda8be12" class="wlWriterEditableSmartContent">Technorati Tags: <a href="http://technorati.com/tags/IronRuby" rel="tag">IronRuby</a>,<a href="http://technorati.com/tags/Release" rel="tag">Release</a>,<a href="http://technorati.com/tags/OSCON" rel="tag">OSCON</a></div>  
+</div>
+<div class="css-full-comments-content js-full-comments-content">
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/03196222684539446026">
+  <div class="css-comment-name js-comment-name">
+    SoftMind
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-08-02T02:36:12.341Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Congratulations...(^_^)
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/14215294631780902573">
+  <div class="css-comment-name js-comment-name">
+    Dody G.
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-08-02T06:27:45.035Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    oh, bravo. This looks real nice.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/13715093192326244145">
+  <div class="css-comment-name js-comment-name">
+    brainopia
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-08-02T07:00:02.585Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    congrats!
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/12145009136037700490">
+  <div class="css-comment-name js-comment-name">
+    Joao Pedrosa
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-08-02T08:36:53.613Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    That all sounds great and real Ruby. ;-)<br /><br />I really like that you have had some more opportunities to improve performance and hopefully that will help with the stability (less potential for memory leaking).<br /><br />Thanks.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Anonymous
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-08-02T09:37:22.706Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Congrats on this release.<br />However, your example with generics doesn&#39;t run:<br /><br />IronRuby 0.9.0.0 on .NET 2.0.50727.4918<br />Copyright (c) Microsoft Corporation. All rights reserved.<br /><br />&gt;&gt;&gt; include System::Collections::Generic<br />=&gt; Object<br />&gt;&gt;&gt;<br />&gt;&gt;&gt; class List<br />...   def foo<br />...     self.class<br />...   end<br />... end<br />=&gt; nil<br />&gt;&gt;&gt;<br />&gt;&gt;&gt; List.of(Fixnum).new.foo<br /><b>:0: undefined method `foo&#39; for []:System::Collections::Generic::List[Fixnum] (NoMethodError)</b><br /><br />What am I doing wrong?
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    Anonymous
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-08-02T09:45:11.155Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    BTW, I used the version from ironruby.net. It works fine when compiling from the repo tag 0.9.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/16564769539414469998">
+  <div class="css-comment-name js-comment-name">
+    Antonio Cangiano
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-08-03T15:25:00.962Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    This is excellent, Jimmy.<br /><br />I ran a comparison between IronRuby 0.9, Ruby 1.8 and Ruby 1.9 on Windows. Things look very good for IronRuby: <a href="http://antoniocangiano.com/2009/08/03/performance-of-ironruby-ruby-on-windows/" rel="nofollow">http://antoniocangiano.com/2009/08/03/performance-of-ironruby-ruby-on-windows/</a>
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-08-03T20:57:41.153Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    @Anonymous Sorry for the confusion: that feature ended up not being in the build we picked for 0.9, but I was so excited about it I totally forgot to check if it got into the build. I&#39;ve updated the post above, and it&#39;ll be in 0.9.1.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-08-03T20:59:13.777Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    @antonio Thanks for doing a run and posting about it! This made me smile when I saw it this morning. =)<br /><br />Jim is working through the benchmarks we still fail on, so hopefully we&#39;ll have a much cleaner run shortly.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="undefined">
+  <div class="css-comment-name js-comment-name">
+    shawn
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-08-04T02:15:55.505Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Wow, those performance improvements look great!  Keep &#39;em coming! :)
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/14737982150461168630">
+  <div class="css-comment-name js-comment-name">
+    hir
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-08-06T17:12:30.219Z
+  </div>
+  </div>
+  <div class="css-comment-title js-comment-title">
+    Hi,
+
+Tried out the new IronRuby.  It&#39;s good to...
+  </div>
+  <div class="css-comment-content js-comment-content">
+    Hi,<br /><br />Tried out the new IronRuby.  It&#39;s good to see things are keeping in motion.<br /><br />And where can I go to give feedbacks?<br /><br />One big concern for me is that it doesn&#39;t have NKF/KConv fully implemented.  These are really crucial when handling different character sets in Japanese.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-08-09T07:21:32.984Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    @hir You can give feedback at http://ironruby.codeplex.com/WorkItem/Create.aspx or ask questions on the mailing list: http://rubyforge.org/mailman/listinfo/ironruby-core
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://twitter.com/vcr2">
+  <div class="css-comment-name js-comment-name">
+    victor
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2009-12-03T18:49:26.206Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    this is something really &quot;extra&quot;, but maybe not for the ruby community:<br /><br />could casing be done also the ruby way, lower casing, underscores, etc? having a wrapper to those naming conventions would be really nice to integrate the way rubists think and design their applications.<br /><br />It could lead to some conflicts (e.g. when we have a method a() and a method A() ), but since this is not the usual situation for 99.99% of classes, this could be handled by making an exception to the conventions and using the library with the right name.
+  </div>
+  <br/>
+</div>
+<div class="css-full-comment js-full-comment">
+  <div class="css-comment-user-link js-comment-user-link">
+  <a href="http://www.blogger.com/profile/05370777584064015818">
+  <div class="css-comment-name js-comment-name">
+    Jimmy Schementi
+  </div>
+  </a>
+  <div class="css-comment-date js-comment-date">
+    2010-01-21T18:13:51.086Z
+  </div>
+  </div>
+  <div class="css-comment-content js-comment-content">
+    @victor: IronRuby has done this from the first release. Given this C# code:<br /><br />public class Foo {<br />  public void Bar() {<br />  }<br />}<br /><br />You can call it from IronRuby using Ruby-like method conventions:<br /><br />Foo.new.bar<br /><br />But you can also call it with the original name:<br /><br />Foo.new.Bar<br /><br />And there is no conflicts, as &quot;bar&quot; will only map to &quot;Bar&quot; if the Foo class didn&#39;t define a &quot;bar&quot; in the first place.
+  </div>
+  <br/>
+</div>
+</div>
