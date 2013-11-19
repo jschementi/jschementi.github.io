@@ -15,9 +15,12 @@ projects. Please contact me for any questions.
 I oversee the design and engineering of <a href="http://moven.com" target="_blank">Moven</a>,
 an app that helps you manage your money as you spend it.
 
-Moven is currently invite-only, but
-<a href="https://moven.com/#referral/jimmy.schementi.com" target="_blank">please request an invitation for Moven</a>
-(using this link will bump you up in the queue) and get the <a href="https://itunes.apple.com/us/app/moven/id661035659" target="_blank">iOS app</a>.
+Get the app for
+<a href="https://itunes.apple.com/us/app/moven/id661035659" target="_blank">iPhone</a>
+or
+<a href="https://play.google.com/store/apps/details?id=com.movencorp.moven" target="_blank">Android</a>.
+
+Moven is currently invite-only, but <a href="https://moven.com/#referral/jimmy.schementi.com" target="_blank">request an invitation here</a>, and you'll be bumped up in the queue.
 
 ## Iron Languages
 
@@ -29,7 +32,7 @@ worked on various parts of the project, from engineering to evangelism.
   <li><a target="_blank" href="http://ironruby.net" target="_blank">IronRuby homepage</a></li>
   <li><a target="_blank" href="http://ironruby.net" target="_blank">IronPython homepage</a></li>
   <li><a target="_blank" href="http://dlr.codeplex.com" target="_blank">Dynamic Language Runtime</a></li>
-</ul><br/>
+</ul>
 
 ## SourceAid
 
