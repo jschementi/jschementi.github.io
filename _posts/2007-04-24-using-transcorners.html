@@ -6,13 +6,13 @@ uuid: "6464345287516184208"
 guid: "tag:blogger.com,1999:blog-5419182.post-6464345287516184208"
 date: "2007-04-24 23:42:00"
 updated: "2008-05-04 09:11:11"
-description: 
+description:
 blogger:
     siteid: "5419182"
     postid: "6464345287516184208"
     comments: "0"
 categories: [html, css]
-author: 
+author:
     name: "Jimmy Schementi"
     url: "https://plus.google.com/116380716127564408544?rel=author"
     image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
@@ -23,9 +23,9 @@ I just spent the past hour and a half trying to get simple rounded corners using
 
 If you are experiencing the background of your rounded div not being rounded ... and the border BOTH rounding and not ...
 
-<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://jimmy.schementi.com/blog/uploaded_images/transcorner_error-732724.jpg"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer;" src="http://jimmy.schementi.com/blog/uploaded_images/transcorner_error-732722.jpg" alt="" border="0" /></a>... then you are experiencing the same problem I did. To fix this, simply make sure the background-color of one of the parent elements is set. In my case, nothing had it set, including the body ...
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://jimmy.schementi.com/blog/uploaded_images/transcorner_error-732724.jpg"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer;" src="/blog/uploaded_images/transcorner_error-732722.jpg" alt="" border="0" /></a>... then you are experiencing the same problem I did. To fix this, simply make sure the background-color of one of the parent elements is set. In my case, nothing had it set, including the body ...
 <pre>body {
  background-color: white;
 }</pre>... this will make sure the background color is set and you will achieve the correct rounded corner effect:
-<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://jimmy.schementi.com/blog/uploaded_images/transcorners-779745.jpg"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer;" src="http://jimmy.schementi.com/blog/uploaded_images/transcorners-779742.jpg" alt="" border="0" /></a>Hope this saves someone some time ...
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://jimmy.schementi.com/blog/uploaded_images/transcorners-779745.jpg"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer;" src="/blog/uploaded_images/transcorners-779742.jpg" alt="" border="0" /></a>Hope this saves someone some time ...
 </div>
