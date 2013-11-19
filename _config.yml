@@ -1,3 +1,5 @@
 name: Jimmy Schementi
+description: Jimmy Schementi's website
+url: http://jimmy.schementi.com
 markdown: redcarpet
 pygments: true
