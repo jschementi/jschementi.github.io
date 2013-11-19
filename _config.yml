@@ -3,3 +3,4 @@ description: Jimmy Schementi's website
 url: http://jimmy.schementi.com
 markdown: redcarpet
 pygments: true
+disqus_shortname: jschementi
