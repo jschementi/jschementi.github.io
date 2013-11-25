@@ -69,6 +69,8 @@ And this gives you an idea of what type of music I'm interested in:
 ## Art
 
 I used to paint and draw a lot - mostly landscapes. Here are a few of my favorites:
-
-![Seascape](painting-seascape.jpg "Seascape")
-![Waterfall](painting-waterfall.jpg "Waterfall")
+<div class="paintings">
+[![Seascape](painting-seascape.jpg "Seascape")](painting-seascape.jpg)
+[![Waterfall](painting-waterfall.jpg "Waterfall")](painting-waterfall.jpg)
+[![Mountains](painting-mountains.jpg "Mountains")](painting-mountains.jpg)
+</div>

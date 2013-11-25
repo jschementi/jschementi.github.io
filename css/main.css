@@ -166,3 +166,24 @@ ul {
 .post pre.terminal code {
   background-color: #333;
 }
+
+/*****************************************************************************/
+/*
+/* About
+/*
+/*****************************************************************************/
+
+.paintings > a {
+  float: left;
+  height: 160px;
+  margin-right: 1em;
+}
+.paintings > a > img {
+  height: 160px;
+}
+
+.paintings > a:last-child {
+  clear: left;
+  float: none;
+  margin-right: 0;
+}
