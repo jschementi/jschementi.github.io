@@ -1,46 +1,52 @@
 ---
 layout: page
-title: Jimmy Schementi - Software Developer
+title: Jimmy Schementi - Software Engineer
 ---
 
 - **Email** jimmy@schementi.com
 - **Phone** 516.382.2557
-- **Web**   http://jimmy.schementi.com
+- **Web**   [jimmy.schementi.com](http://jimmy.schementi.com)
 
-Software developer experienced in building programming languages,
-developer tools, and financial systems.
-Interested in continuing to make software that makes people's lives easier,
-including my own.
+Software Engineer experienced in building products that make people's lives
+easier, including my own.
 
-### Skills
+### [Moven](http://moven.com) - New York, NY
 
-Ruby, Python, JavaScript, C#, Java, C++, compiler construction, web development,
-and user-interface design.
+**Head of Engineering** (11/2012 - present)
 
-*See each position for more specific skills/experiences.*
+Oversee of all aspects of [Moven](https://moven.com) product design and development.
 
-### Movencorp Inc. - New York, NY
+*iOS, Android, Node.js, Python, Ruby, MongoDB, PostgreSQL*
 
-**Engineering** (11/2012 - present)
+#### [Lab49](http://lab49.com) - New York, NY
 
-Oversee engineering of all aspects of [Moven](https://moven.com).
+**Senior Software Engineer** (8/2010 - 10/2012)
 
-#### Lab49 - New York, NY
+An engineer in Lab49's LabInteractive practice. For projects delivered to
+Lab49's clients, the company names are omitted, replaced with a short
+description of the institution.
 
-**Software Engineer** (8/2010 - 10/2012)
+- "A Foreign Bank"
+
+  Implemention of a HTML5 front-end for foreign exchange 
+  single-dealer platform (http://en.wikipedia.org/wiki/Single-dealer_platform).
+
+  *JavaScript, Node.js, Java, foreign-exchange, single-dealer platform*
 
 - "A Large Consumer Bank"
 
-  Build a web-based system for accessing data on positions, trades, and reports.
+  Built a web-based system for accessing data on positions, trades, and reports.
 
-  *javascript, html, java*
+  *JavaScript, HTML, CSS, Java*
 
 - "A Global Financial Services Firm"
 
   Analyzed all technical aspects of their Financial Advisor system, and
   delivered a written proposal for what technical changes would be required to
   position the project for future stability/maintainability, and a timeline for
-  how to execute the proposal.
+  how to execute the proposal. Also implemented initial version of the proposal.
+
+  *JavaScript, HTML, Node.js, C#*
 
 - "An Asset Management Firm"
 
@@ -54,7 +60,7 @@ Oversee engineering of all aspects of [Moven](https://moven.com).
 
   *Python, IronPython, C#, .NET, Silverlight, SQLServer, quantitative analysis.*
 
-#### Microsoft - Redmond, WA
+#### [Microsoft](http://microsoft.com) - Redmond, WA
 
 **Program Manager** (7/2007 - 7/2010)
 
@@ -102,7 +108,7 @@ Foundation and ASP.NET integration.
 
 *python, C#, WPF, ASP.NET*
 
-#### Worcester Polytechnic Institute, Worcester, MA
+#### [Worcester Polytechnic Institute](http://wpi.edu), Worcester, MA
 
 **Lead Developer - Artifical Intelligence Lab** (1-6/2007)
 
@@ -117,7 +123,7 @@ Foundation and ASP.NET integration.
 *ruby, Rails, intelligent-tutoring systems, user-interface design, Java,
  HTML/CSS, JavaScript*
 
-#### General Electric, Danbury, CT
+#### [General Electric](http://ge.com), Danbury, CT
 
 **Information Management Leadership Program Intern** (Summer 2005)
 
@@ -125,9 +131,6 @@ Lead a user-acceptance testing effort between teams in US and India.
 
 *project management, user-acceptance testing*
 
-
-See my [LinkedIn profile](http://www.linkedin.com/in/jschementi) for a
-more-complete job history.
 
 
 ### Education
