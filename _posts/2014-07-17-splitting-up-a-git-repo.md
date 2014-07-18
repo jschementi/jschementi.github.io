@@ -144,7 +144,7 @@ Convert all symlinks to hard links (if the symlinks are relative paths):
 # Empty commits
 
 If for some reason you have empty commits (maybe you forgot a `--ignore-unmatch` ?),
-you can remove them with a special `commit-filter`:
+you can remove them with a special `--commit-filter`:
 
     git filter-branch --commit-filter 'git_commit_non_empty_tree "$@"' HEAD
 
@@ -158,6 +158,13 @@ be OK with it. Your initial commit is most likely going to be an empty one sayin
 You could rebase your entire repository (`git rebase --interactive --root`)
 but if you have any legitimate merge commits you'll find yourself attempting to merge
 years old code in the right order. It's not worth it.
+
+
+# Fixing author info
+
+If you notice certain committers used a non-company email, or there are commits
+from non-human accounts, you can use a `--env-filter` to rewrite author and 
+committer name and emails. [GitHub's Help site has a good example of this](https://help.github.com/articles/changing-author-info).
 
 
 # Holy crap I deleted the wrong thing/everything!
