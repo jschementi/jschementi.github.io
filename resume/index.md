@@ -5,7 +5,7 @@ title: Jimmy Schementi - Software Engineer
 
 - **Email** jimmy@schementi.com
 - **Phone** 516.382.2557
-- **Web**   [jimmy.schementi.com](http://jimmy.schementi.com)
+- **Web**   <script>outputEmailLink()</script>
 
 Software Engineer experienced in building products that make people's lives
 easier, including my own.

@@ -8,7 +8,7 @@ I'm a Software Engineer in NYC ([resume](../resume))
 I'm always involved in many projects, be it open-source software for the
 benefit of the greater good, or technology for new business ventures.
 See my [GitHub](http://github.com/jschementi) profile for all my open-source
-projects. Please contact me for any questions.
+projects. Please <span><script>outputContactMeEmailLink()</script><noscript>contact me</noscript></span> for any questions.
 
 ## Moven
 
@@ -18,27 +18,25 @@ an app that helps you manage your money as you spend it.
 Get the app for
 <a href="https://itunes.apple.com/us/app/moven/id661035659" target="_blank">iPhone</a>
 or
-<a href="https://play.google.com/store/apps/details?id=com.movencorp.moven" target="_blank">Android</a>.
-
-Moven is currently invite-only, but <a href="https://moven.com/#referral/jimmy.schementi.com" target="_blank">request an invitation here</a>, and you'll be bumped up in the queue.
+<a href="https://play.google.com/store/apps/details?id=com.movencorp.moven" target="_blank">Android</a>,
+and please apply for an account. It's free!
 
 ## Iron Languages
 
-I am a core team member of the Iron-Languages project; the implementation of the
+From 2007-2011 I was an active
+core team member of the Iron-Languages project; the implementation of the
 Ruby and Python programming language for the Microsoft.NET and Mono frameworks. I've
 worked on various parts of the project, from engineering to evangelism.
 
 <ul>
   <li><a target="_blank" href="http://ironruby.net" target="_blank">IronRuby homepage</a></li>
-  <li><a target="_blank" href="http://ironruby.net" target="_blank">IronPython homepage</a></li>
+  <li><a target="_blank" href="http://ironpython.net" target="_blank">IronPython homepage</a></li>
   <li><a target="_blank" href="http://dlr.codeplex.com" target="_blank">Dynamic Language Runtime</a></li>
 </ul>
 
-## SourceAid
-
-I've been consulting with <a target="_blank" href="http://sourceaid.com">SourceAid</a> on their <a target="_blank" href="http://cite.me">new citation management</a>
-offering. I'll provide more information when they announce the first preview
-release.
+While IronPython development has picked back up after Microsoft stopped funding in 2010,
+IronRuby has been fairly dormant since then. If anyone would like to become the
+new maintainer of IronRuby, please <script>outputContactMeEmailLink()</script><noscript>contact me</noscript>.
 
 ## ASSISTments
 

@@ -14,6 +14,37 @@
 
         <!-- RSS Feed -->
         <link rel="alternate" type="application/rss+xml" title="Jimmy Schementi - Feed" href="http://feeds.feedburner.com/jimmy-thinking">
+
+        <script>
+          // Email obfuscator script 2.1 by Tim Williams, University of Arizona
+          // Random encryption key feature by Andrew Moulden, Site Engineering Ltd
+          // This code is freeware provided these four comment lines remain intact
+          // A wizard to generate this code is at http://www.jottings.com/obfuscator/
+          function outputEmailLink (message) {
+            var coded = "i7GGm@dNgsGsT57.NUG";
+            var key = "qFZQ1ocYetIRbgjC3m8r4kS2UN6s5a9l0izpGEMwnAJDPfdXVxLK7vOWhBHTyu";
+            var shift=coded.length;
+            var link="";
+            var ltr;
+            for (var i=0; i<coded.length; i++) {
+              if (key.indexOf(coded.charAt(i))==-1) {
+                ltr = coded.charAt(i);
+                link += (ltr);
+              }
+              else {
+                ltr = (key.indexOf(coded.charAt(i))-shift+key.length) % key.length;
+                link += (key.charAt(ltr));
+              }
+            }
+            if (typeof message === 'undefined') {
+              message = link;
+            }
+            document.write("<a href='mailto:"+link+"'>"+message+"</a>");
+          }
+          function outputContactMeEmailLink () {
+            outputEmailLink("contact me");
+          }
+        </script>
     </head>
     <body>
 
@@ -30,7 +61,7 @@
               <p>
                 Jimmy Schementi<br />
                 Software Engineer<br />
-                jimmy@schementi.com
+                <script>outputEmailLink()</script>
               </p>
             </div>
             <div class="contact">
