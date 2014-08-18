@@ -141,9 +141,9 @@ ul {
   margin: 1em 0;
   overflow: scroll;
 
-  border: 1px solid #000;
-  background-color: #333;
-  color: #FFF;
+  border: 1px solid #ddd;
+  background-color: #eee;
+  color: #000;
 }
 
 .post ul, .post ol {
@@ -158,23 +158,12 @@ ul {
 
 .post pre code {
   border: none;
-  background-color: #333;
-}
-
-/* terminal */
-.post pre.terminal {
-  border: 1px solid #000;
-  background-color: #333;
-  color: #FFF;
-}
-
-.post pre.terminal code {
-  background-color: #333;
+  background-color: #eee;
 }
 
 blockquote {
-  color: #666;
-  border-left: 10px solid #ccc;
+  color: #000;
+  border-left: 10px solid #eee;
   padding: 0 1em;
 }
 
@@ -184,6 +173,10 @@ blockquote pre code {
 
 blockquote code {
   color: inherit;
+}
+
+.gist .gist-file div.gist-data.gist-syntax {
+  background-color: #fff;
 }
 
 /*****************************************************************************/
