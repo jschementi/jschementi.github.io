@@ -17,6 +17,7 @@ body {
   font: 13.34px Helvetica, Arial, sans-serif;
   font-size: small;
   text-align: center;
+  font-weight: 100;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -38,9 +39,46 @@ ul {
 /* Home
 /*
 /*****************************************************************************/
+
+#home {
+  margin-top: 250px;
+}
+
+.page, .post {
+  margin-top: 40px;
+  /*font-size: 1.2em;*/
+}
+
+.banner {
+  background-image: url(../images/me-header-blur.jpg);
+  position: absolute;
+  top: 0;
+  height: 300px;
+  left: 0;
+  right: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: black;
+}
+
+.banner-page {
+  /*background-image: url(../images/me-header-blur.jpg);*/
+  position: absolute;
+  top: 0;
+  height: 66px;
+  left: 0;
+  right: 0;
+  /*background-size: 100%;
+  background-position: top;
+  background-repeat: no-repeat;*/
+  background-color: black;
+}
+
 .posts {
   list-style-type: none;
   margin-bottom: 2em;
+  padding-left: 0;
 }
 
 .posts li {
@@ -51,6 +89,7 @@ ul {
   color: #aaa;
   font-family: Monaco, "Courier New", monospace;
   font-size: 80%;
+  float: right;
 }
 
 /*****************************************************************************/
@@ -63,7 +102,7 @@ ul {
   font-size: 115%;
   text-align: justify;
   width: 42em;
-  margin: 3em auto 2em;
+  margin: 0em auto 2em;
   line-height: 1.5em;
 }
 
@@ -71,31 +110,52 @@ ul {
   max-width: 42em;
 }
 
+.header {
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 600;
+  z-index: 1;
+}
+
 .header a {
-  font-weight: bold;
+  font-weight: 600;
   text-decoration: none;
 }
 
 .title {
+  color: white;
+  font-size: 1.5em;
   display: inline-block;
-  margin-bottom: 2em;
 }
 
 .title a {
-  color: #a00;
+  color: white;
 }
 
 .title a:hover {
-  color: #000;
+  color: #eee;
 }
 
-.header a.extra {
-  color: #aaa;
+.title a span {
+  font-weight: 100;
+}
+
+.site-menu {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 1em;
+  font-size: 1.5em;
+}
+
+.site-menu a.extra {
+  color: #ccc;
   margin-left: 1em;
+  font-size: 0.70em;
 }
 
-.header a.extra:hover {
-  color: #000;
+.site-menu a.extra:hover {
+  color: #fff;
 }
 
 .meta {
