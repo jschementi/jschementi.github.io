@@ -214,11 +214,14 @@ ul {
   border: 1px solid #ddd;
   background-color: #eee;
   padding: 0 .2em;
+  white-space: pre;
 }
 
 .post pre code {
   border: none;
   background-color: #eee;
+  padding: 0;
+  white-space: pre;
 }
 
 blockquote {
