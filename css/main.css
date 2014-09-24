@@ -63,15 +63,11 @@ ul {
 }
 
 .banner-page {
-  /*background-image: url(../images/me-header-blur.jpg);*/
   position: absolute;
   top: 0;
   height: 66px;
   left: 0;
   right: 0;
-  /*background-size: 100%;
-  background-position: top;
-  background-repeat: no-repeat;*/
   background-color: black;
 }
 
