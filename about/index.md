@@ -10,6 +10,7 @@ benefit of the greater good, or technology for new business ventures.
 See my [GitHub](http://github.com/jschementi) profile for all my open-source
 projects. Please <span><script>outputContactMeEmailLink()</script><noscript>contact me</noscript></span> for any questions.
 
+<!---
 ## Moven
 
 I oversee the design and engineering of <a href="http://moven.com" target="_blank">Moven</a>,
@@ -20,6 +21,7 @@ Get the app for
 or
 <a href="https://play.google.com/store/apps/details?id=com.movencorp.moven" target="_blank">Android</a>,
 and please apply for an account. It's free!
+-->
 
 ## Iron Languages
 
