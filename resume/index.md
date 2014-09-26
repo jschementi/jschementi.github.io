@@ -13,17 +13,45 @@ easier, including my own.
 
 ### [Moven](http://moven.com) - New York, NY
 
-&raquo; **Head of Engineering** (11/2012 - 2014)
+&raquo; **Head of Engineering** (11/2012 - 9/2014)
 
 Hands on with all aspects of [Moven’s](https://moven.com) product design,
 development, and engineering.
 
-- Built Moven’s debit card backend and website.
-- Automated builds, deployments, and overhauled infrastructure.
-- Built the Moven [iPhone](https://itunes.apple.com/us/app/moven/id661035659)
-  and [Android](https://play.google.com/store/apps/details?id=com.movencorp.moven) apps.
+Built Moven’s debit card backend and website. Technologies used: MongoDB,
+Node.js, Redis, Amazon Web Services, Backbone.js, HTML/JavaScript/CSS. Used a
+service-oriented architecture, especially useful to provide facades to external
+(sometimes legacy) partner systems (eg. payment processing, identity
+verification). Also had a push component where an external service would send
+data for every single transaction when it happened - used Redis Pub/Sub for
+message queues and communicating events around the system (to send push
+notification to devices, trigger recalculating of statistics, etc).
 
-*iOS, Android, Node.js, Python, Ruby, MongoDB, PostgreSQL, AWS, startup*
+Integrated new debit card system with existing user account system, and
+transaction fetching and analysis system (both written using Ruby, Postgres,
+and Redis).
+
+Automated builds, deployments, and overhauled infrastructure. Builds triggered
+from GitHub pushes, timers, or other build completions in Jenkins CI.
+Deployments also triggered from Jenkins CI. Infrastructure overhaul primarily
+used Riker (https://github.com/jschementi/riker), which depends on technology
+like Heroku Buildpack, Docker, and EC2 auto-scaling and load-balancing.
+Managed all production deployments. Monitored production systems with StatsD,
+Graphite, Sentry, and Loggly.
+
+Built the Moven [iPhone](https://itunes.apple.com/us/app/moven/id661035659)
+and [Android](https://play.google.com/store/apps/details?id=com.movencorp.moven)
+apps. Used a hybrid of native code (either Objective-C or Java) and
+HTML/CSS/JavaScript. Developed reusable menu system (code for early prototype:
+http://jsfiddle.net/jschementi/h68Se/) and navigation system (not released).
+Managed all App Store / Google Play releases.
+
+Used various project management tools to organize project backlog and
+communicate it to rest of company: GitHub Issues, Pivotal Tracker, and
+automation of email-based (https://github.com/jschementi/changelog).
+
+*iOS, Android, Node.js, Python, Ruby, MongoDB, PostgreSQL, Jenkins CI, StatsD,
+Graphite, App Store, Google Play, Docker, AWS, Sentry, Loggly, startup*
 
 
 #### [Lab49](http://lab49.com) - New York, NY
