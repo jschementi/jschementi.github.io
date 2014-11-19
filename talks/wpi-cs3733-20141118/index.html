@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>WPI CS3733</title>
+    <link rel="stylesheet" type="text/css" href="build/build.css">
+  </head>
+  <body>
+    <article>
+      <section>
+        <h1>Computer Science after college</h1><br>
+        <h3>Jimmy Schementi</h3>
+        <div class="me round"></div>
+      </section>
+      <section><img src="images/wpi.png" style="height: 175px" class="bullet">
+        <h2 class="bullet">CS 3733</h2>
+        <h3 class="bullet">B-Term 2004</h3><br><br>
+        <p class="bullet">(...yes, 10 years ago)</p>
+      </section>
+      <section>
+        <h2 class="bullet">Exercise Logbook</h2><br>
+        <ul>
+          <li>4 components (data storage, rules, reports, and UI)</li>
+          <li>Approx 10 teams of 4-5 people</li>
+          <li>Each team had to build a component and ship it to the class</li>
+          <li>Also must deliver a completed product with 3 other components</li>
+        </ul>
+      </section>
+      <section data-bespoke-backdrop="light-bg"><img src="images/landalka.png"></section>
+      <section>
+        <h2 class="bullet">Biggest Risk?</h2>
+        <h3 class="bullet">Integration</h3><br>
+        <p class="bullet">So, eliminate the risk.</p>
+      </section>
+      <section data-bespoke-backdrop="light-bg"><img src="images/ezi.png"></section>
+      <section><img src="images/rage-wolf.jpg" style="width:68%"></section>
+      <section>
+        <p class="bullet">Me: So, we want to do this thing...</p><br>
+        <p class="bullet">Gary: Well, you're not doing anything against the rules...</p><br>
+        <h2 class="bullet">Me: Wait, what? Really!?</h2>
+      </section>
+      <section><img src="images/troll.png" style="width:59%"></section>
+      <section data-bespoke-backdrop="light-bg"><img src="images/elogbook-rules.png" style="width:59%"></section>
+      <section data-bespoke-backdrop="me-graduate"></section>
+      <section data-bespoke-backdrop="me-microsoft-badge"></section>
+      <section>
+        <p>Gary: Well, that makes sense.</p>
+      </section>
+      <section>
+        <div class="me round"></div><br class="bullet">
+        <ul>
+          <li><span class="year-range">2002-2006</span><span>B.S. Computer Science</span></li>
+          <li><span class="year-range">2006-2007</span><span>M.S. Computer Science</span></li>
+          <li><span class="year-range">2007-2010</span><span>Microsoft - Program Manager</span></li>
+          <li><span class="year-range">2010-2012</span><span>Lab49 - Senior Engineer</span></li>
+          <li><span class="year-range">2012-2014</span><span>Moven - Head of Engineering</span></li>
+        </ul>
+      </section>
+      <section data-bespoke-backdrop="light-bg"><img src="images/assistments-logo.png"></section>
+      <section><img src="images/ironruby-logo-383x95.png"></section>
+      <section data-bespoke-backdrop="moven-homepage"></section>
+      <section>
+        <h2>Codequak<span>&nbsp;Inc.</span></h2>
+        <h3>Build awesome stuff</h3>
+      </section>
+      <section>
+        <h2>Leaf</h2><br><img src="images/leaf.jpg" style="width: 15em">
+      </section>
+      <section></section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2 class="bullet">Interviewing</h2>
+      </section>
+      <section>
+        <h2 class="bullet">Algorithms</h2>
+        <ul>
+          <li>Memorize sorting algorithms (merge, quick, heap, etc)</li>
+          <li>Hash tables (basics, hash function, collisions)</li>
+          <li>Garbage collection (tracing vs. ref count)</li>
+          <li>Best/worse/average case performance and space complexity</li>
+          <li>Linked lists (reversing, detecting cycles)</li>
+          <li>Permutations & Combinations</li>
+        </ul>
+      </section>
+      <section>
+        <h2 class="bullet">Fibonacci</h2>
+        <pre class="bullet"><code class="language-javascript">def fib(n):
+    if n == 0:
+        return 0
+    if n <= 2:
+        return 1
+        
+    return fib(n - 1) + fib(n - 2)
+    </code></pre>
+      </section>
+      <section>
+        <h2 class="bullet">O(2^n)</h2><img src="images/fibonacci_1.png">
+        <h3>(technically <code>O(1.618^n)</code>)</h3>
+      </section>
+      <section class="tiny-code">
+        <h3 class="bullet">We can do <i>much</i> better</h3>
+        <pre class="bullet"><code class="language-javascript">cache = {}
+
+def fib(n):
+    if n == 0:
+        return 0
+    if n <= 2:
+        return 1
+        
+    value = cache.get(n)
+    if value
+        return value
+        
+    value = fib(n - 1) + fib(n - 2)
+    cache[n] = value
+    return value
+    </code></pre>
+      </section>
+      <section>
+        <h2>O(n)</h2><img src="images/fibonacci_2.png">
+        <h3>Call repeatedly, O(1)</h3>
+      </section>
+      <section>
+        <h3 class="bullet">Other interview questions/topics</h3>
+        <ul>
+          <li>Compute the angle between the hands of an analog clock.</li>
+          <li>Do two rectangles intersect?</li>
+          <li>Implement rand(7) with rand(5)</li>
+          <li>Database systems</li>
+          <li>Compilers</li>
+          <li>Network protocols (definitely HTTP)</li>
+        </ul>
+      </section>
+      <section>
+        <h2 class="bullet">"Critical" "Thinking"</h2>
+        <ul>
+          <li>Design an elevator</li>
+          <li>Design a coffee maker that works in outer space</li>
+          <li>Eye color taboo</li>
+          <li>"No solution" problems</li>
+        </ul>
+      </section>
+      <section>
+        <h2>"Full Stack" vs. "XYZ Tech" Developer</h2><br>
+        <p class="bullet">Breadth vs. depth?</p>
+      </section>
+      <section>
+        <h3>WPI prepares you to be a</h3>
+        <h2>full-stack developer</h2>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2>Break a leg!</h2>
+      </section>
+      <section>
+        <h3>We are</h3>
+        <h2 class="bullet">Software Engineers</h2><br>
+        <ul>
+          <li>Programmers</li>
+          <li>Hackers</li>
+          <li>Coders</li>
+          <li>Designers</li>
+          <li>Developers</li>
+          <li>Engineers</li>
+          <li>Scientists</li>
+        </ul>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h3>We are NOT</h3>
+        <h2>Ninjas</h2>
+        <h3>or</h3>
+        <h2>Rock stars</h2>
+      </section>
+      <section>
+        <h3>We build things that</h3>
+        <h2>
+          have never been built before
+          
+        </h2>
+      </section>
+      <section>
+        <h2 class="bullet">Software Engineering</h2>
+        <h3 class="bullet">The study and application of engineering to the design, development, and maintenance of software.</h3>
+      </section>
+      <section>
+        <h2 class="bullet">Engineering</h2>
+        <h3 class="bullet">The application of scientific, economic, social, and practical knowledge in order to invent, design, build, maintain, and improve structures, machines, devices, systems, materials and processes.</h3>
+        <ul>
+          <li>from the Latin ingenium, meaning "cleverness" and ingeniare, meaning "to contrive, devise"</li>
+        </ul>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2>Development Process</h2>
+      </section>
+      <section>
+        <h3 class="bullet">Everyone does it differently</h3>
+        <ul>
+          <li>Waterfall</li>
+          <li>Agile (Scrum, XP, Lean, Kanban)</li>
+          <li>Conference-driven</li>
+          <li>Monkeys and typewriters</li>
+        </ul>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h3>Let's be honest</h3>
+        <h2>We don't know</h2>
+        <h2>what we're doing</h2>
+      </section>
+      <section>
+        <h2>Pick the right process</h2>
+        <h3>for the project and team</h3>
+      </section>
+      <section>
+        <h2 class="bullet">The bad things</h2>
+        <ul>
+          <li>Estimation / planning poker</li>
+          <li>Standups</li>
+          <li>Pair programming</li>
+          <li>Debt is OK</li>
+        </ul>
+      </section>
+      <section>
+        <h2 class="bullet">The good things</h2>
+        <ul>
+          <li>Version control</li>
+          <li>Continuous Integration/Build/Deploy</li>
+          <li>Code Review</li>
+          <li>Automation (QA, Deployments)</li>
+          <li>DevOps</li>
+          <li>Velocity estimation (for those who need it)</li>
+        </ul>
+      </section>
+      <section data-bespoke-backdrop="light-bg" class="light-bg">
+        <h3>Version Control</h3><br><img src="images/git.png" style="width: 35%">
+      </section>
+      <section>
+        <h3>Code Review</h3>
+      </section>
+      <section>
+        <h3 class="bullet">Continuous Integration/Build/Deploy</h3>
+        <ul>
+          <li>Jenkins</li>
+          <li>TeamCity</li>
+          <li>Travis CI</li>
+        </ul>
+      </section>
+      <section>
+        <h3>DevOps</h3><img src="images/graphite.png" style="width: 70%">
+      </section>
+      <section>
+        <h3 class="bullet">Automation</h3>
+        <ul>
+          <li>Amazon Web Services</li>
+          <li>Heroku</li>
+          <li>Ancible/Chef/Puppet</li>
+          <li>Vagrant</li>
+        </ul>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2>Actually building</h2>
+        <h2>the damn thing</h2>
+      </section>
+      <section>
+        <h2>Stream all the things</h2>
+        <h3>Reader</h3>
+        <pre><code class="language-javascript">var readable = getReadableStreamSomehow();
+readable.on('data', function(chunk) {
+  console.log('got %d bytes of data', chunk.length);
+});
+readable.on('end', function() {
+  console.log('there will be no more data.');
+});
+</code></pre>
+      </section>
+      <section>
+        <h3>Writer</h3>
+        <pre><code class="language-javascript">http.createServer(function (req, res) {
+  res.write('hello, world');
+  res.end();
+});
+</code></pre>
+      </section>
+      <section>
+        <h2>Threads</h2>
+        <h3>Here be dragons</h3>
+      </section>
+      <section>
+        <h2>Types Good</h2>
+        <pre><code class="language-javascript">type User struct {
+  Username string
+  Password string
+}
+func LoadUser(user *User) {
+  // knows what fields a user has
+}
+</code></pre>
+      </section>
+      <section>
+        <h3>Anonymous types evil</h3>
+        <pre><code class="language-javascript">function loadUser(user) {
+  // WTF is a user?
+}
+</code></pre>
+      </section>
+      <section>
+        <h2>Learn many many programming languages</h2>
+      </section>
+      <section>
+        <h2>"Frameworks"</h2>
+        <ul>
+          <li>Don't stress about them</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Just build great apps</h3>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <p style="font-size: 4em"><code>});</code></p>
+      </section>
+      <section>
+        <div class="me round"></div>
+        <h3>Jimmy Schementi</h3><br>
+        <p><a href="http://schementi.com">http://schementi.com</a></p>
+        <p>@jschementi</p>
+      </section>
+    </article>
+    <script src="build/build.js"></script>
+  </body>
+</html>
