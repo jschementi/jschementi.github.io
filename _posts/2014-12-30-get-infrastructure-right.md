@@ -436,7 +436,7 @@ processes aren't automated enough to *safely* do this**.
 Think about it - if we could quickly write a fix in a clone of production, test
 it, and push it to production in seconds, wouldn’t we do that instead?
 
-It’s alot of work to fully automate deployments, so most people have a fairly
+It’s a lot of work to fully automate deployments, so most people have a fairly
 **manual deployment process**. Which is crazy, considering we’re programmers - **all
 we do is automate.** 
 
@@ -534,8 +534,8 @@ So, what would we want this infrastructure-as-a-product to do for us?
 
 4. **Deploying should not introduce downtime**
 
-    Deploying an existing app or service shouldn’t make it unavailable during
-    deployment. This can also allows for rollback, incase a new deployment isn’t
+    Deploying an existing app or service shouldn’t make itself unavailable during
+    deployment. It should also allow for rollback, in case a new deployment isn’t
     functioning properly, and versioning, to run multiple versions of the same
     app.
 
@@ -558,8 +558,8 @@ Let’s see what tools and services already exist that could help us out:
 ![Heroku][heroku-logo]
 </span>
 
-[Heroku][] is “the” platform-as-a-service. It popularized many of the practices of
-the [12-factor app][twelve-factor-app]. It was the first to use `git push` to trigger deployments.
+[Heroku][] is “the” platform-as-a-service. It popularized many of the 
+[12-factor app][twelve-factor-app] practices. It was the first to use `git push` to trigger deployments.
 Most importantly, it provides developers with a clean abstraction of an app,
 hiding the complexities how to run the app. While [Heroku][]’s featureset is almost
 exactly what we want, this abstraction comes at a price - quite literally.
@@ -607,16 +607,16 @@ to your [VMs][vm], specifically [a TCP and HTTP load-balancer][aws-elb], as well
 which helps you launch [instances][aws-ec2-instances] and add them to a load-balancer.
 
 Another useful service is [Simple Storage Service (S3)][aws-s3], which stores
-arbitrary data like a file-system. It can also serve those files over HTTP, making it an ideal
+arbitrary data like a file system. It can also serve those files over HTTP, making it an ideal
 static HTTP server, as you don’t have to manage servers or load-balancers.
 
-The *35 other services* do lots of what you want, like various data storage
+The *35 other services* do lots of useful things, like various data storage
 services, [private networks][aws-vpc], [DNS][aws-route53], app and mobile services, deployment/provisioning stuff, oh my!
 It can get very confusing for newcomers and experienced engineer alike,
 as some of the services overlap in functionality. For example,
 [OpsWorks][aws-opsworks], [CloudFormation][aws-cf], and [Beanstalk][aws-beanstalk]
 all can do very similar things. Or complete with existing Open Source offerings, like
-[DynamoDB][aws-dynamodb] and [MongoDB][].
+[DynamoDB][aws-dynamodb] vs. [MongoDB][].
 
 [Elastic Beanstalk][aws-beanstalk] is worth noting, because it provides a similar
 feature-set to Heroku - it can deploy applications to EC2 instances, and
@@ -651,7 +651,7 @@ much easier to work with.
 
 Because it’s only for running [droplets][docean-droplet] (their word for VMs), any load
 balancing needs to be done with another dedicated [droplet][docean-droplet] (eg. [HAProxy][]),
-and scaling either manually.
+and scaled manually.
 
 <div class="slide-style">
   <div class="bespoke-parent">
@@ -687,7 +687,7 @@ manages rolling deployments. It also can deploy static websites to S3.
 
 Next I’d like to make the target “cloud” be extensible (most likely [Digital
 Ocean][docean] as a first), support [Dockerfiles][dockerfile] as an alternative
-to [buildpacks][], and use some of [AWS][]’s new features, like the [EC2
+to [buildpacks][buildpack], and use some of [AWS][]’s new features, like the [EC2
 Container Service][], [CodeDeploy][], and [Lambda][].
 
 Check out my [initial post about Riker][riker-blogpost], as it’s the same content
