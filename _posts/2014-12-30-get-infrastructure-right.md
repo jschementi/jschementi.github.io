@@ -414,7 +414,7 @@ it’s horrible:
 
   - How many times have you found someone changed production directly
     and **forgot to check it in**?
-  - Or made what you thought was a simple code changes to fix a specific
+  - Or made *[what you thought was]* a simple code change to fix a specific
     problem, but instead it revealed further problems.
   - Or users seeing intermittent brokenness while you make changes.
   - Or how do you know it works if you haven’t written tests for it?
