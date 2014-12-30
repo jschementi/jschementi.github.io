@@ -281,12 +281,24 @@ blockquote code {
   .site img {
     max-width: 100%;
   }
+  .page > h1 ,
+  .page > h2 ,
+  .page > h3 ,
+  .page > p ,
+  .page > ul ,
+  .page > ol ,
   .post > h1 ,
   .post > h2 ,
   .post > h3 ,
   .post > p ,
   .post > ul ,
   .post > ol ,
+  .post-content > h1 ,
+  .post-content > h2 ,
+  .post-content > h3 ,
+  .post-content > p ,
+  .post-content > ul ,
+  .post-content > ol ,
   .posts {
     margin-left: 20px;
     margin-right: 20px;
@@ -295,9 +307,13 @@ blockquote code {
     padding-left: 20px;
     padding-right: 20px;
   }
+  .page > ul ,
+  .post-content > ul ,
   .post > ul {
     margin-left: 30px;
   }
+  .page > ol,
+  .post-content > ol ,
   .post > ol {
     margin-left: 65px;
   }
@@ -315,12 +331,24 @@ blockquote code {
   .posts li span {
     display: none;
   }
+  .page > h1 ,
+  .page > h2 ,
+  .page > h3 ,
+  .page > p ,
+  .page > ul ,
+  .page > ol ,
   .post > h1 ,
   .post > h2 ,
   .post > h3 ,
   .post > p ,
   .post > ul ,
   .post > ol ,
+  .post-content > h1 ,
+  .post-content > h2 ,
+  .post-content > h3 ,
+  .post-content > p ,
+  .post-content > ul ,
+  .post-content > ol ,
   .posts {
     font-size: 1.8em;
     line-height: 1.5em;
