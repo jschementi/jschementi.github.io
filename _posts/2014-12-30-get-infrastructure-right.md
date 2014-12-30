@@ -370,7 +370,7 @@ a#open-slides.pressed .caret {
   </div>
   <div id="slides">
     <iframe src="http://jimmy.schementi.com/brooklynjs-20141218/"></iframe>
-    <p style="margin: 0; font-size: .75em; text-align: center;">Use arrow keys to control slides | <a href="http://jimmy.schementi.com/brooklynjs-20141218/" target="_blank">Open slides in a new window</a></p>
+    <p style="margin: 0; font-size: .75em; text-align: center;">Use arrow keys or swipe to control slides | <a href="http://jimmy.schementi.com/brooklynjs-20141218/" target="_blank">Open slides in a new window</a></p>
   </div>
 </div>
 <script>
@@ -388,7 +388,7 @@ a#open-slides.pressed .caret {
 
 While most of us love building apps, we'd also love it if people
 used them, and if we're lucky, **lots of people**. Problem is, then we really need
-to care about about how our app runs and scales, and it's best to get it figured
+to care about how our app runs and scales, and it's best to get it figured
 out before that moment of fame arrives. Let’s look at a few of the tools and
 services that you can use to manage your infrastructure, so you can spend more
 time building your apps, and less dealing with keeping your app running.
@@ -426,7 +426,7 @@ it’s horrible:
 > ![Cowboy coding][cowboy-coding-sombrero-guy]
 
 Our reasons for making changes directly in production are usually good.
-*Sometimes they’re not.* Regardless, we *need* to do this because our **deployment
+*Sometimes they’re not.* Regardless, we need to do this because our **deployment
 processes aren't automated enough to *savely* do this**.
 
 <span class="center">
