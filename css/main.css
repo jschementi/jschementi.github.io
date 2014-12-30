@@ -258,3 +258,78 @@ blockquote code {
   float: none;
   margin-right: 0;
 }
+
+@media (max-width: 640px) {
+  .banner-page {
+    position: relative;
+    top: -66px;
+    height: 66px;
+    left: auto;
+    right: auto;
+    background-color: black;
+    margin-bottom: -60px;
+  }
+  .banner {
+    position: relative;
+    top: -316px;
+    height: 300px;
+    left: auto;
+    right: auto;
+    background-color: black;
+    margin-bottom: -330px;
+  }
+  .site img {
+    max-width: 100%;
+  }
+  .post > h1 ,
+  .post > h2 ,
+  .post > h3 ,
+  .post > p ,
+  .post > ul ,
+  .post > ol ,
+  .posts {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .footer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .post > ul {
+    margin-left: 30px;
+  }
+  .post > ol {
+    margin-left: 65px;
+  }
+  .header > * {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  #disqus_thread {
+    margin: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .posts li span {
+    display: none;
+  }
+  .post > h1 ,
+  .post > h2 ,
+  .post > h3 ,
+  .post > p ,
+  .post > ul ,
+  .post > ol ,
+  .posts {
+    font-size: 1.8em;
+    line-height: 1.5em;
+  }
+  .footer {
+    font-size: 1.4em;
+    line-height: 1.2em;
+  }
+  .slide-style {
+    font-size: 1.1em;
+  }
+}
