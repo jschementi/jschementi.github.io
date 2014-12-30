@@ -427,7 +427,7 @@ it’s horrible:
 
 Our reasons for making changes directly in production are usually good.
 *Sometimes they’re not.* Regardless, we need to do this because our **deployment
-processes aren't automated enough to *savely* do this**.
+processes aren't automated enough to *safely* do this**.
 
 <span class="center">
 ![Automate all the things][automate-all-the-things]
