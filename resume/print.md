@@ -1,10 +1,12 @@
 ---
-layout: page
+layout: resume
 title: Jimmy Schementi - Software Engineer
 ---
 
-- **Email** <script>outputEmailLink()</script>
+- **Email** [jimmy@schementi.com](mailto:jimmy@schementi.com)
+- **Phone** [516.382.2557](tel:5163822557)
 - **Web**   [http://jimmy.schementi.com](http://jimmy.schementi.com)
+
 
 Software Engineer experienced in building products that make people's lives
 easier, including my own.
@@ -85,12 +87,6 @@ Lead WPI's Artifical Intelligence lab in a redesign/rebuild of
 [ASSISTments](http://assistment.org), an intelligent tutoring system. The system
 was gradually rolled out to schools, and it is still in use today.
 
-#### [General Electric](http://ge.com), Danbury, CT
-
-&raquo; **Information Management Leadership Program Intern** (Summer 2005)
-
-Lead a user-acceptance testing effort between teams in US and India.
-
 
 ### Education
 
@@ -99,6 +95,4 @@ Lead a user-acceptance testing effort between teams in US and India.
 
 
 ### Additional information available on [LinkedIn](http://linkedin.com/in/jschementi/)
-
-[Printer-friendly](print.html)
 
