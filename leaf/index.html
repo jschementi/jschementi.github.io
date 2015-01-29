@@ -15,9 +15,10 @@
       margin: 0;
       background: #eee;
     }
+
     section {
-      float: left;
-      width: 50%;
+      text-align: center;
+      margin-top: 5em;
     }
 
     section > h1 {
@@ -25,47 +26,57 @@
       font-weight: normal;
       font-family: 'Dancing Script', cursive;
       /* font-family: 'Pinyon Script', cursive; */
-      text-align: center;
-      margin: 0.5em 0;
+      margin: 0 0 0.25em 0;
     }
 
     section > p {
       font-size: 1.5em;
       font-family: 'Josefin Slab', serif;
-      text-align: center;
       text-transform: uppercase;
       margin: 0.5em 0;
     }
 
-    section + img {
-      float: right;
-      display: block;
-      width: 50%;
+    section > img {
+      width: 512px;
     }
 
-    @media (max-width: 1000px) {
-      section > h1 {
-        font-size: 5.5em;
-      }
-      section > p {
-        font-size: 1.2em;
-      }
-    }
-
-    @media (max-width: 800px) {
+    @media (max-width: 567px) and (orientation: portrait) {
       section {
-        float: none;
+        margin: 1em 1em 0 1em;
+      }
+
+      section > img {
         width: 100%;
       }
+
       section > h1 {
         font-size: 4em;
       }
+
       section > p {
         font-size: 1em;
       }
-      section + img {
-        float: none;
-        width: 100%;
+    }
+
+    @media only screen and (min-device-width : 375px)
+                       and (max-device-width : 667px)
+                       and (orientation : landscape) {
+      section {
+        margin: 1em;
+      }
+
+      section > img {
+        float: left;
+        width: 256px;
+      }
+
+      section > h1 {
+        font-size: 4em;
+        padding-top: 0.4em;
+      }
+
+      section > p {
+        font-size: 1em;
       }
     }
 
@@ -73,9 +84,9 @@
 </head>
 <body>
   <section>
+    <img src="/images/leaf/leaf-icon.png" alt="leaf">
     <h1>Leaf</h1>
     <p>Coming soon!</p>
   </section>
-  <img src="/images/leaf/leaf.png" alt="leaf">
 </body>
 </html>
