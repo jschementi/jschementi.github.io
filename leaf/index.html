@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leaf - share video</title>
+  <style>
+    @import url(http://fonts.googleapis.com/css?family=Josefin+Slab);
+    @import url(http://fonts.googleapis.com/css?family=Poiret+One);
+    @import url(http://fonts.googleapis.com/css?family=Dancing+Script);
+    @import url(http://fonts.googleapis.com/css?family=Pinyon+Script);
+
+    body {
+      font-size: 24px;
+      margin: 0;
+      background: #eee;
+    }
+    section {
+      float: left;
+      width: 50%;
+    }
+
+    section > h1 {
+      font-size: 7em;
+      font-weight: normal;
+      font-family: 'Dancing Script', cursive;
+      /* font-family: 'Pinyon Script', cursive; */
+      text-align: center;
+      margin: 0.5em 0;
+    }
+
+    section > p {
+      font-size: 1.5em;
+      font-family: 'Josefin Slab', serif;
+      text-align: center;
+      text-transform: uppercase;
+      margin: 0.5em 0;
+    }
+
+    section + img {
+      float: right;
+      display: block;
+      width: 50%;
+    }
+
+    @media (max-width: 1000px) {
+      section > h1 {
+        font-size: 5.5em;
+      }
+      section > p {
+        font-size: 1.2em;
+      }
+    }
+
+    @media (max-width: 800px) {
+      section {
+        float: none;
+        width: 100%;
+      }
+      section > h1 {
+        font-size: 4em;
+      }
+      section > p {
+        font-size: 1em;
+      }
+      section + img {
+        float: none;
+        width: 100%;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <section>
+    <h1>Leaf</h1>
+    <p>Coming soon!</p>
+  </section>
+  <img src="/images/leaf/leaf.png" alt="leaf">
+</body>
+</html>
