@@ -40,7 +40,7 @@ Git gives us many tools to rewrite history, so let's look at situations you'll
 run into, and how to use Git to deal with them.
 
 
-# Extract a sub-directory
+### Extract a sub-directory
 
 This is the best-case scenario: everything is perfect about your repository,
 only you have each project/component in a sub-directory of your large repo.
@@ -57,7 +57,7 @@ For this, `git subtree split` is exactly what you want.
 Then you can push each new branch to its own remote.
 
 
-# Arbitrary paths
+### Arbitrary paths
 
 What if a project has two top-level directories, or shares files between projects?
 Maybe a `.env` or `Procfile`?
@@ -90,7 +90,7 @@ A `parent-filter` can be used to rewrite commit parents to remove them:
 > instead of using `mktemp` each time.
 
 
-# Moving files around
+### Moving files around
 
 Let's say a new repo should still have a  file, but you want to change its
 path in the new repo?  If so, `tree-filter` can help with this. For this example,
@@ -99,7 +99,7 @@ we want to move an entire sub-directory up one level.
     git filter-branch -f --tree-filter 'shopt -s dotglob nullglob; test -d sub_dir && mv sub_dir/* . || :' HEAD
 
 
-# Deleting files
+### Deleting files
 
 What if you just don't want a particualr file around?
 
@@ -111,7 +111,7 @@ What if you just don't want a particualr file around?
 > slower. When formulating your own history manipulations, keep this in mind.
 
 
-# Keeping only certain lines in a file
+### Keeping only certain lines in a file
 
 (I know, this is crazy...) What if, in your old repo, you had a configuration
 file that was for all projects, but now you want to only keep commits that
@@ -120,7 +120,7 @@ affected the variables for the particuar sub-project? `tree-filter` + `cat` + `g
     git filter-branch -f --tree-filter 'test -f .env && cat .env | grep "\(^VAR_X\|^VAR_Y\|^VAR_Z\)" > .newenv && mv .newenv .env || :' --prune-empty -- HEAD
 
 
-# Fucking symlinks
+### Fucking symlinks
 
 OK, this is harder, but all your fault. You have symlinks in your repo, presumably to
 share code between projects. Bad. Share code through a package manager, a submodule,
@@ -141,7 +141,7 @@ Convert all symlinks to hard links (if the symlinks are relative paths):
 > If the paths are absolute, WTF? How the hell did that ever work to begin with??
 
 
-# Empty commits
+### Empty commits
 
 If for some reason you have empty commits (maybe you forgot a `--ignore-unmatch` ?),
 you can remove them with a special `--commit-filter`:
@@ -149,7 +149,7 @@ you can remove them with a special `--commit-filter`:
     git filter-branch --commit-filter 'git_commit_non_empty_tree "$@"' HEAD
 
 
-## The initial commit is still empty, what gives?
+#### The initial commit is still empty, what gives?
 
 That's the only price your going to pay for not doing the right thing to start, so
 be OK with it. Your initial commit is most likely going to be an empty one saying
@@ -160,21 +160,21 @@ but if you have any legitimate merge commits you'll find yourself attempting to 
 years old code in the right order. It's not worth it.
 
 
-# Fixing author info
+### Fixing author info
 
 If you notice certain committers used a non-company email, or there are commits
 from non-human accounts, you can use a `--env-filter` to rewrite author and 
 committer name and emails. [GitHub's Help site has a good example of this](https://help.github.com/articles/changing-author-info).
 
 
-# Holy crap I deleted the wrong thing/everything!
+### Holy crap I deleted the wrong thing/everything!
 
 No problem! If anything goes wrong, you can undo the last `filter-branch`:
 
     git reset --hard refs/original/refs/heads/master
 
 
-# Next steps
+### Next steps
 
 After you've got all your new shiny respositories how you want them, you're may not
 be entirely done. Some things that you probably need to do:

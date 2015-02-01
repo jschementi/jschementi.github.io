@@ -4,6 +4,8 @@
 /*
 /*****************************************************************************/
 
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+
 /* Global Reset */
 * {
   margin: 0;
@@ -13,17 +15,18 @@
 html, body { height: 100%; }
 
 body {
-  background-color: #FFF;
-  font: 13.34px Helvetica, Arial, sans-serif;
+  background: white;
+  font: 13.34px 'Lato', Helvetica, Arial, sans-serif;
   font-size: small;
   text-align: center;
-  font-weight: 100;
+  font-weight: 400;
+  color: #444;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-size: 100%; }
-
+h1, h2, h3, h4, h5, h6 { color: black; }
 h1 { margin-bottom: 1em; margin-top: 1em; }
+h2, h3, h4, h5, h6 { margin: 2em inherit 1em inherit; }
+
 p, ul { margin: 1em 0; }
 
 a         { color: #00a; }
@@ -185,6 +188,15 @@ ul {
   border: 0;
 }
 
+hr {
+  border: 0;
+  margin: 25px 0;
+  height: 1px;
+  background: black;
+  background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
+}
+
+
 /*****************************************************************************/
 /*
 /* Posts
@@ -258,6 +270,12 @@ blockquote code {
   float: none;
   margin-right: 0;
 }
+
+/*****************************************************************************/
+/*
+/* Small screens
+/*
+/*****************************************************************************/
 
 @media (max-width: 640px) {
   .banner-page {
