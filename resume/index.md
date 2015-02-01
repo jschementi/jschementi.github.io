@@ -3,18 +3,15 @@ layout: page
 title: Jimmy Schementi - Software Engineer
 ---
 
-- **Email** <script>outputEmailLink()</script>
-- **Web**   [http://jimmy.schementi.com](http://jimmy.schementi.com)
+A software engineer who builds things that I want to exist.
 
-Software Engineer experienced in building products that make people's lives
-easier, including my own.
+---
 
+#### [Moven](http://moven.com) - New York, NY
 
-### [Moven](http://moven.com) - New York, NY
+&raquo; **Head of Engineering / Lead Software Engineer** (10/2012 - 9/2014)
 
-&raquo; **Head of Engineering** (10/2012 - 9/2014)
-
-Described by Techcrunch, Wired and Forbes as a “bank of the future”, Moven is
+Described by TechCrunch, Wired, and Forbes as a “bank of the future”, Moven is
 a debit account and an app for iPhone and Android that helps you manage your
 finances in real-time as you are spending money.
 
@@ -26,12 +23,15 @@ Key responsibilities and achievements:
 - Built Moven’s debit card backend, transaction analytics, and web app.
   Technologies used: Node.js, MongoDB, Redis, Python, HTML/CSS/JavaScript,
   Backbone.js.
-- Built iPhone and Android apps. Managed all App Store and Google Play releases.
-- Setup continuous integration/testing/deployment/release (with Jenkins, AWS,
-  [Riker](http://github.com/jschementi/riker)), realtime metric monitoring
-  (StatsD, Graphite), and ad-hoc data prototyping environment (IPython Notebook).
-- Managed team with a lightweight engineering process: constructive code reviews
-  and leading by example.
+- Built Moven’s iPhone app and Android app, and managed all app store releases.
+  Technologies used: Objective-C, UIKit, HTML/CSS/JavaScript, Backbone.js,
+  Cordova, Java.
+- Setup continuous integration/testing/deployment/release, realtime metric
+  monitoring, and ad-hoc data prototyping environment.
+  Technologies used: Jenkins, AWS, [Riker](http://github.com/jschementi/riker),
+  StatsD, Graphite, IPython Notebook.
+- Managed team with a lightweight engineering process: prioritized backlog,
+  constructive code reviews, and leading by example.
 
 
 #### [Lab49](http://lab49.com) - New York, NY
@@ -46,6 +46,16 @@ Key responsibilities:
 
 - Build modern front-ends in web and desktop technologies for various types of
   financial institutions.
+
+Notable projects:
+
+- Built a web-based system for Quantitative Analysts to give the firm more
+  insight into financial instruments using quantitative methods.
+  (Python, IronPython, C#, .NET).
+- HTML5 front-end for foreign exchange single-dealer platform
+  (JavaScript, CSS, HTML, Node.js, Java).
+- Proposal and prototype new Financial Advisor system for a large consumer bank.
+  (JavaScript, HTML, Node.js, C#).
 
 
 #### [Microsoft](http://microsoft.com) - Redmond, WA
@@ -89,16 +99,17 @@ was gradually rolled out to schools, and it is still in use today.
 
 &raquo; **Information Management Leadership Program Intern** (Summer 2005)
 
-Lead a user-acceptance testing effort between teams in US and India.
+Lead a user-acceptance testing effort between users and developers on
+different continents.
 
+---
 
 ### Education
 
-- **Masters, Computer Science**, Worcester Polytechnic Institute, 2005-2007
-- **Bachelors, Computer Science**, Worcester Polytechnic Institute, 2002 - 2006
+- **Masters, Computer Science**, Worcester Polytechnic Institute (2005 - 2007)
+- **Bachelors, Computer Science**, Worcester Polytechnic Institute (2002 - 2006)
 
+---
 
 ### Additional information available on [LinkedIn](http://linkedin.com/in/jschementi/)
-
-[Printer-friendly](print.html)
 
