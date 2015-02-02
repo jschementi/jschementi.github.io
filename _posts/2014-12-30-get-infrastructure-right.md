@@ -7,8 +7,8 @@ permalink: "get-infrastructure-right"
 <style>
   .post {
     position: relative;
-    font-weight: 300;
-    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    /*font-weight: 300;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;*/
   }
   .brooklynjs-box {
     border: 4px solid #222;
@@ -439,7 +439,7 @@ it, and push it to production in seconds, wouldn’t we do that instead?
 
 It’s a lot of work to fully automate deployments, so most people have a fairly
 **manual deployment process**. Which is crazy, considering we’re programmers - **all
-we do is automate.** 
+we do is automate.**
 
 <div class="slide-style">
   <article class="bespoke-parent">
@@ -559,7 +559,7 @@ Let’s see what tools and services already exist that could help us out:
 ![Heroku][heroku-logo]
 </span>
 
-[Heroku][] is “the” platform-as-a-service. It popularized many of the 
+[Heroku][] is “the” platform-as-a-service. It popularized many of the
 [12-factor app][twelve-factor-app] practices. It was the first to use `git push` to trigger deployments.
 Most importantly, it provides developers with a clean abstraction of an app,
 hiding the complexities how to run the app. While [Heroku][]’s featureset is almost
@@ -718,10 +718,10 @@ management better, give Riker a try and come help me build it!
 #### Old blog post
 
 I’d much rather focus on building a system, knowing that deployments and
-scaling are already     And if I push that work off until the system is 
-bigger or traffic start increasing, it takes even more time. Unless I use 
-Heroku; then I spend very little time, but mainly because I control very 
-little. 
+scaling are already     And if I push that work off until the system is
+bigger or traffic start increasing, it takes even more time. Unless I use
+Heroku; then I spend very little time, but mainly because I control very
+little.
 
 As the applications we build for the web get more complex, so does deploying
 and managing them. Remember when deploying your website was no more complex
