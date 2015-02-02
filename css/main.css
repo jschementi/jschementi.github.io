@@ -165,7 +165,7 @@ ul {
   font-size: 80%;
   color: #666;
   border-top: 4px solid #eee;
-  margin-top: 2em;
+  margin-top: 3em;
   overflow: hidden;
 }
 
@@ -190,7 +190,7 @@ ul {
 
 hr {
   border: 0;
-  margin: 25px 0;
+  margin: 2em 0;
   height: 1px;
   background: black;
   background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
