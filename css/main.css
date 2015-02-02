@@ -379,3 +379,10 @@ blockquote code {
     font-size: 1.1em;
   }
 }
+
+@media print {
+  hr {
+    border-top: 1px solid #ddd;
+    background: none;
+  }
+}

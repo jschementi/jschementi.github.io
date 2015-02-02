@@ -13,7 +13,7 @@ title: Jimmy Schementi - Software Engineer
 
 ## Jimmy Schementi - Software Engineer
 
-*Building things that I want to exist.*
+*Builds things that I want to exist.*
 
 ### Professional Experience
 

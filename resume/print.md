@@ -11,11 +11,9 @@ title: Jimmy Schementi - Software Engineer
 
 ---
 
-<span style="display: block; text-align: center;"><i>Building things that I want to exist.</i></span>
+<span style="display: block; text-align: center;"><i>Builds things that I want to exist.</i></span>
 
 ---
-
-### Professional Experience
 
 #### [Moven](http://moven.com) - New York, NY
 
@@ -111,18 +109,12 @@ Lead WPI's Artifical Intelligence lab in a redesign/rebuild of
 [ASSISTments](http://assistment.org), an intelligent tutoring system. The system
 was gradually rolled out to schools, and it is still in use today.
 
-#### [General Electric](http://ge.com), Danbury, CT
-
-&raquo; **Information Management Leadership Program Intern** (Summer 2005)
-
-Lead a user-acceptance testing effort between users and developers on
-different continents.
 
 #### Additional professional experience available on [LinkedIn](http://linkedin.com/in/jschementi/)
 
 ---
 
-### Significant Open Source Contributions
+#### Significant Open Source Contributions
 
 - [Riker](http://github.com/jschementi/riker)
 - [IronnRuby](http://ironruby.net)
@@ -132,9 +124,7 @@ For a more complete list, see [my GitHub profile](https://github.com/jschementi)
 
 ---
 
-### Education
+#### Education
 
 - **Masters, Computer Science**, Worcester Polytechnic Institute (2005 - 2007)
 - **Bachelors, Computer Science**, Worcester Polytechnic Institute (2002 - 2006)
-
----
