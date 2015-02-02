@@ -3,9 +3,19 @@ layout: page
 title: Jimmy Schementi - Software Engineer
 ---
 
-A software engineer who builds things that I want to exist.
+<style>
+  .page > h2:first-child {
+    display: none;
+  }
+</style>
 
----
+<span style="float: right; display: block;">[Download as PDF](/resume.pdf)</span>
+
+## Jimmy Schementi - Software Engineer
+
+*Building things that I want to exist.*
+
+### Professional Experience
 
 #### [Moven](http://moven.com) - New York, NY
 
@@ -23,7 +33,9 @@ Key responsibilities and achievements:
 - Built Moven’s debit card backend, transaction analytics, and web app.
   Technologies used: Node.js, MongoDB, Redis, Python, HTML/CSS/JavaScript,
   Backbone.js.
-- Built Moven’s iPhone app and Android app, and managed all app store releases.
+- Built Moven’s [iPhone app](https://itunes.apple.com/us/app/moven/id661035659?mt=8)
+  and [Android app](https://play.google.com/store/apps/details?id=com.movencorp.moven),
+  and managed all app store releases.
   Technologies used: Objective-C, UIKit, HTML/CSS/JavaScript, Backbone.js,
   Cordova, Java.
 - Setup continuous integration/testing/deployment/release, realtime metric
@@ -72,14 +84,18 @@ Key responsibilities:
 - Managed IronRuby project through 1.0 and 1.1 releases.
 - Project that enables Silverlight and ASP.NET MVC applications to be built in
   DLR-based languages.
-- Designed and built http://ironruby.net and http://ironpython.net websites.
+- Designed and built [IronRuby](http://ironruby.net) and
+  [IronPython](http://ironpython.net) websites.
 - Collaborate closely with Silverlight product and release team.
 - Collaborate closely with web evangelism team.
-- Presented at RailsConf 2008, RailsConf 2009, RubyConf 2009, PyCon 2010, and
-  MIX 2010.
+- Presented at [RailsConf 2008](http://en.oreilly.com/rails2008/public/schedule/detail/2056),
+  [RailsConf 2009](http://jimmy.schementi.com/2009/05/ironruby-at-railsconf-2009.html),
+  [RubyConf 2009](http://jimmy.schementi.com/2009/12/ironruby-rubyconf-2009-part-1-summary.html),
+  [PyCon 2010](http://jimmy.schementi.com/2010/03/pycon-2010-python-in-browser.html),and
+  [MIX 2010](http://jimmy.schementi.com/2010/03/mix10-ironruby-and-ironpython-part-1.html).
 - Advocate for Microsoft's involvement in open source.
-- Organized the Lang.NET Symposium, a 3-day conference for programming language
-  and tools developers.
+- Organized the [Lang.NET Symposium](https://www.google.com/#q=lang.net+symposium),
+  a 3-day conference for programming language and tools developers.
 
 &raquo; **Program Manager Intern** (Summer 2006)
 
@@ -102,14 +118,22 @@ was gradually rolled out to schools, and it is still in use today.
 Lead a user-acceptance testing effort between users and developers on
 different continents.
 
+#### Additional professional experience available on [LinkedIn](http://linkedin.com/in/jschementi/)
+
+---
+
+### Significant Open Source Contributions
+
+- [Riker](http://github.com/jschementi/riker)
+- [IronnRuby](http://ironruby.net)
+- [IronPython](http://ironpython.net)
+
+For a more complete list, see [my GitHub profile](https://github.com/jschementi)
+
 ---
 
 ### Education
 
 - **Masters, Computer Science**, Worcester Polytechnic Institute (2005 - 2007)
 - **Bachelors, Computer Science**, Worcester Polytechnic Institute (2002 - 2006)
-
----
-
-### Additional information available on [LinkedIn](http://linkedin.com/in/jschementi/)
 
