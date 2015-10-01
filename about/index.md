@@ -58,13 +58,11 @@ I take lots of photos between my <a target="_blank" href="http://www.flickr.com/
 
 Hobbiest guitarist, singer, song-writer. Here are some of my songs:
 
-- [purevolume.com/jimmyschementi](http://www.purevolume.com/jimmyschementi)
-- [myspace.com/jimmyschementi](http://www.myspace.com/jimmyschementi)
+- [soundcloud.com/jschementi](https://soundcloud.com/jschementi)
 
-And this gives you an idea of what type of music I'm interested in:
+And this gives you an idea of what type of music I listen to:
 
 - [last.fm](http://www.last.fm/user/jschementi)
-- [pandora](http://www.pandora.com/profile/jschementi)
 
 ## Art
 
