@@ -13,9 +13,42 @@ title: Jimmy Schementi - Software Engineer
 
 ## Jimmy Schementi - Software Engineer
 
-*Builds things that I want to exist.*
+*Builds things that don't yet exist.*
 
 ### Professional Experience
+
+#### [SOLS](http://www.sols.com) - New York, NY
+
+&raquo; **Director of Engineering, 3D / Principle Software Engineer** (2/2015 - 6/2016)
+
+SOLS makes custom 3D printed insoles from answering just a few questions and
+taking two photos of each foot with the SOLS Custom Fit iPhone app.
+
+As Director of Engineering 3D, I led a team of 6 engineers, responsible for
+building the systems which generate the "medical" physical product and tools
+to manage the process (including: automated (and manual fallback) photo
+measurement, 3D model design and generation, 3D print job management).
+
+When SOLS focused fully towards the consumer space, we flattened the team
+and I focused on a new iOS app, the first version of an online purchasing
+experience, and adapting our existing physical product generation system
+to support a very new design of SOLS.
+
+Key Contributions:
+
+- Built initial version of iPhone app and services, and the final photo
+  capture experience. (Swift, Node.js, and Postgres).
+- Built initial online purchase experience.
+- Built infrastructure automation (based on Jenkins, CloudFormation, and
+  Salt Stack).
+- Introduced development process with code reviews, automated testing,
+  and local development environment which mimic production. Introduced
+  deployment process where any developer could deploy to production after
+  code review and test automation succeeded.
+- Built 3D model generation system (Node.js, RabbitMQ, Python, Rhino3D,
+  Blender, Amazon S3).
+- Built a product tour of what the physical product would look like for
+  each customer and how it was customized (Web, WebGL, Blender, Python).
 
 #### [Moven](http://moven.com) - New York, NY
 
