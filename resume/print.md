@@ -11,7 +11,7 @@ title: Jimmy Schementi - Software Engineer
 
 ---
 
-<span style="display: block; text-align: center;"><i>Builds things that don't yet exist.</i></span>
+<span style="display: block; text-align: center;"><i>I build things that don't yet exist.</i></span>
 
 ---
 

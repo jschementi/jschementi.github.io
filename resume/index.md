@@ -13,7 +13,7 @@ title: Jimmy Schementi - Software Engineer
 
 ## Jimmy Schementi - Software Engineer
 
-*Builds things that don't yet exist.*
+*I build things that don't yet exist.*
 
 ### Professional Experience
 
