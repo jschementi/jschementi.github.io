@@ -19,7 +19,7 @@ title: Jimmy Schementi - Software Engineer
 
 #### [SOLS](http://www.sols.com) - New York, NY
 
-&raquo; **Director of Engineering, 3D / Principle Software Engineer** (2/2015 - 6/2016)
+&raquo; **Director of Engineering, 3D / Principal Software Engineer** (2/2015 - 6/2016)
 
 SOLS makes custom 3D printed insoles from answering just a few questions and
 taking two photos of each foot with the SOLS Custom Fit iPhone app.
