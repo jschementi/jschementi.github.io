@@ -28,13 +28,13 @@ h1, h2, h3, h4, h5, h6 { color: black; }
 h1 { margin-bottom: 1em; margin-top: 1em; }
 h2, h3, h4, h5, h6 { margin: 2em inherit 1em inherit; }
 
-p, ul { margin: 1em 0; }
+p, ul, ol { margin: 1em 0; }
 
 a         { color: #00a; }
 a:hover   { color: #000; }
 a:visited { color: #a0a; }
 
-ul {
+ul, ol {
   padding-left: 25px;
 }
 
