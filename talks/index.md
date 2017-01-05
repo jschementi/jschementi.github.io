@@ -34,6 +34,11 @@ h3 + .date {
 
 <p></p>
 
+### [TechCrunch - SOLS](https://techcrunch.com/2016/06/06/sols/)
+<div class="date">
+  2016/06/06
+</div>
+
 ### [NY Tech Meetup](https://nytm.org/)
 <div class="date">
   2016/03/01
