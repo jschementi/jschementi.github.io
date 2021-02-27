@@ -1,0 +1,15 @@
+---
+layout: page
+---
+
+<div id="post-collections">
+  <a href="/" class="{% if page.htmlid == "home" %}active{% endif %}">Main</a>
+
+  <a href="/photolog" class="{% if page.htmlid == "photolog" %}active{% endif %}">Photos</a>
+
+  <a href="/iron" class="{% if page.htmlid == "iron" %}active{% endif %}">Iron</a>
+
+  <a href="/journal" class="{% if page.htmlid == "journal" %}active{% endif %}">Journal</a>
+</div>
+
+{{ content }}

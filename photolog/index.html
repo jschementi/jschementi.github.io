@@ -1,0 +1,14 @@
+---
+layout: posts
+title: Photo Log
+htmlid: photolog
+---
+
+<ul id="posts">
+  {% assign posts = site.photolog | reverse %}
+  {% for post in posts %}
+    <li>
+      {{ post.content }}
+    </li>
+  {% endfor %}
+</ul>

@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About
+htmlid: about
 ---
 
 I'm a Software Engineer in NYC ([resume](../resume))
@@ -9,19 +10,6 @@ I'm always involved in many projects, be it open-source software for the
 benefit of the greater good, or technology for new business ventures.
 See my [GitHub](http://github.com/jschementi) profile for all my open-source
 projects. Please <span><script>outputContactMeEmailLink()</script><noscript>contact me</noscript></span> for any questions.
-
-<!---
-## Moven
-
-I oversee the design and engineering of <a href="http://moven.com" target="_blank">Moven</a>,
-an app that helps you manage your money as you spend it.
-
-Get the app for
-<a href="https://itunes.apple.com/us/app/moven/id661035659" target="_blank">iPhone</a>
-or
-<a href="https://play.google.com/store/apps/details?id=com.movencorp.moven" target="_blank">Android</a>,
-and please apply for an account. It's free!
--->
 
 ## Speaking & Writing
 
@@ -83,7 +71,7 @@ And this gives you an idea of what type of music I listen to:
 
 I used to paint and draw a lot - mostly landscapes. Here are a few of my favorites:
 <div class="paintings">
-[![Seascape](painting-seascape.jpg "Seascape")](painting-seascape.jpg)
-[![Waterfall](painting-waterfall.jpg "Waterfall")](painting-waterfall.jpg)
-[![Mountains](painting-mountains.jpg "Mountains")](painting-mountains.jpg)
+  <a href="painting-seascape.jpg"><img src="painting-seascape.jpg"></a>
+  <a href="painting-waterfall.jpg"><img src="painting-waterfall.jpg"></a>
+  <a href="painting-mountains.jpg"><img src="painting-mountains.jpg"></a>
 </div>

@@ -1,5 +1,5 @@
 ---
-title: "Hard drive failure"
+title: "Hard Drive Failure"
 layout: "post"
 permalink: "/2005/10/hard-drive-failure.html"
 uuid: "112853948406683744"
@@ -26,4 +26,4 @@ I'm thinking of sending the hard drive to a data recovery company to see if they
 
 Moral of the story ... back up your data!
 
-*Update* [Got my data restored!]({% post_url 2005-10-07-hard-drive-recovered %})
+*Update [Got my data restored!]({% post_url 2005-10-07-hard-drive-recovered %})*

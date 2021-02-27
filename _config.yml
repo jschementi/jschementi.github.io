@@ -1,6 +1,15 @@
 name: Jimmy Schementi
 description: Jimmy Schementi's website
 url: http://jimmy.schementi.com
-markdown: redcarpet
+markdown: kramdown
 highlighter: rogue
 disqus_shortname: jschementi
+paginate: 5
+plugins: [jekyll-paginate]
+collections:
+  journal:
+    output: true
+  photolog:
+    output: false
+  iron:
+    output: true

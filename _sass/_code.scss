@@ -1,0 +1,47 @@
+pre {
+  padding: 1em;
+  margin: 1em 0;
+  overflow: scroll;
+  border: 1px solid #ddd;
+  background-color: #eee;
+  color: #000;
+}
+
+.post ul, .post ol {
+  margin-left: 1.35em;
+}
+
+code {
+  font-family: 'Inconsolata', monospace;
+  font-size: 90%;
+  font-weight: 400;
+  border: 1px solid #ddd;
+  background-color: #eee;
+  padding: 0 .2em;
+  white-space: pre;
+}
+
+pre code {
+  border: none;
+  background-color: #eee;
+  padding: 0;
+  white-space: pre;
+}
+
+blockquote {
+  color: #000;
+  border-left: 10px solid #eee;
+  padding: 0 1em;
+}
+
+blockquote pre code {
+  color: inherit;
+}
+
+blockquote code {
+  color: inherit;
+}
+
+.gist .gist-file div.gist-data.gist-syntax {
+  background-color: #fff;
+}

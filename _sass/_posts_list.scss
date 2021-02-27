@@ -1,0 +1,72 @@
+#post-collections {
+  margin-top: 2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  a {
+    margin-right: 1.0em;
+    text-decoration: none;
+    color: $lightpink-color;
+    &.active {
+      display: inline-block;
+      position: relative;
+      color: $lightgray-color;
+      background-color: $lightpink-color;
+      padding: 0.5em;
+      margin-left: -0.5em;
+      margin-right: 0.5em;
+      &:hover {
+        color: $lightgray-color;
+      }
+      #home & {
+        transform: rotate(((-1 * random(5)) + random(10)) + deg);
+      }
+      #photolog & {
+        transform: rotate(((-1 * random(5)) + random(10)) + deg);
+      }
+      #iron & {
+        transform: rotate(((-1 * random(5)) + random(10)) + deg);
+      }
+      #journal & {
+        transform: rotate(((-1 * random(5)) + random(10)) + deg);
+      }
+    }
+    &:hover {
+      color: $pink-color;
+    }
+  }
+}
+
+ul#posts {
+
+  &.list {
+    list-style-type: none;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    padding-left: 0;
+    clear: both;
+
+    li {
+      line-height: 2em;
+      font-size: 1.1em;
+      font-weight: 600;
+      //font-family: 'Inconsolata', monospace;
+
+      a {
+        color: $post-list-link-color;
+
+        &:hover {
+          color: $post-list-hover-color;
+          text-decoration: none;
+        }
+      }
+    }
+
+    span {
+      color: $date-color;
+      font-family: 'Inconsolata', monospace;
+      font-size: 90%;
+      float: right;
+      font-weight: 400;
+    }
+  }
+}

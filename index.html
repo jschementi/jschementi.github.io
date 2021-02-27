@@ -1,14 +1,11 @@
 ---
-layout: default
+layout: posts
 title: Jimmy Schementi
+htmlid: home
 ---
 
-<div id="home">
-  <div class="banner"></div>
-  <!--<p style="margin-top: 0;"><a href="http://feeds.feedburner.com/jimmy-thinking"><img src="http://feeds.feedburner.com/~fc/jimmy-thinking?bg=EEEEEE&amp;fg=000000&amp;anim=0" height="26" width="88" style="border:0" alt="" /></a></p>-->
-  <ul class="posts">
-    {% for post in site.posts %}
-      <li><a href="{{ post.url }}">{{ post.title }}</a> <span>{{ post.date | date_to_string }}</span></li>
-    {% endfor %}
-  </ul>
-</div>
+<ul id="posts" class="list">
+  {% for post in site.posts %}
+    <li><a href="{{ post.url }}">{{ post.title }}</a> <span>{{ post.date | date_to_string }}</span></li>
+  {% endfor %}
+</ul>

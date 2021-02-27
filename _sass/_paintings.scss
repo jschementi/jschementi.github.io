@@ -1,0 +1,17 @@
+.paintings {
+  & > a {
+    float: left;
+    height: 160px;
+    margin-right: 1em;
+
+    & > img {
+      height: 160px;
+    }
+
+    &:last-child {
+      clear: left;
+      float: none;
+      margin-right: 0;
+    }
+  }
+}

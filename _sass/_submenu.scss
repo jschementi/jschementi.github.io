@@ -1,0 +1,45 @@
+#submenu-background {
+  position: absolute;
+  top: 67px;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  padding: 0.5em;
+  border-top: 3px solid $menu-background-color;
+  background-color: $gray-color;
+  color: $menu-background-color;
+  transform: rotate(-1deg);
+
+  & + .content {
+    padding-top: 1em;
+  }
+}
+
+#submenu {
+  position: relative;
+  padding: 0.5em 0;
+  z-index: 1;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  margin-top: 3px;
+  transform: rotate(-1deg);
+
+  a {
+    color: $menu-foreground-color;
+    font-weight: 700;
+    font-size: 0.9em;
+    text-decoration: none;
+
+    &:hover {
+      color: $menu-hover-color;
+    }
+  }
+
+  #left {
+    display: inline-block;
+
+    a {
+      margin-right: 1em;
+    }
+  }
+}

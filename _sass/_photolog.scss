@@ -1,0 +1,46 @@
+#photolog {
+
+  ul#posts {
+    list-style-type: none;
+    list-style-type: none;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    padding-left: 0;
+    clear: both;
+    text-align: center;
+
+    li {
+      display: inline-block;
+      background-color: white;
+      padding: 1em;
+      margin-bottom: -1em;
+      line-height: 2em;
+      box-shadow: 6px 6px 2px 0px $gray-color;
+      border: 1px solid $gray-color;
+
+      img {
+        max-width: 40em;
+        display: block;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      * + p:last-child {
+        margin-top: 0.75em;
+        font-family: 'Dancing Script', cursive;
+        font-size: 195%;
+        line-height: 1.4em;
+        padding: 0 0.25em;
+      }
+
+      &:nth-child(odd) {
+        transform: rotate(0.75deg);
+      }
+      &:nth-child(even) {
+        transform: rotate(-0.75deg);
+      }
+    }
+  }
+}

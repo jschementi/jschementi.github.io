@@ -1,11 +1,11 @@
 ---
 layout: default
+title:
 ---
 
-<div class="banner-page">
-</div>
-
-<div class="page">
+<div id="{{ page.htmlid }}" class="content">
+{% if page.layout != "posts" %}
   <h2>{{ page.title }}</h2>
+{% endif %}
   {{ content }}
 </div>

@@ -1,0 +1,21 @@
+#page {
+
+  & > h2 {
+    text-transform: uppercase;
+    margin: 1.5em 0 1.0em 0;
+  }
+}
+
+.post {
+  position: relative;
+
+  & > h2 {
+    text-transform: uppercase;
+    margin: 1.5em 0 1.0em 0;
+    display: inline-block;
+
+    & + .date {
+      margin: 2.9em 0 1.25em 0;
+    }
+  }
+}

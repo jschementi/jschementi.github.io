@@ -47,30 +47,64 @@
             outputEmailLink("contact me");
           }
         </script>
+
+        <!-- favicon -->
+        <link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/images/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/images/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/images/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="/images/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/images/favicon/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/images/favicon/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff"
     </head>
     <body>
 
-        <div class="site">
-          <div class="header">
-            <h1 class="title"><a href="/"><span>Jimmy</span> Schementi</a></h1>
-            <span class="site-menu">
+        <div id="site">
+          <div id="header">
+            <h1 id="title"><a href="/"><span>Jimmy</span> Schementi</a></h1>
+            <span id="menu">
               <a class="extra" href="/">posts</a>
               <a class="extra" href="/talks">talks</a>
               <a class="extra" href="/about">about</a>
             </span>
           </div>
 
+          <div id="submenu">
+            <div id="left">
+              <a target='_blank' href="https://github.com/jschementi">GitHub</a>
+              <a target='_blank' href="https://gitlab.com/jschementi">GitLab</a>
+              <a target='_blank' href="https://twitter.com/jschementi">Twitter</a>
+              <a target='_blank' href="https://jimmy.tumblr.com">Tumblr</a>
+              <a target='_blank' href="https://instagram.com/jschementi">Instagram</a>
+              <a target='_blank' href="https://flickr.com/photos/jschementi">Flickr</a>
+            </div>
+          </div>
+
+          <div id="banner-background-fill"></div>
+          <div id="banner-background"></div>
+          <div id="submenu-background">&nbsp;</div>
+
           {{ content }}
 
-          <div class="footer">
-            <div class="contact">
+          <div id="footer">
+            <div class="footer-divider"></div>
+            <div class="column">
               <p>
                 <strong>Jimmy Schementi</strong><br />
-                Software Engineer<br />
                 <script>outputEmailLink()</script>
               </p>
             </div>
-            <div class="contact">
+            <div class="column">
               <p>
                 <a target='_blank' href="https://github.com/jschementi">github.com/jschementi</a><br />
                 <a target='_blank' href="https://gitlab.com/jschementi">gitlab.com/jschementi</a><br />

@@ -11,11 +11,44 @@ title: Jimmy Schementi - Software Engineer
 
 <span style="float: right; display: block;">[Download as PDF](/resume.pdf)</span>
 
-## Jimmy Schementi - Software Engineer
-
 *I build things that don't yet exist.*
 
 ### Professional Experience
+
+#### [Tumblr](https://tumblr.com) - New York, NY
+
+&raquo; **Principal Software Engineer** (8/2016 - 12/2020)
+  
+Principal Software Engineer at Tumblr, a blog-based social network, working on
+post and content creation. Primarily built Kanvas, an open-source media editor:
+[https://github.com/tumblr/kanvas-ios](https://github.com/tumblr/kanvas-ios),
+and integrated it into Tumblr as a media editor, GIF maker, and story-style
+posting tool. Also worked on other feature areas, like the Dashboard, Explore,
+Search, and Ads, and other projects like startup performance.
+
+Key Contributions:
+
+- Built Tumblr media creation and editing features on iOS: camera, editing,
+  GIFs, and story-style posting.
+- Collaborated with Product Management to set roadmap, QA & Release Automation
+  to get new features released, Product Design to make the best UX we can build, and
+  Android Engineering to ensure architecture and features work similar between
+  iOS and Android implementations.
+- Open sourced the iOS implementation as Kanvas:
+  [https://github.com/tumblr/kanvas-ios](https://github.com/tumblr/kanvas-ios),
+- Prototyped a new content creation and consumption style for Tumblr.
+- Built and shipped many other medium-size features across Tumblr’s backend
+  systems, API, iOS, Android, and web apps, mostly focused on increasing
+  engagement in posts (for example: New Posts Indicator, Note Highlights,
+  Related Blogs). These features are on the Dashboard, Expore, and Search.
+- Improved startup performance of Android and iOS apps over multiple projects
+  (server-side database and cache workload optimizations, client-side databse
+  access optimizations, and decrease data-over-the-wire).
+- Advised and mentored senior engineers.
+- Part of Tumblr Engineering interviewing for both Backend, Android, iOS, and
+  Web roles.
+- Ran a first-engineer-hire technical interview process for BUILTBYGIRLS (an
+  internal team in Tumblr’s parent company’s).
 
 #### [SOLS](http://www.sols.com) - New York, NY
 

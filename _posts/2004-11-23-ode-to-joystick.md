@@ -1,5 +1,5 @@
 ---
-title: "Ode to Joystick"
+title: "Ode to Joystick - Newspaper Interview"
 layout: "post"
 permalink: "/2004/11/ode-to-joystick.html"
 uuid: "110118106287044440"

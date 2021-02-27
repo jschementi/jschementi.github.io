@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body { height: 100%; }
+
+body {
+  background: $background-color;
+  font: 13.34px 'Lato', Helvetica, Arial, sans-serif;
+  font-size: small;
+  text-align: center;
+  font-weight: 400;
+  color: $foreground-color;
+}
+
+h1, h2, h3, h4, h5, h6 { color: $heading-text-color; }
+h1 { margin-bottom: 1em; margin-top: 1em; }
+h2, h3, h4, h5, h6 { margin: 2em inherit 1em inherit; }
+
+p, ul, ol { margin: 1em 0; }
+
+a         { color: $link-color; }
+a:hover   { color: $link-hover-color; }
+
+ul, ol {
+  padding-left: 25px;
+}
+
+hr {
+  border: 0;
+  margin: 4em 0;
+  height: 1px;
+  background: black;
+  background: -webkit-gradient(linear, 0 0, 100% 0, from($background-color), to($background-color), color-stop(50%, $foreground-color));
+}
+
+.date {
+  color: $date-color;
+  font-family: 'Inconsolata', monospace;
+  font-size: 90%;
+  float: right;
+  font-weight: 400;
+}

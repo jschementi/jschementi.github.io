@@ -59,10 +59,7 @@ h3 + .date {
   </a>
 </div>
 
-- [Video](http://mlb.mlb.com/media/player/entry.jsp?calendar_event_id=14-473786-2016-03-01&source=NYTM)
-  * Click on last yellow marker labeled "SOLS"
-
-> _Unfortunately, video does not allow for direct linking to sections._
+- [Video](https://vimeo.com/157742546#t=4874s)
 
 ### [NY Tech Meetup](https://nytm.org/)
 <div class="date">
@@ -76,12 +73,8 @@ h3 + .date {
   --><img alt="Q&A" src="/images/talks/20130710-nytechmeetup-moven/QF_NYTM_July (9).jpg" title="Q&A">
 </div>
 
-- [Video](http://mlb.mlb.com/shared/flash/mediaplayer/v4.4/R7/MP4.jsp?calendar_event_id=14-376935-2013-07-10&source=NYTM&media_type=video)
-  * Scrub to the following points:
-      - 28:40: Moven Demo
-      - 42:06: Q&A
-
-> _Unfortunately, video does not allow for direct linking to sections._
+- [Video Demo](https://vimeo.com/102242394#t=1720s)
+- [Video Q&A](https://vimeo.com/102242394#t=2526s)
 
 ### NYC Developer's Meetup
 <div class="date">
