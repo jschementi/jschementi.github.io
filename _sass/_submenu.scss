@@ -9,6 +9,7 @@
   background-color: $gray-color;
   color: $menu-background-color;
   transform: rotate(-1deg);
+  min-width: 42em;
 
   & + .content {
     padding-top: 1em;

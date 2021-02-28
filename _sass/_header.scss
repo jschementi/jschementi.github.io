@@ -52,10 +52,11 @@
 #banner-background-fill {
   position: absolute;
   top: 0;
-  height: 60px;
+  height: 80px;
   left: 0;
   right: 0;
   background-color: $header-background-color;
+  min-width: 43em;
 }
 
 #banner-background {
@@ -66,6 +67,5 @@
   right: 0;
   background-color: $header-background-color;
   transform: rotate(-1deg);
+  min-width: 43em;
 }
-
-
