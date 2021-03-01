@@ -2,20 +2,8 @@
 title: "Theta Chi on Fire"
 layout: "post"
 permalink: "/2004/09/theta-chi-on-fire.html"
-uuid: "109582691347944604"
-guid: "tag:blogger.com,1999:blog-5419182.post-109582691347944604"
 date: "2004-09-22 16:20:00"
 updated: "2004-09-22 04:21:53"
-description:
-blogger:
-    siteid: "5419182"
-    postid: "109582691347944604"
-    comments: "0"
-categories:
-author:
-    name: "Jimmy Schementi"
-    url: "https://plus.google.com/116380716127564408544?rel=author"
-    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
 ---
 
 [![Theta Chi - Epsilon Chapter, on fire](http://farm1.staticflickr.com/32/53850698_5c56bd3b9b_o.jpg "Theta Chi - Epsilon Chapter, on fire")](http://www.flickr.com/photos/jschementi/tags/Fire%20School)

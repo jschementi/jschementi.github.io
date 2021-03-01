@@ -23,9 +23,9 @@ I just spent the past hour and a half trying to get simple rounded corners using
 
 If you are experiencing the background of your rounded div not being rounded ... and the border BOTH rounding and not ...
 
-<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://jimmy.schementi.com/blog/uploaded_images/transcorner_error-732724.jpg"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer;" src="/blog/uploaded_images/transcorner_error-732722.jpg" alt="" border="0" /></a>... then you are experiencing the same problem I did. To fix this, simply make sure the background-color of one of the parent elements is set. In my case, nothing had it set, including the body ...
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="/images/posts/transcorner_error-732724.jpg"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer;" src="/images/posts/transcorner_error-732724.jpg" alt="" border="0" /></a>... then you are experiencing the same problem I did. To fix this, simply make sure the background-color of one of the parent elements is set. In my case, nothing had it set, including the body ...
 <pre>body {
  background-color: white;
 }</pre>... this will make sure the background color is set and you will achieve the correct rounded corner effect:
-<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://jimmy.schementi.com/blog/uploaded_images/transcorners-779745.jpg"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer;" src="/blog/uploaded_images/transcorners-779742.jpg" alt="" border="0" /></a>
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="/images/posts/transcorners-779745.jpg"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer;" src="/images/posts/transcorners-779745.jpg" alt="" border="0" /></a>
 </div>

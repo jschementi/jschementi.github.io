@@ -18,7 +18,7 @@
       box-shadow: 6px 6px 2px 0px $gray-color;
       border: 1px solid $gray4-color;
 
-      a {
+      > a {
         display: block;
         line-height: 1em;
 
@@ -36,7 +36,9 @@
         border: 1px solid $gray-color;
         display: inline-block;
         line-height: 1em;
+      }
 
+      > img {
         &:last-child {
           margin-bottom: 4em;
         }
@@ -52,7 +54,7 @@
         font-size: 150%;
         line-height: 1.4em;
         padding: 0 0.5em;
-        margin-top: -7%;
+        margin-top: 0.5em;
         margin-bottom: 0.5em;
 
         a {
