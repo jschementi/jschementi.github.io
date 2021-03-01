@@ -1,5 +1,5 @@
 #submenu-background {
-  position: absolute;
+  position: fixed;
   top: 67px;
   left: 0;
   right: 0;
@@ -9,6 +9,7 @@
   color: $menu-background-color;
   transform: rotate(-1deg);
   min-width: 42em;
+  z-index: 1000;
 
   & + .content {
     padding-top: 1em;
@@ -16,12 +17,14 @@
 }
 
 #submenu {
-  position: relative;
+  position: fixed;
+  top: 70px;
   padding: 0.5em 0;
   text-transform: uppercase;
   font-size: 0.9em;
   margin-top: 3px;
   transform: rotate(-1deg);
+  z-index: 1001;
 
   a {
     color: $menu-foreground-color;

@@ -1,10 +1,20 @@
+$header-height: 67px;
+
 #site {
 
   #header {
-    position: relative;
+    position: fixed;
+    top: 0;
+    height: $header-height;
     text-transform: uppercase;
     font-weight: 700;
     transform: rotate(-1deg);
+    z-index: 1001;
+    width: 42em;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     a {
       text-decoration: none;
@@ -13,7 +23,7 @@
     #title {
       color: $header-title-color;
       font-size: 1.5em;
-      display: inline-block;
+      margin: 0;
 
       a {
         color: $header-title-color;
@@ -29,16 +39,15 @@
     }
 
     #menu {
-      display: inline-block;
-      position: absolute;
-      right: 0;
-      top: 1em;
       font-size: 1.5em;
+      width: 9em;
+      justify-content: space-between;
+      display: flex;
 
       a.extra {
         color: $header-menu-color;
-        margin-left: 1em;
         font-size: 0.70em;
+        margin-left: 15px;
 
         &:hover {
           color: $header-menu-hover-color;
@@ -49,17 +58,18 @@
 }
 
 #banner-background-fill {
-  position: absolute;
+  position: fixed;
   top: 0;
   height: 80px;
   left: 0;
   right: 0;
   background-color: $header-background-color;
   min-width: 43em;
+  z-index: 100;
 }
 
 #banner-background {
-  position: absolute;
+  position: fixed;
   top: 0;
   height: 67px;
   left: 0;
@@ -67,4 +77,5 @@
   background-color: $header-background-color;
   transform: rotate(-1deg);
   min-width: 43em;
+  z-index: 1000;
 }
