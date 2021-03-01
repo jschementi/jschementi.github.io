@@ -43,30 +43,35 @@ ul#posts {
     margin-top: 1em;
     margin-bottom: 2em;
     padding-left: 0;
-    clear: both;
 
     li {
       line-height: 2em;
       font-size: 1.1em;
       font-weight: 600;
-      //font-family: 'Inconsolata', monospace;
+      position: relative;
+      font-family: 'Inconsolata', monospace;
 
       a {
         color: $post-list-link-color;
+        display: inline-block;
+        background-color: $background-color;
+        padding-right: 5px;
 
         &:hover {
           color: $post-list-hover-color;
           text-decoration: none;
         }
       }
-    }
 
-    span {
-      color: $date-color;
-      font-family: 'Inconsolata', monospace;
-      font-size: 90%;
-      float: right;
-      font-weight: 400;
+      span {
+        color: $date-color;
+        font-family: 'Inconsolata', monospace;
+        font-size: 90%;
+        position: absolute;
+        right: 0;
+        font-weight: 400;
+        z-index: -1;
+      }
     }
   }
 }
