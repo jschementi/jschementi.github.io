@@ -49,13 +49,13 @@ ul#posts {
       font-size: 1.1em;
       font-weight: 600;
       position: relative;
-      font-family: 'Inconsolata', monospace;
 
       a {
         color: $post-list-link-color;
         display: inline-block;
         background-color: $background-color;
         padding-right: 5px;
+        z-index: 1
 
         &:hover {
           color: $post-list-hover-color;
@@ -70,7 +70,6 @@ ul#posts {
         position: absolute;
         right: 0;
         font-weight: 400;
-        z-index: -1;
       }
     }
   }
