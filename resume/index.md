@@ -105,7 +105,7 @@ htmlid: resume
 </style>
 
 <span id="download-pdf"><a href="javascript:window.print()">Download as PDF</a></span>
-<span id="more-on-linkedin">[More on LinkedIn](https://linked.in/in/jschementi)</span>
+<span id="more-on-linkedin">[More on LinkedIn](https://www.linkedin.com/in/jschementi)</span>
 
 ### Open Source
 
