@@ -12,10 +12,28 @@
   & > h2 {
     text-transform: uppercase;
     margin: 1.5em 0 1.0em 0;
-    display: inline-block;
+    display: block;
+    background-color: $background-color;
+    padding-right: 5px;
+    z-index: 1;
 
     & + .date {
-      margin: 2.9em 0 1.25em 0;
+      position: absolute;
+      top: 4em;
+      right: 0;
+      float: none;
+      z-index: -1;
+    }
+  }
+
+  & + #disqus_thread_wrapper {
+    border: 3px solid $lightpink-color;
+    transform: rotate(-1deg);
+    padding: 2em;
+    margin-top: 6em;
+
+    #disqus_thread {
+      transform: rotate(1deg);
     }
   }
 }

@@ -6,11 +6,12 @@
   line-height: 1.5em;
 
   img {
-    max-width: 42em;
+    max-width: 100%;
   }
 }
 
 #submenu + .content {
   margin-top: 67px + 51.15px;
   padding-top: 2em;
+  text-align: left;
 }
