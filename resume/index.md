@@ -1,21 +1,129 @@
 ---
 layout: page
-title: Jimmy Schementi - Software Engineer
+title: Resume
+htmlid: resume
 ---
 
 <style>
-  .page > h2:first-child {
-    display: none;
+  #resume {
+    position: relative;
+  }
+
+  #resume.content h1 {
+    font-size: 3.8em;
+    margin-bottom: 0.5em;
+  }
+
+  #resume.content h3 {
+    margin-top: 3em;
+  }
+
+  .note {
+    font-family: 'Permanent Marker', cursive;
+    text-align: center;
+    transform: rotate(1deg);
+  }
+
+  #resume.content {
+    padding-top: 1em;
+  }
+
+  #resume-contact-info {
+    display: block;
+    text-align: center;
+  }
+
+  @media screen {
+    #resume.content > h2:first-child {
+      text-align: center;
+      font-size: 5em;
+      line-height: 1em;
+      margin-top: 0.3em;
+      margin-bottom: 0.9em;
+      margin-left: 0.2em;
+      transform: rotate(3deg);
+      color: #c30670;
+      font-family: 'Permanent Marker';
+    }
+    #download-pdf {
+      display: block;
+      text-align: center;
+      margin-top: -4em;
+      margin-bottom: 4em;
+      transform: rotate(-3deg);
+      font-size: 1.1em;
+      margin-right: 4em;
+      font-weight: bold;
+    }
+
+    #more-on-linkedin {
+      display: block;
+      text-align: center;
+      margin-top: -4.8em;
+      margin-bottom: 4em;
+      transform: rotate(-10deg);
+      font-weight: bold;
+      margin-left: 7em;
+    }
+  }
+  @media print {
+    #banner-background-fill, #banner-background {
+      background: #f0f0f0;
+    }
+    #banner-background-fill {
+      height: 20px;
+    }
+    #submenu-background {
+      background: none;
+      box-shadow: none;
+      border-bottom: 0;
+    }
+    #site #header #title a {
+      color: #202020;
+    }
+    #site #header #menu, #submenu {
+      display: none;
+    }
+    #download-pdf, #more-on-linkedin {
+      display: none;
+    }
+    #resume.content {
+      padding: 0;
+    }
+    #resume.content h1 {
+      font-size: 3.8em;
+      margin-bottom: 0.5em;
+    }
+    #resume > h2:first-child,
+    #resume > hr:first-child,
+    #resume > p:first-child {
+      display: none;
+      margin: 0;
+      padding: 0;
+    }
   }
 </style>
 
-<span style="float: right; display: block;">[Download as PDF](/resume.pdf)</span>
+<span id="download-pdf"><a href="javascript:window.print()">Download as PDF</a></span>
+<span id="more-on-linkedin">[More on LinkedIn](https://linked.in/in/jschementi)</span>
 
-*I build things that don't yet exist.*
+### Open Source
 
-### Professional Experience
+- [Kanvas](https://github.com/tumblr/kanvas-ios)
+- [Riker](http://github.com/jschementi/riker)
+- [IronnRuby](http://ironruby.net)
+- [IronPython](http://ironpython.net)
 
-#### [Tumblr](https://tumblr.com) - New York, NY
+More project on [GitHub](https://github.com/jschementi)
+
+
+### Education
+
+- **Masters, Computer Science**, Worcester Polytechnic Institute (2005 - 2007)
+- **Bachelors, Computer Science**, Worcester Polytechnic Institute (2002 - 2006)
+
+
+### [Tumblr](https://tumblr.com) - New York, NY
 
 &raquo; **Principal Software Engineer** (8/2016 - 12/2020)
   
@@ -50,7 +158,7 @@ Key Contributions:
 - Ran a first-engineer-hire technical interview process for BUILTBYGIRLS (an
   internal team in Tumblr’s parent company’s).
 
-#### [SOLS](http://www.sols.com) - New York, NY
+### [SOLS](http://www.sols.com) - New York, NY
 
 &raquo; **Director of Engineering, 3D / Principal Software Engineer** (2/2015 - 6/2016)
 
@@ -83,7 +191,7 @@ Key Contributions:
 - Built a product tour of what the physical product would look like for
   each customer and how it was customized (Web, WebGL, Blender, Python).
 
-#### [Moven](http://moven.com) - New York, NY
+### [Moven](http://moven.com) - New York, NY
 
 &raquo; **Head of Engineering / Lead Software Engineer** (10/2012 - 9/2014)
 
@@ -112,7 +220,7 @@ Key responsibilities and achievements:
   constructive code reviews, and leading by example.
 
 
-#### [Lab49](http://lab49.com) - New York, NY
+### [Lab49](http://lab49.com) - New York, NY
 
 &raquo; **Senior Software Engineer** (8/2010 - 10/2012)
 
@@ -136,7 +244,7 @@ Notable projects:
   (JavaScript, HTML, Node.js, C#).
 
 
-#### [Microsoft](http://microsoft.com) - Redmond, WA
+### [Microsoft](http://microsoft.com) - Redmond, WA
 
 &raquo; **Program Manager** (7/2007 - 7/2010)
 
@@ -169,7 +277,7 @@ Worked on the IronPython team, specifically working on Windows Presentation
 Foundation and ASP.NET integration.
 
 
-#### [Worcester Polytechnic Institute](http://wpi.edu), Worcester, MA
+### [Worcester Polytechnic Institute](http://wpi.edu), Worcester, MA
 
 &raquo; **Lead Developer - Artifical Intelligence Lab** (1-6/2007)
 
@@ -177,29 +285,9 @@ Lead WPI's Artifical Intelligence lab in a redesign/rebuild of
 [ASSISTments](http://assistment.org), an intelligent tutoring system. The system
 was gradually rolled out to schools, and it is still in use today.
 
-#### [General Electric](http://ge.com), Danbury, CT
+### [General Electric](http://ge.com), Danbury, CT
 
 &raquo; **Information Management Leadership Program Intern** (Summer 2005)
 
 Lead a user-acceptance testing effort between users and developers on
 different continents.
-
-#### Additional professional experience available on [LinkedIn](http://linkedin.com/in/jschementi/)
-
----
-
-### Significant Open Source Contributions
-
-- [Riker](http://github.com/jschementi/riker)
-- [IronnRuby](http://ironruby.net)
-- [IronPython](http://ironpython.net)
-
-For a more complete list, see [my GitHub profile](https://github.com/jschementi)
-
----
-
-### Education
-
-- **Masters, Computer Science**, Worcester Polytechnic Institute (2005 - 2007)
-- **Bachelors, Computer Science**, Worcester Polytechnic Institute (2002 - 2006)
-
