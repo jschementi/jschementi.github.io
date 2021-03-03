@@ -2,30 +2,17 @@
 title: "Parsing JSON in IronRuby"
 layout: "post"
 permalink: "/2008/03/parsing-json-in-ironruby.html"
-uuid: "2523416248134144160"
-guid: "tag:blogger.com,1999:blog-5419182.post-2523416248134144160"
 date: "2008-03-24 09:05:00"
 updated: "2008-04-11 09:41:06"
-description: 
-blogger:
-    siteid: "5419182"
-    postid: "2523416248134144160"
-    comments: "3"
-categories: [ruby, JSON, Dynamic Languages, Silverlight]
-author: 
-    name: "Jimmy Schementi"
-    url: "https://plus.google.com/116380716127564408544?rel=author"
-    image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
 ---
 
-<div class="post-content">
-When <a href="http://www.iunknown.com/">John Lam</a> and I were preparing for <a href="http://visitmix.com/">MIX</a>, there were a lot of crazy JSON-serialization coding going on in our demo apps. And none of them were pretty. My implementation was outright dangerous ... it's a good thing I trust <a href="http://flickr.com/">Flickr</a> to not send me dangerous JSON. =)
+<p>When <a href="http://www.iunknown.com/">John Lam</a> and I were preparing for <a href="http://visitmix.com/">MIX</a>, there were a lot of crazy JSON-serialization coding going on in our demo apps. And none of them were pretty. My implementation was outright dangerous ... it's a good thing I trust <a href="http://flickr.com/">Flickr</a> to not send me dangerous JSON. =)</p>
 
-After we got back from MIX, I started working on making <a href="http://dynamicsilverlight.net/">Dynamic Silverlight</a> play better in the wild, and this JSON issue was the first on my list to attack. Ok, it got pushed a little further down on the que due to all these crazy "PM" tasks I have to do, but never-the-less I've got something to talk about =)
+<p>
+After we got back from MIX, I started working on making <a href="http://dynamicsilverlight.net/">Dynamic Silverlight</a> play better in the wild, and this JSON issue was the first on my list to attack. Ok, it got pushed a little further down on the que due to all these crazy "PM" tasks I have to do, but never-the-less I've got something to talk about =)</p>
 
-<span style="font-weight: bold;font-size:130%;" >Wait, Dangerous?
-</span>
-Yep, dangerous! John's <a href="http://www.iunknown.com/2008/03/dynamic-silve-1.html">solution</a> was much safer, since it used the <a href="http://weblogs.asp.net/mschwarz/archive/2007/06/01/silverlight-and-json-isolatedstorage-example.aspx">JSON serializer</a> in <a href="http://silverlight.net/">Silverlight</a>, but it required an assembly and, well, uck! More seriously, serialization is not what I'm looking for; it's simply converting the JSON arrays/hashes to Ruby array/hashes, and making sure the key/value pairs are valid JSON. Serializing to an object model isn't as interesting to me, as I may have an object that already supports instantiating itself with JSON (Rails' ActiveRecord models ... more on this in a future post =)). Anyway, you can check out John's solution if you have a C# object model that needs to serialize/deserialize into JSON. My first stab at this was wrong on so many levels:
+<h4>Wait, Dangerous?</h4>
+<p>Yep, dangerous! John's <a href="http://www.iunknown.com/2008/03/dynamic-silve-1.html">solution</a> was much safer, since it used the <a href="http://weblogs.asp.net/mschwarz/archive/2007/06/01/silverlight-and-json-isolatedstorage-example.aspx">JSON serializer</a> in <a href="http://silverlight.net/">Silverlight</a>, but it required an assembly and, well, uck! More seriously, serialization is not what I'm looking for; it's simply converting the JSON arrays/hashes to Ruby array/hashes, and making sure the key/value pairs are valid JSON. Serializing to an object model isn't as interesting to me, as I may have an object that already supports instantiating itself with JSON (Rails' ActiveRecord models ... more on this in a future post =)). Anyway, you can check out John's solution if you have a C# object model that needs to serialize/deserialize into JSON. My first stab at this was wrong on so many levels:</p>
 
 <pre class="textmate-source all_hallow_s_eve"><span class="source source_ruby">  <span class="meta meta_function meta_function_method meta_function_method_without-arguments meta_function_method_without-arguments_ruby"><span class="keyword keyword_control keyword_control_def keyword_control_def_ruby">def</span> <span class="entity entity_name entity_name_function entity_name_function_ruby">json_str</span></span>
     <span class="variable variable_other variable_other_readwrite variable_other_readwrite_instance variable_other_readwrite_instance_ruby"><span class="punctuation punctuation_definition punctuation_definition_variable punctuation_definition_variable_ruby">@</span>str</span><span class="punctuation punctuation_separator punctuation_separator_method punctuation_separator_method_ruby">.</span>

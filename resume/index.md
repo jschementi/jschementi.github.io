@@ -42,7 +42,7 @@ htmlid: resume
       margin-bottom: 0.9em;
       margin-left: 0.2em;
       transform: rotate(3deg);
-      color: #c30670;
+      color: #fb0079;
       font-family: 'Permanent Marker';
     }
     #download-pdf {
