@@ -69,6 +69,7 @@ htmlid: resume
   @media print {
     #banner-background-fill, #banner-background {
       background: #f0f0f0;
+      position: absolute;
     }
     #banner-background-fill {
       height: 20px;
@@ -77,6 +78,10 @@ htmlid: resume
       background: none;
       box-shadow: none;
       border-bottom: 0;
+      position: absolute;
+    }
+    #site #header {
+      position: absolute;
     }
     #site #header #title a {
       color: #202020;
@@ -87,8 +92,10 @@ htmlid: resume
     #download-pdf, #more-on-linkedin {
       display: none;
     }
-    #resume.content {
+    #submenu + #resume.content {
+      margin-top: 0;
       padding: 0;
+      padding-top: 75px;
     }
     #resume.content h1 {
       font-size: 3.8em;
@@ -104,7 +111,7 @@ htmlid: resume
   }
 </style>
 
-<span id="download-pdf"><a href="javascript:window.print()">Download as PDF</a></span>
+<span id="download-pdf"><a href="/resume.pdf">Download as PDF</a></span>
 <span id="more-on-linkedin">[More on LinkedIn](https://www.linkedin.com/in/jschementi)</span>
 
 ### Open Source
