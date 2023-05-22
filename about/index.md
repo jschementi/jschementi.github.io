@@ -53,6 +53,13 @@ continuing to do awesome work, and I strongly suggest you evaluate it for your
 educational organization, your children, or even if you want to brush up on
 your math skills.
 
+## Video Game Design
+
+I use to make single-player and multiplayer levels for Jedi Knight, Quake III,
+and Half Life 2. Here's one that's still on the internet:
+
+- [Clad 65](https://www.massassi.net/levels/files/1804.shtml) ([MotS version](https://www.massassi.net/levels/files/1805.shtml))
+
 ## Photos
 
 I take lots of photos between my <a target="_blank" href="http://www.flickr.com/cameras/nikon/d90/">Nikon D90</a> and my <a target="_blank" href="http://www.flickr.com/cameras/apple/iphone_5/">iPhone 5</a>, and post everything on <a target="_blank"  href="http://www.flickr.com/photos/jschementi/">Flickr</a>. Select shots are posted to <a target="_blank" href="http://instagram.com/jschementi">Instagram</a>.
