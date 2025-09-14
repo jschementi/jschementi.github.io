@@ -18,7 +18,7 @@ author:
     image: "//lh6.googleusercontent.com/-Fl3zUgl9dMw/AAAAAAAAAAI/AAAAAAAABYQ/CvQezyGiMP4/s512-c/photo.jpg"
 ---
 
-![](http://farm1.staticflickr.com/28/52339263_4a71497b5b_o.jpg)
+![](/images/flickr/52339263_ab10028255_b.jpg)
 
 Friday night my computer started to act weird.  I backed up all my data to another location of the drive where it would be safe, but I didn't think to get it off my computer and onto something else like another hard drive or DVDs.  That was my mistake.  Something went wrong and I lost access to all my files.  There are still on my hard drive but I can't get to them.
 

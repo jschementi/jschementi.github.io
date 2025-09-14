@@ -7,6 +7,6 @@ date: "2005-01-11 06:57:00"
 updated: "2005-01-11 06:16:12"
 ---
 
-[![Zeus](http://farm1.staticflickr.com/24/55006664_eb5a0b823c_o.jpg "Zeus")](http://www.flickr.com/photos/tags/zeuscomputerbuild)
+[![Zeus](/images/flickr/55006664_32aec0328c_b.jpg "Zeus")](http://www.flickr.com/photos/tags/zeuscomputerbuild)
 
 First real computer build

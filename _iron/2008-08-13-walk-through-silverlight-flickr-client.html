@@ -21,7 +21,7 @@ author:
 <div class="post-content">
 Yesterday I spoke about <a href="http://ironruby.net/" target="_blank">IronRuby</a> and <a href="http://silverlight.net/" target="_blank">Silverlight</a> to the <a href="http://www.netda.net/" target="_blank">.NET Developers Association</a>, or "NETDA", on (Microsoft's) campus tonight. In this post, I'll show one of the apps I built, a Flickr client. <br />
 <br />
-<a href="http://www.flickr.com/photos/24458122@N00/2759163228/" title="photoviewer"><img alt="photoviewer" border="0" src="http://static.flickr.com/3099/2759163228_83b3128ec6.jpg" /></a><br />
+<a href="/images/flickr/2759163228_e424b765db_w.jpg" title="photoviewer"><img alt="photoviewer" border="0" src="/images/flickr/2759163228_e424b765db_w.jpg" /></a><br />
 <br />
 Here's the live app: <a href="http://jimmy.schementi.com/silverlight/photoviewer" target="_blank">http://jimmy.schementi.com/silverlight/photoviewer</a><br />
 <h4><span style="color: #ff8000;">Pre-requisites</span></h4>This walk-through will work for <b>both</b> Mac and Windows, however the app seems to have problems in Safari currently. Firefox or IE will work fine.<br />
@@ -52,7 +52,7 @@ $ script/server /b:index.html</pre><span style="color: #999999; font-size: xx-sm
 <br />
 This will start a Silverlight development web server called <a href="http://www.codeplex.com/sdlsdk/Wiki/View.aspx?title=Chiron&amp;referringTitle=Getting%20Started" target="_blank">Chiron</a>, and launch your default browser at index.html. Using the "/w" flag just starts the server and doesn't open your browser. Anyway, you should see this (in your default browser, of course):<br />
 <br />
-<a href="http://www.flickr.com/photos/24458122@N00/2758685635/" title="hello-silverlight"><img alt="hello-silverlight" border="0" src="http://static.flickr.com/3230/2758685635_0fed5fe9b9.jpg" /></a><br />
+<a href="/images/flickr/2758685635_4c958c5a5d_w.jpg" title="hello-silverlight"><img alt="hello-silverlight" border="0" src="/images/flickr/2758685635_4c958c5a5d_w.jpg" /></a><br />
 <h4><span style="color: #ff8000;">Adding external libraries</span></h4>Before we can start coding, this app depends on some external libraries, so let's put them in our project now. Since I'm such a good guy, I put all the external dependencies in that <a href="http://jimmy.schementi.com/silverlight/photoviewer-start.zip" target="_blank">photoviewer-start.zip</a> file I had you download already. Yep, I'm awesome, you're welcome. Anyway, take the contents of that zip and place it in your project. Your OS may complain about overwriting silverlight.rb, but it's ok, overwrite it. Did it? Good. So, what did you just add to your app?<br />
 <br />
 <span style="color: #ff8000;"><b>images/loading.gif</b></span> - loading indicator gif thingy. <br />
@@ -158,7 +158,7 @@ form#search #images_loading {
   cursor: default; 
 }</pre></div><br />
 Refresh your browser and you'll see this:<br />
-<a href="http://www.flickr.com/photos/24458122@N00/2758745585/" title="html"><img alt="html" border="0" src="http://static.flickr.com/3111/2758745585_166b0d5c84.jpg" /></a><br />
+<a href="/images/flickr/2758745585_36c2b9ed33_w.jpg" title="html"><img alt="html" border="0" src="/images/flickr/2758745585_36c2b9ed33_w.jpg" /></a><br />
 <h4><span style="color: #ff8000;">IronRuby loves the DOM</span></h4>Awesome, now we have a UI, but it does nothing ... <i>Ruby enters stage left</i>. Open up ruby/app.rb and let's start hacking.<br />
 The point of this app is to type a keyword, hit search, and see images from Flickr that have something to do with the keyword. So, I propose the first step would be to get Ruby handle that search button press. Agree? Good. Replace the entire body of the App class with the following:<br />
 <b></b><br />
@@ -169,7 +169,7 @@ The point of this app is to type a keyword, hit search, and see images from Flic
 end
 </pre></div>That will print "Search button pressed!" at the bottom of the page every time you press the search button. Duh, that's what the code says! =P<br />
 <br />
-<a href="http://www.flickr.com/photos/24458122@N00/2758762001/" title="search"><img alt="search" border="0" src="http://static.flickr.com/3002/2758762001_50b114ebf6.jpg" /></a><br />
+<a href="/images/flickr/2758762001_b746036b6f_w.jpg" title="search"><img alt="search" border="0" src="/images/flickr/2758762001_b746036b6f_w.jpg" /></a><br />
 <h4><span style="color: #ff8000;">Ruby loves Flickr</span></h4>Now that we know how to hook a button click with Ruby, let's make it talk to Flickr and get the data about our search back. First off, we need to know what to say to Flickr. So, let's redefine <span style="font-family: Courier New;">initialize</span> to do the following:<br />
 <div class="wlWriterSmartContent" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:2a964897-49a9-4704-a252-30400aa2f666" style="display: inline; float: none; margin: 0px; padding: 0px;"><pre class="ruby" name="code">def initialize 
   @url = "http://api.flickr.com/services/rest" 
@@ -220,7 +220,7 @@ end
 end 
 </pre></div>Nothing’s really special here, just puts the "?", "&amp;", and "=" in the right places. Anyway, we're not ready to give her another run. Save app.rb, refresh your browser, type a search-term, click search, and you'll see the magic unfold:<br />
 <br />
-<a href="http://www.flickr.com/photos/24458122@N00/2758561585/" title="json-dump"><img alt="json-dump" border="0" src="http://static.flickr.com/3046/2758561585_e18127bddf.jpg" /></a><br />
+<a href="/images/flickr/2758561585_2906ecfe10_w.jpg" title="json-dump"><img alt="json-dump" border="0" src="/images/flickr/2758561585_2906ecfe10_w.jpg" /></a><br />
 <h4><span style="color: #ff8000;">Let's make this gunk pretty</span></h4>So, what to do with all this Flickr data ... hmmm ... thoughts? Somewhere in that muck are some pretty pictures, so let's squeeze them out ... aka parse the JSON. At the top of app.rb, add the following:<br />
 <div class="wlWriterSmartContent" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:83bcea08-ddc7-4bab-bf55-2f6bdc5eda5f" style="display: inline; float: none; margin: 0px; padding: 0px;"><pre class="ruby:nogutter:nocontrols" name="code">require 'json'</pre></div>That'll load that json.rb file we copied in the beginning. It simply monkey patches <span style="font-family: courier new;">System::Json::JsonValue</span> to give easier access to the data. Here's a loot at json.rb, just for fun.<br />
 <div class="wlWriterSmartContent" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:ea06c678-5181-409a-8462-6b3e08462e59" style="display: inline; margin: 0px; padding: 0px;"><pre class="ruby" name="code">require 'System.Json.dll' 
@@ -316,7 +316,7 @@ private
   end 
 end</pre></div>A bit of code here, but it's all straight-forward, except for all these "tag" calls. The private <span style="font-family: courier new;">tag</span> method does most of the work here, but generating HTML based on a name and options; it makes writing HTML more ruby-esk. You'll also notice that <span style="font-family: courier new;">generate_pages</span> and <span style="font-family: courier new;">hook_page_events</span> aren't implemented yet. You can not implement them now, refresh your browser, do a search, and you'll at least get the images back:<br />
 <br />
-<a href="http://www.flickr.com/photos/24458122@N00/2759400768/" title="images"><img alt="images" border="0" src="http://static.flickr.com/2412/2759400768_02c6f84414.jpg" /></a><br />
+<a href="/images/flickr/2759400768_b4a5b3c644_w.jpg" title="images"><img alt="images" border="0" src="/images/flickr/2759400768_b4a5b3c644_w.jpg" /></a><br />
 <h4><span style="color: #ff8000;">Paginating the Flickrnation</span></h4>Flickr only sends you one page of your request. When we created the options for the Flickr request, there was a <span style="font-family: courier new;">:per_page =&gt; "30"</span> entry, saying that I want pages of 30 images ... duh. When we call <span style="font-family: courier new;">create(document.keyword.value, 1)</span> on the search button click, that second argument asks Flickr for the 1st page of the request. So, to get any page we want, you just give it to the create function, and it'll give is that page. Told you we'd need to reuse it!<br />
 So, to implement <span style="font-family: courier new;">generate_pages</span>, we just need to render links for the pages, and to implement <span style="font-family: courier new;">hook_page_events</span>, we need to hook each one of those page links with an event that calls create for the given page. Simple enough ...<br />
 <div class="wlWriterSmartContent" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:f28f9c9c-196c-47b5-a411-cff1aad7746a" style="display: inline; margin: 0px; padding: 0px;"><pre class="ruby" name="code">def generate_pages 
@@ -342,7 +342,7 @@ def hook_page_events(div)
   end 
 end</pre></div>Do the whole save/refresh/search song-and-dance and you'll have pretty paging action.<br />
 <br />
-<a href="http://www.flickr.com/photos/24458122@N00/2759700250/" title="pagination"><img alt="pagination" border="0" src="http://static.flickr.com/3257/2759700250_51df2356b5.jpg" /></a><br />
+<a href="/images/flickr/2759700250_cc73f5e306_m.jpg" title="pagination"><img alt="pagination" border="0" src="/images/flickr/2759700250_cc73f5e306_m.jpg" /></a><br />
 <h4><span style="color: #ff8000;">Ruby, you play nice with Javascript, ya hear!</span></h4>This is pretty awesome ... ya know, Ruby in the browser and all. But truth be told, I like Javascript too. Especially since there are a ton of Javascript libraries out there.<br />
 <br />
 That being said, I'd like to spruce up the "clicking on an image". Right now it opens in a completely new page, and breaks the back-button since your search is wiped away. It's be awesome to have some cool visual effect when clicking on the image, and even having it link to the real Flickr image page. Only if there was such a library ...<br />
@@ -371,5 +371,5 @@ HtmlPage.window.eval("initLightbox()")
 </pre></div>That last line isn't the prettiest, but our images are all pretty. <br />
 <h4><span style="color: #ff8000;">And we're done!</span></h4>Congrats for getting this far! Now waste time searching for "boobs" or other dirty things on Flickr.<br />
 <br />
-<a href="http://www.flickr.com/photos/24458122@N00/2758561659/" title="lightbox"><img alt="lightbox" border="0" src="http://static.flickr.com/3030/2758561659_1f51cab446.jpg" /></a>
+<a href="/images/flickr/2758561659_f3d6bb2bef_w.jpg" title="lightbox"><img alt="lightbox" border="0" src="/images/flickr/2758561659_f3d6bb2bef_w.jpg" /></a>
 </div>
