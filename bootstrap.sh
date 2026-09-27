@@ -31,10 +31,10 @@ have_clt() {
   dir="$(xcode-select -p 2>/dev/null)" && [ -x "$dir/usr/bin/git" ]
 }
 
-mdm_enrolled() {
+icloud_signed_in() {
   local out
-  out="$(profiles status -type enrollment 2>/dev/null || true)"
-  [[ "$out" == *"MDM enrollment: Yes"* ]]
+  out="$(defaults read MobileMeAccounts Accounts 2>/dev/null || true)"
+  [[ "$out" == *AccountID* ]]
 }
 
 # `ssh -T` exits 1 even when authentication succeeds, so check what it says.
@@ -68,6 +68,20 @@ pin_github_host_keys() {
 main() {
   [ "$(uname -s)" = Darwin ] || { echo "This is for macOS." >&2; exit 1; }
 
+  # --- iCloud -----------------------------------------------------------------
+  # Not scriptable, but easiest before anything lands in ~/Desktop or
+  # ~/Documents: once they sync, that's what carries over from the last Mac.
+  if ! icloud_signed_in; then
+    cat <<'EOF'
+
+  Not signed in to iCloud. Before going further, in System Settings:
+
+    1. Sign in with your personal Apple Account.
+    2. iCloud > iCloud Drive: turn on "Desktop & Documents Folders".
+EOF
+    pause "Press Return to continue (signed in or not)."
+  fi
+
   # --- Command Line Tools: git, clang, swiftc ------------------------------
   if ! have_clt; then
     log "Installing the Xcode Command Line Tools; finish the installer window"
@@ -88,16 +102,12 @@ main() {
   fi
 
   # --- 1Password ------------------------------------------------------------
-  # An MDM pushes its own copy, and Homebrew shouldn't fight it for the app.
-  until [ -d /Applications/1Password.app ]; do
-    if mdm_enrolled; then
-      warn "this Mac is MDM-managed but 1Password isn't installed yet"
-      pause "Install it from the MDM's self-service app, then press Return."
-    else
-      log "Installing 1Password"
-      brew install --cask 1password </dev/null
-    fi
-  done
+  # From Homebrew on every machine, work or not. If an MDM already pushed a
+  # copy, use that rather than fight it.
+  if [ ! -d /Applications/1Password.app ]; then
+    log "Installing 1Password"
+    brew install --cask 1password </dev/null
+  fi
 
   # --- Sign in, turn on the SSH agent ---------------------------------------
   pin_github_host_keys
@@ -107,9 +117,11 @@ main() {
 
   1Password is open. To continue:
 
-    1. Sign in. You need the account password, plus either the Secret Key
-       from the Emergency Kit or the "set up another device" QR code from
-       the 1Password app on your phone.
+    1. Sign in to your PERSONAL account first; it holds the GitHub SSH
+       key. You need the account password, plus either the Secret Key from
+       the Emergency Kit or the "set up another device" QR code from the
+       1Password app on your phone. Add the employer account afterwards
+       (Settings > Accounts), once this script is done.
     2. Settings > Developer:
        - turn on "Use the SSH agent", and click "Edit Automatically" in the
          dialog so it writes ~/.ssh/config
